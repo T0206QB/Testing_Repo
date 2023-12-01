@@ -1,0 +1,34 @@
+{
+	"global":{
+		 "leaderboard_code":"global"
+		,"leaderboard_code_android":"CgkI-cfUyvoEEAIQAA"
+		,"leaderboard_code_ios":"align4big_global"
+		,"leaderboard_order":1
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "Victoires",
+			"de": "Victories",
+			"en": "Victories",
+			"es": "Victories",
+			"it": "Victories",
+			"ko": "Victories",
+			"pt": "Victories",
+			"tr": "Victories",
+			"af": "Victories",
+			"ms": "Victories",
+			"nl": "Victories",
+			"ru": "Victories",
+			"vn": "Victories",
+			"zh": "Victories",
+			"tw": "Victories",
+			"ar": "Victories",
+			"hi": "Victories",
+			"id": "Victories",
+			"ja": "Victories",
+			"th": "Victories"
+		}
+	}
+}

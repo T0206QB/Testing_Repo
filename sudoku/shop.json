@@ -1,0 +1,36 @@
+{
+	"shop": {
+		"tips": {
+			"type": "consumable",
+			"name": "Tips",
+			"idName": "Tips",
+			"quantityMax" : 99999999999,
+			"price": 0,
+			"moneyType":"normal",
+			"quantity": 3,
+			"unlocked":1
+		},
+		
+		"streakCheck": {
+			"type": "consumable",
+			"name": "streakCheck",
+			"idName": "streakCheck",
+			"quantityMax" : 99999999999,
+			"price": 0,
+			"moneyType":"normal",
+			"quantity": 0,
+			"unlocked":1
+		},
+		
+		"theme": {
+			"type": "consumable",
+			"name": "theme",
+			"idName": "theme",
+			"quantityMax" : 99999999999,
+			"price": 0,
+			"moneyType":"normal",
+			"quantity": 0,
+			"unlocked":1
+		}
+	}
+}

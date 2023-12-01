@@ -1,0 +1,158 @@
+{
+    "shop": {
+        "bonus_bomb": {
+            "type": "pack",
+            "name": "bomb",
+            "idName" : "bonus_bomb",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "bonus_colorBomb": {
+            "type": "pack",
+            "name": "color bomb",
+            "idName" : "bonus_colorBomb",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "bonus_line": {
+            "type": "pack",
+            "name": "line",
+            "idName" : "bonus_line",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "powerup_bomb": {
+            "type": "pack",
+            "name": "bomb",
+            "idName" : "powerup_bomb",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "powerup_hammer": {
+            "type": "pack",
+            "name": "hammer",
+            "idName" : "powerup_hammer",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "powerup_swap": {
+            "type": "pack",
+            "name": "swap",
+            "idName" : "powerup_swap",
+            "quantity":0,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":10,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":20,
+                "moneyType":"normal"
+            }
+        },
+        "life": {
+            "type": "pack",
+            "name": "life",
+            "idName" : "life",
+            "quantity":5,
+            "quantityMax": 999,
+            "0":{
+                "price":20,
+                "modifier":1,
+                "moneyType":"normal"
+            },
+            "1":{
+                "price":50,
+                "modifier":3,
+                "moneyType":"normal"
+            },
+            "2":{
+                "price":80,
+                "modifier":5,
+                "moneyType":"normal"
+            }
+        }
+    }
+}

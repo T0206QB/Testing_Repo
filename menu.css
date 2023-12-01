@@ -1,0 +1,142 @@
+body{
+  background-color: #1A1A1A;
+  font-family: sans-serif;
+  color: #FFFFFF;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  margin-top: 2%;
+}
+.flexcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.flexcontainer::-webkit-scrollbar {
+  display: none;
+}
+#rightContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid white;
+}
+#rightContainer #payment-button-container {
+  width: 100%;
+  padding-top: 5%;
+}
+#rightContainer #paypal-button-container {
+  text-align: center;
+  font-size: 32px;
+  float: left;
+  width: 30%;
+  padding-left: 13%;
+}
+#rightContainer #payment-button-divider {
+  font-size: 31px;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  float: left;
+}
+#rightContainer #subscribe-button-container{
+  text-align: center;
+  font-size: 32px;
+  float: left;
+  width: 30%;
+  padding-right: 13%;
+}
+#rightContainer #subscribe-button{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 55px;
+  min-width: 150px;
+  max-width: 750px;
+  background: #00358e;
+  border-radius: 28px;
+}
+#subscribe-button p {
+  margin: 0;
+  padding-top: 2%;
+  font-style: oblique;
+  font-weight: bold;
+}
+#rightContainer #return-button {
+  width: 40px;
+  padding: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  float: right;
+}
+#rightContainer #betaBanner {
+  font-size: 32px;
+  font-style: italic;
+  opacity: 0.2;
+}
+#rightContainer #preview-container {
+  padding: 10%;
+  text-align: center;
+}
+#rightContainer #preview-image {
+  border-radius: 35px;
+  text-align: center;
+  box-shadow: 0 0 20px 8px #f49c04;
+}
+#rightContainer #details {
+  text-align: center;
+  padding-top: 10%;
+  font-size: 32px;
+}
+.flexdiv{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+.gameApp{
+  flex: 1 0 calc(20% - 4%);
+  padding: 1.5%;
+  margin: 26px 0px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gameimg{
+  padding: 0;
+  height: 240px;
+  width: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  position: relative;
+}
+.gameimg img{
+  object-fit: cover;
+  border-radius: 35px;
+}
+.gameimg .icon {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.gameimg .overlay{
+  position: absolute;
+  visibility: hidden;
+}
+.gamename{
+  text-align: center;
+  padding: 20px;
+  font-size: 32px;
+}

@@ -1,0 +1,3 @@
+Patch for mouse event bug on ios from 14.5.
+Patched with script.
+It's recommended to update this game with the new plugin.
