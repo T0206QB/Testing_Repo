@@ -26,4 +26,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
         role-to-assume: arn:aws:iam::228722564141:role/service-role/codebuild-webwidgets-web
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync . s3://stla-ivww-s3-iconic-games
         
