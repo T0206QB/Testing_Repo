@@ -113,6 +113,7 @@ $(document).ready(function () {
   getParams();
   if (Object.keys(params).length !== 0) {
     for (var [key, value] of Object.entries(params)) {
+      // sort games alphabetically
       if (key in gameDetails)
         gameDetails[key].unlocked = value == "true" ? true : false;
     }
