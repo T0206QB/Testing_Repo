@@ -135,8 +135,27 @@ body{
   position: absolute;
   visibility: hidden;
 }
+.gameimg .new{
+  position: absolute;
+  /* visibility: hidden; */
+}
+
 .gamename{
   text-align: center;
   padding: 20px;
   font-size: 32px;
+}
+
+#newImage{
+  height: 30%;
+  width: 30%;
+}
+
+#content {
+  position: relative;
+}
+#content img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

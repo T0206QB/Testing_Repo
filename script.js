@@ -1,112 +1,112 @@
 var gameDetails = {
-  bricks: {
-    name: "Bricks Breaker",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+  // bricks: {
+  //   name: "Bricks Breaker",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
   candy: {
     name: "Lollipop World",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  defenders: {
-    name: "Defenders",
-    premium: true,
-    unlocked: false,
-    price: "0.10",
-  },
-  hex: {
-    name: "Hex",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+  // defenders: {
+  //   name: "Defenders",
+  //   premium: true,
+  //   unlocked: false,
+  //   price: "0.10",
+  // },
+  // hex: {
+  //   name: "Hex",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
   parking: {
     name: "Parking Panic",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  plumber: {
-    name: "Plumber World",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  tangram: {
-    name: "Tangram Puzzle",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  solitaire: {
-    name: "Solitaire",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  sudoku: {
-    name: "Sudoku",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  ticTacToe: {
-    name: "Tic Tac Toe",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  petitsChevauxSH: {
-    name: "Petits Chevaux",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  yatzyYahtzee: {
-    name: "YatzyYahtzee",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  ten: {
-    name: "TenXTen",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  align4Big: {
-    name: "Align 4 Big",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  chooChooConnect: {
-    name: "Choo Choo Connect",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  fillInTheHoles: {
-    name: "Fill In The Holes",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  mahjongBig: {
-    name: "Mahjong Big",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  oneLineOnlyDTD: {
-    name: "One Line Only",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+  // plumber: {
+  //   name: "Plumber World",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // tangram: {
+  //   name: "Tangram Puzzle",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // solitaire: {
+  //   name: "Solitaire",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // sudoku: {
+  //   name: "Sudoku",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // ticTacToe: {
+  //   name: "Tic Tac Toe",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // petitsChevauxSH: {
+  //   name: "Petits Chevaux",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // yatzyYahtzee: {
+  //   name: "YatzyYahtzee",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // ten: {
+  //   name: "TenXTen",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // align4Big: {
+  //   name: "Align 4 Big",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // chooChooConnect: {
+  //   name: "Choo Choo Connect",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // fillInTheHoles: {
+  //   name: "Fill In The Holes",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // mahjongBig: {
+  //   name: "Mahjong Big",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  // oneLineOnlyDTD: {
+  //   name: "One Line Only",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
 };
 var usingPayPal = true; //false for no paypal
 $(document).ready(function () {
@@ -137,29 +137,32 @@ $(document).ready(function () {
         "0 0 20px 8px #f49c04"
       );
   }
-  $("#bricks").click(function () {
-    if (gameDetails.bricks.unlocked == true) {
-      location.href = "bricksBreaker/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#bricks").click(function () {
+  //   if (gameDetails.bricks.unlocked == true) {
+  //     location.href = "bricksBreaker/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
+      // document.getElementById("newImage").style.visibility = hidden;
+      // let count=1;
       location.href = "candyWorld/index.html";
+
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#defenders").click(function () {
-    if (gameDetails.defenders.unlocked == true) {
-      location.href = "defenders/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#defenders").click(function () {
+  //   if (gameDetails.defenders.unlocked == true) {
+  //     location.href = "defenders/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
-  $("#hex").click(function () {
-    if (gameDetails.hex.unlocked == true) {
-      location.href = "hex/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#hex").click(function () {
+  //   if (gameDetails.hex.unlocked == true) {
+  //     location.href = "hex/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
   $("#parking").click(function () {
     if (gameDetails.parking.unlocked == true) {
@@ -167,75 +170,81 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#plumber").click(function () {
-    if (gameDetails.plumber.unlocked == true) {
-      location.href = "plumberWorld/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#parkingNew").click(function () {
+  //   if (gameDetails.parking.unlocked == true) {
+  //     location.href = "ExportedGames_ParkingPanic/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
-  $("#tangram").click(function () {
-    if (gameDetails.tangram.unlocked == true) {
-      location.href = "tangramPuzzle/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#plumber").click(function () {
+  //   if (gameDetails.plumber.unlocked == true) {
+  //     location.href = "plumberWorld/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
-  $("#solitaire").click(function () {
-    if (gameDetails.solitaire.unlocked == true) {
-      location.href = "solitaireClassic/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#tangram").click(function () {
+  //   if (gameDetails.tangram.unlocked == true) {
+  //     location.href = "tangramPuzzle/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
-  $("#sudoku").click(function () {
-    if (gameDetails.sudoku.unlocked == true) {
-      location.href = "sudoku/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#TicTacToe").click(function () {
-    if (gameDetails.ticTacToe.unlocked == true) {
-      location.href = "ticTacToe/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#petitsChevauxSH").click(function () {
-    if (gameDetails.petitsChevauxSH.unlocked == true) {
-      location.href = "petitsChevauxSH/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#yatzyYahtzee").click(function () {
-    if (gameDetails.yatzyYahtzee.unlocked == true) {
-      location.href = "yatzyYahtzee/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#solitaire").click(function () {
+  //   if (gameDetails.solitaire.unlocked == true) {
+  //     location.href = "solitaireClassic/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
-  $("#ten").click(function () {
-    if (gameDetails.ten.unlocked == true) {
-      location.href = "tenXTen/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#align4Big").click(function () {
-    if (gameDetails.align4Big.unlocked == true) {
-      location.href = "align4Big/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#chooChooConnect").click(function () {
-    if (gameDetails.chooChooConnect.unlocked == true) {
-      location.href = "chooChooConnect/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#fillInTheHoles").click(function () {
-    if (gameDetails.fillInTheHoles.unlocked == true) {
-      location.href = "fillInTheHoles/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#mahjongBig").click(function () {
-    if (gameDetails.mahjongBig.unlocked == true) {
-      location.href = "mahjongBig/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#oneLineOnlyDTD").click(function () {
-    if (gameDetails.oneLineOnlyDTD.unlocked == true) {
-      location.href = "oneLineOnlyDTD/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+  // $("#sudoku").click(function () {
+  //   if (gameDetails.sudoku.unlocked == true) {
+  //     location.href = "sudoku/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#TicTacToe").click(function () {
+  //   if (gameDetails.ticTacToe.unlocked == true) {
+  //     location.href = "ticTacToe/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#petitsChevauxSH").click(function () {
+  //   if (gameDetails.petitsChevauxSH.unlocked == true) {
+  //     location.href = "petitsChevauxSH/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#yatzyYahtzee").click(function () {
+  //   if (gameDetails.yatzyYahtzee.unlocked == true) {
+  //     location.href = "yatzyYahtzee/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+
+  // $("#ten").click(function () {
+  //   if (gameDetails.ten.unlocked == true) {
+  //     location.href = "tenXTen/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#align4Big").click(function () {
+  //   if (gameDetails.align4Big.unlocked == true) {
+  //     location.href = "align4Big/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#chooChooConnect").click(function () {
+  //   if (gameDetails.chooChooConnect.unlocked == true) {
+  //     location.href = "chooChooConnect/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#fillInTheHoles").click(function () {
+  //   if (gameDetails.fillInTheHoles.unlocked == true) {
+  //     location.href = "fillInTheHoles/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#mahjongBig").click(function () {
+  //   if (gameDetails.mahjongBig.unlocked == true) {
+  //     location.href = "mahjongBig/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
+  // $("#oneLineOnlyDTD").click(function () {
+  //   if (gameDetails.oneLineOnlyDTD.unlocked == true) {
+  //     location.href = "oneLineOnlyDTD/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
   $("body").css("opacity", 100);
 });
 
