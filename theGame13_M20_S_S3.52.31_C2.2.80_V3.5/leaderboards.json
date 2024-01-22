@@ -1,0 +1,419 @@
+{
+	 "global":{
+		 "leaderboard_code":"global"
+		,"leaderboard_code_ios":"thegame13_global"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQGA"
+		,"leaderboard_order":1
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "Score",
+			"de": "Over-all score",
+			"en": "Over-all score",
+			"es": "Over-all score",
+			"it": "Over-all score",
+			"ko": "Over-all score",
+			"pt": "Over-all score",
+			"tr": "Over-all score",
+			"af": "Over-all score",
+			"ms": "Over-all score",
+			"nl": "Over-all score",
+			"ru": "Over-all score",
+			"vn": "Over-all score",
+			"zh": "Over-all score",
+			"tw": "Over-all score",
+			"ar": "Over-all score",
+			"hi": "Over-all score",
+			"id": "Over-all score",
+			"ja": "Over-all score",
+			"th": "Over-all score"
+		}
+	}
+	,"easy_score":{
+		"leaderboard_code":"easy_score"
+		,"leaderboard_code_ios":"thegame13_easy_score"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQGQ"
+	   ,"leaderboard_order":2
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Facile [score]",
+		   "de": "Easy [score]",
+		   "en": "Easy [score]",
+		   "es": "Easy [score]",
+		   "it": "Easy [score]",
+		   "ko": "Easy [score]",
+		   "pt": "Easy [score]",
+		   "tr": "Easy [score]",
+		   "af": "Easy [score]",
+		   "ms": "Easy [score]",
+		   "nl": "Easy [score]",
+		   "ru": "Easy [score]",
+		   "vn": "Easy [score]",
+		   "zh": "Easy [score]",
+		   "tw": "Easy [score]",
+		   "ar": "Easy [score]",
+		   "hi": "Easy [score]",
+		   "id": "Easy [score]",
+		   "ja": "Easy [score]",
+		   "th": "Easy [score]"
+	   }
+   }
+   ,"medium_score":{
+		"leaderboard_code":"medium_score"
+		,"leaderboard_code_ios":"thegame13_medium_score"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQGg"
+	   ,"leaderboard_order":3
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Moyen [score]",
+		   "de": "Medium [score]",
+		   "en": "Medium [score]",
+		   "es": "Medium [score]",
+		   "it": "Medium [score]",
+		   "ko": "Medium [score]",
+		   "pt": "Medium [score]",
+		   "tr": "Medium [score]",
+		   "af": "Medium [score]",
+		   "ms": "Medium [score]",
+		   "nl": "Medium [score]",
+		   "ru": "Medium [score]",
+		   "vn": "Medium [score]",
+		   "zh": "Medium [score]",
+		   "tw": "Medium [score]",
+		   "ar": "Medium [score]",
+		   "hi": "Medium [score]",
+		   "id": "Medium [score]",
+		   "ja": "Medium [score]",
+		   "th": "Medium [score]"
+	   }
+	}
+   ,"hard_score":{
+		"leaderboard_code":"hard_score"
+		,"leaderboard_code_ios":"thegame13_hard_score"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQGw"
+	   ,"leaderboard_order":4
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Difficile [score]",
+		   "de": "Hard [score]",
+		   "en": "Hard [score]",
+		   "es": "Hard [score]",
+		   "it": "Hard [score]",
+		   "ko": "Hard [score]",
+		   "pt": "Hard [score]",
+		   "tr": "Hard [score]",
+		   "af": "Hard [score]",
+		   "ms": "Hard [score]",
+		   "nl": "Hard [score]",
+		   "ru": "Hard [score]",
+		   "vn": "Hard [score]",
+		   "zh": "Hard [score]",
+		   "tw": "Hard [score]",
+		   "ar": "Hard [score]",
+		   "hi": "Hard [score]",
+		   "id": "Hard [score]",
+		   "ja": "Hard [score]",
+		   "th": "Hard [score]"
+	   }
+	}
+   ,"vhard_score":{
+		"leaderboard_code":"vhard_score"
+		,"leaderboard_code_ios":"thegame13_vhard_score"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQHA"
+	   ,"leaderboard_order":5
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Très difficile [score]",
+		   "de": "Very hard [score]",
+		   "en": "Very hard [score]",
+		   "es": "Very hard [score]",
+		   "it": "Very hard [score]",
+		   "ko": "Very hard [score]",
+		   "pt": "Very hard [score]",
+		   "tr": "Very hard [score]",
+		   "af": "Very hard [score]",
+		   "ms": "Very hard [score]",
+		   "nl": "Very hard [score]",
+		   "ru": "Very hard [score]",
+		   "vn": "Very hard [score]",
+		   "zh": "Very hard [score]",
+		   "tw": "Very hard [score]",
+		   "ar": "Very hard [score]",
+		   "hi": "Very hard [score]",
+		   "id": "Very hard [score]",
+		   "ja": "Very hard [score]",
+		   "th": "Very hard [score]"
+	   }
+	}
+	,"easy_moves":{
+		"leaderboard_code":"easy_moves"
+		,"leaderboard_code_ios":"thegame13_easy_moves"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQHQ"
+	   ,"leaderboard_order":6
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Facile [actions]",
+		   "de": "Easy [moves]",
+		   "en": "Easy [moves]",
+		   "es": "Easy [moves]",
+		   "it": "Easy [moves]",
+		   "ko": "Easy [moves]",
+		   "pt": "Easy [moves]",
+		   "tr": "Easy [moves]",
+		   "af": "Easy [moves]",
+		   "ms": "Easy [moves]",
+		   "nl": "Easy [moves]",
+		   "ru": "Easy [moves]",
+		   "vn": "Easy [moves]",
+		   "zh": "Easy [moves]",
+		   "tw": "Easy [moves]",
+		   "ar": "Easy [moves]",
+		   "hi": "Easy [moves]",
+		   "id": "Easy [moves]",
+		   "ja": "Easy [moves]",
+		   "th": "Easy [moves]"
+	   }
+   }
+   ,"medium_moves":{
+		"leaderboard_code":"medium_moves"
+		,"leaderboard_code_ios":"thegame13_medium_moves"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQHg"
+	   ,"leaderboard_order":7
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Moyen [actions]",
+		   "de": "Medium [moves]",
+		   "en": "Medium [moves]",
+		   "es": "Medium [moves]",
+		   "it": "Medium [moves]",
+		   "ko": "Medium [moves]",
+		   "pt": "Medium [moves]",
+		   "tr": "Medium [moves]",
+		   "af": "Medium [moves]",
+		   "ms": "Medium [moves]",
+		   "nl": "Medium [moves]",
+		   "ru": "Medium [moves]",
+		   "vn": "Medium [moves]",
+		   "zh": "Medium [moves]",
+		   "tw": "Medium [moves]",
+		   "ar": "Medium [moves]",
+		   "hi": "Medium [moves]",
+		   "id": "Medium [moves]",
+		   "ja": "Medium [moves]",
+		   "th": "Medium [moves]"
+	   }
+	}
+   ,"hard_moves":{
+		"leaderboard_code":"hard_moves"
+		,"leaderboard_code_ios":"thegame13_hard_moves"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQHw"
+	   ,"leaderboard_order":8
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Difficile [actions]",
+		   "de": "Hard [moves]",
+		   "en": "Hard [moves]",
+		   "es": "Hard [moves]",
+		   "it": "Hard [moves]",
+		   "ko": "Hard [moves]",
+		   "pt": "Hard [moves]",
+		   "tr": "Hard [moves]",
+		   "af": "Hard [moves]",
+		   "ms": "Hard [moves]",
+		   "nl": "Hard [moves]",
+		   "ru": "Hard [moves]",
+		   "vn": "Hard [moves]",
+		   "zh": "Hard [moves]",
+		   "tw": "Hard [moves]",
+		   "ar": "Hard [moves]",
+		   "hi": "Hard [moves]",
+		   "id": "Hard [moves]",
+		   "ja": "Hard [moves]",
+		   "th": "Hard [moves]"
+	   }
+	}
+   ,"vhard_moves":{
+		"leaderboard_code":"vhard_moves"
+		,"leaderboard_code_ios":"thegame13_vhard_moves"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQIA"
+	   ,"leaderboard_order":9
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Très difficile [actions]",
+		   "de": "Very hard [moves]",
+		   "en": "Very hard [moves]",
+		   "es": "Very hard [moves]",
+		   "it": "Very hard [moves]",
+		   "ko": "Very hard [moves]",
+		   "pt": "Very hard [moves]",
+		   "tr": "Very hard [moves]",
+		   "af": "Very hard [moves]",
+		   "ms": "Very hard [moves]",
+		   "nl": "Very hard [moves]",
+		   "ru": "Very hard [moves]",
+		   "vn": "Very hard [moves]",
+		   "zh": "Very hard [moves]",
+		   "tw": "Very hard [moves]",
+		   "ar": "Very hard [moves]",
+		   "hi": "Very hard [moves]",
+		   "id": "Very hard [moves]",
+		   "ja": "Very hard [moves]",
+		   "th": "Very hard [moves]"
+	   }
+	}
+	,"easy_top":{
+		"leaderboard_code":"easy_top"
+		,"leaderboard_code_ios":"thegame13_easy_top"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQIQ"
+	   ,"leaderboard_order":10
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Facile [top]",
+		   "de": "Easy [top]",
+		   "en": "Easy [top]",
+		   "es": "Easy [top]",
+		   "it": "Easy [top]",
+		   "ko": "Easy [top]",
+		   "pt": "Easy [top]",
+		   "tr": "Easy [top]",
+		   "af": "Easy [top]",
+		   "ms": "Easy [top]",
+		   "nl": "Easy [top]",
+		   "ru": "Easy [top]",
+		   "vn": "Easy [top]",
+		   "zh": "Easy [top]",
+		   "tw": "Easy [top]",
+		   "ar": "Easy [top]",
+		   "hi": "Easy [top]",
+		   "id": "Easy [top]",
+		   "ja": "Easy [top]",
+		   "th": "Easy [top]"
+	   }
+   }
+   ,"medium_top":{
+		"leaderboard_code":"medium_top"
+		,"leaderboard_code_ios":"thegame13_medium_top"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQIg"
+	   ,"leaderboard_order":11
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Moyen [top]",
+		   "de": "Medium [top]",
+		   "en": "Medium [top]",
+		   "es": "Medium [top]",
+		   "it": "Medium [top]",
+		   "ko": "Medium [top]",
+		   "pt": "Medium [top]",
+		   "tr": "Medium [top]",
+		   "af": "Medium [top]",
+		   "ms": "Medium [top]",
+		   "nl": "Medium [top]",
+		   "ru": "Medium [top]",
+		   "vn": "Medium [top]",
+		   "zh": "Medium [top]",
+		   "tw": "Medium [top]",
+		   "ar": "Medium [top]",
+		   "hi": "Medium [top]",
+		   "id": "Medium [top]",
+		   "ja": "Medium [top]",
+		   "th": "Medium [top]"
+	   }
+	}
+   ,"hard_top":{
+		"leaderboard_code":"hard_top"
+		,"leaderboard_code_ios":"thegame13_hard_top"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQIw"
+	   ,"leaderboard_order":12
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Difficile [top]",
+		   "de": "Hard [top]",
+		   "en": "Hard [top]",
+		   "es": "Hard [top]",
+		   "it": "Hard [top]",
+		   "ko": "Hard [top]",
+		   "pt": "Hard [top]",
+		   "tr": "Hard [top]",
+		   "af": "Hard [top]",
+		   "ms": "Hard [top]",
+		   "nl": "Hard [top]",
+		   "ru": "Hard [top]",
+		   "vn": "Hard [top]",
+		   "zh": "Hard [top]",
+		   "tw": "Hard [top]",
+		   "ar": "Hard [top]",
+		   "hi": "Hard [top]",
+		   "id": "Hard [top]",
+		   "ja": "Hard [top]",
+		   "th": "Hard [top]"
+	   }
+	}
+   ,"vhard_top":{
+		"leaderboard_code":"vhard_top"
+		,"leaderboard_code_ios":"thegame13_vhard_top"
+		,"leaderboard_code_android":"CgkIjKnM-P4aEAIQJA"
+	   ,"leaderboard_order":13
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Très difficile [top]",
+		   "de": "Very hard [top]",
+		   "en": "Very hard [top]",
+		   "es": "Very hard [top]",
+		   "it": "Very hard [top]",
+		   "ko": "Very hard [top]",
+		   "pt": "Very hard [top]",
+		   "tr": "Very hard [top]",
+		   "af": "Very hard [top]",
+		   "ms": "Very hard [top]",
+		   "nl": "Very hard [top]",
+		   "ru": "Very hard [top]",
+		   "vn": "Very hard [top]",
+		   "zh": "Very hard [top]",
+		   "tw": "Very hard [top]",
+		   "ar": "Very hard [top]",
+		   "hi": "Very hard [top]",
+		   "id": "Very hard [top]",
+		   "ja": "Very hard [top]",
+		   "th": "Very hard [top]"
+	   }
+	}
+
+}

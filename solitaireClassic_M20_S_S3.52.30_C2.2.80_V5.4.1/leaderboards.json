@@ -1,0 +1,162 @@
+{
+	 "global":{
+		 "leaderboard_code":"global"
+		,"leaderboard_code_android":"CgkI9a2G_NoYEAIQAA"
+		,"leaderboard_code_ios":"solitaireClassic_global"
+		,"leaderboard_order":1
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "Étoiles",
+			"de": "Stars",
+			"en": "Stars",
+			"es": "Stars",
+			"it": "Stars",
+			"ko": "Stars",
+			"pt": "Stars",
+			"tr": "Stars",
+			"af": "Stars",
+			"ms": "Stars",
+			"nl": "Stars",
+			"ru": "Stars",
+			"vn": "Stars",
+			"zh": "Stars",
+			"tw": "Stars",
+			"ar": "Stars",
+			"hi": "Stars",
+			"id": "Stars",
+			"ja": "星",
+			"th": "Stars"
+		}
+	}
+	,"oneCard":{
+		 "leaderboard_code":"oneCard"
+		,"leaderboard_code_android":"CgkI9a2G_NoYEAIQAQ"
+		,"leaderboard_code_ios":"solitaireClassic_oneCard"
+		,"leaderboard_order":2
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "1-Carte [victoires]",
+			"de": "One-Card [victories]",
+			"en": "One-Card [victories]",
+			"es": "One-Card [victories]",
+			"it": "One-Card [victories]",
+			"ko": "One-Card [victories]",
+			"pt": "One-Card [victories]",
+			"tr": "One-Card [victories]",
+			"af": "One-Card [victories]",
+			"ms": "One-Card [victories]",
+			"nl": "One-Card [victories]",
+			"ru": "One-Card [victories]",
+			"vn": "One-Card [victories]",
+			"zh": "One-Card [victories]",
+			"tw": "One-Card [victories]",
+			"ar": "One-Card [victories]",
+			"hi": "One-Card [victories]",
+			"id": "One-Card [victories]",
+			"ja": "1 カード [勝利]",
+			"th": "One-Card [victories]"
+		}
+	}
+	,"threeCards":{
+		 "leaderboard_code":"threeCards"
+		,"leaderboard_code_android":"CgkI9a2G_NoYEAIQAg"
+		,"leaderboard_code_ios":"solitaireClassic_threeCards"
+		,"leaderboard_order":3
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "3-Cartes [victoires]",
+			"de": "Three-Cards [victories]",
+			"en": "Three-Cards [victories]",
+			"es": "Three-Cards [victories]",
+			"it": "Three-Cards [victories]",
+			"ko": "Three-Cards [victories]",
+			"pt": "Three-Cards [victories]",
+			"tr": "Three-Cards [victories]",
+			"af": "Three-Cards [victories]",
+			"ms": "Three-Cards [victories]",
+			"nl": "Three-Cards [victories]",
+			"ru": "Three-Cards [victories]",
+			"vn": "Three-Cards [victories]",
+			"zh": "Three-Cards [victories]",
+			"tw": "Three-Cards [victories]",
+			"ar": "Three-Cards [victories]",
+			"hi": "Three-Cards [victories]",
+			"id": "Three-Cards [victories]",
+			"ja": "3 カード [勝利]",
+			"th": "Three-Cards [victories]"
+		}
+	}
+	,"oneCardScore":{
+		 "leaderboard_code":"oneCardScore"
+		,"leaderboard_code_android":"CgkI9a2G_NoYEAIQAw"
+		,"leaderboard_code_ios":"solitaireClassic_oneCardScore"
+		,"leaderboard_order":2
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":60000
+		,"leaderboard_title":{
+			"fr": "1-Carte [score]",
+			"de": "One-Card [score]",
+			"en": "One-Card [score]",
+			"es": "One-Card [score]",
+			"it": "One-Card [score]",
+			"ko": "One-Card [score]",
+			"pt": "One-Card [score]",
+			"tr": "One-Card [score]",
+			"af": "One-Card [score]",
+			"ms": "One-Card [score]",
+			"nl": "One-Card [score]",
+			"ru": "One-Card [score]",
+			"vn": "One-Card [score]",
+			"zh": "One-Card [score]",
+			"tw": "One-Card [score]",
+			"ar": "One-Card [score]",
+			"hi": "One-Card [score]",
+			"id": "One-Card [score]",
+			"ja": "1 カード [ポイント]",
+			"th": "One-Card [score]"
+		}
+	}
+	,"threeCardsScore":{
+		 "leaderboard_code":"threeCardsScore"
+		,"leaderboard_code_android":"CgkI9a2G_NoYEAIQBA"
+		,"leaderboard_code_ios":"solitaireClassic_threeCardsScore"
+		,"leaderboard_order":3
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":60000
+		,"leaderboard_title":{
+			"fr": "3-Cartes [score]",
+			"de": "Three-Cards [score]",
+			"en": "Three-Cards [score]",
+			"es": "Three-Cards [score]",
+			"it": "Three-Cards [score]",
+			"ko": "Three-Cards [score]",
+			"pt": "Three-Cards [score]",
+			"tr": "Three-Cards [score]",
+			"af": "Three-Cards [score]",
+			"ms": "Three-Cards [score]",
+			"nl": "Three-Cards [score]",
+			"ru": "Three-Cards [score]",
+			"vn": "Three-Cards [score]",
+			"zh": "Three-Cards [score]",
+			"tw": "Three-Cards [score]",
+			"ar": "Three-Cards [score]",
+			"hi": "Three-Cards [score]",
+			"id": "Three-Cards [score]",
+			"ja": "3 カード [ポイント]",
+			"th": "Three-Cards [score]"
+		}
+	}
+}
