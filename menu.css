@@ -105,7 +105,7 @@ body{
 }
 .gameApp{
   flex: 1 0 calc(20% - 4%);
-  padding: 2.5%;
+  padding: 1%;
   margin: 26px 0px;
   cursor: pointer;
   display: flex;
