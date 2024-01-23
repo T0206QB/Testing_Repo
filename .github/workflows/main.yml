@@ -1,12 +1,11 @@
 name: build_on_pull_request
 
 on:
-  push:
-    branches:
-    - games_wave1_initial
+  pull_request:
+    types: [closed]
 
 jobs:
-  build:
+  if_merged:
     runs-on: ubuntu-latest
 
     # These permissions are needed to interact with GitHub's OIDC Token endpoint
