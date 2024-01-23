@@ -3,7 +3,7 @@ name: build_on_pull_request
 on:
   push:
     branches:
-      - games_wave1_initial
+    - games_wave1_initial
 
 jobs:
   build:
