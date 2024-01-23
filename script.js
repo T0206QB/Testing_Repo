@@ -1,6 +1,6 @@
 var gameDetails = {
-  2048: {
-    name: "Wooden Edition 2048",
+  woodenEdition2048: {
+    name: "2048",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -83,7 +83,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  oneLineOnlyDTD: {
+  oneLineOnly: {
     name: "One Line Only",
     premium: false,
     unlocked: true,
@@ -188,9 +188,9 @@ $(document).ready(function () {
       );
   }
 
-  $("#WoodenEdition2048").click(function () {
+  $("#woodenEdition2048").click(function () {
     if (gameDetails.woodenEdition2048.unlocked == true) {
-      location.href = "woodenEdition2048/index.html";
+      location.href = "2048woodenEdition/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -223,7 +223,7 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#dominoes").click(function () {
+  $("#dominoesBig").click(function () {
     if (gameDetails.dominoesBig.unlocked == true) {
       location.href = "dominoesBig/index.html";
     } else createPurchaseContainer($(this).attr("id"));
@@ -280,9 +280,9 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#petitsChevauxSH").click(function () {
-    if (gameDetails.petitsChevauxSH.unlocked == true) {
-      location.href = "petitsChevauxSH/index.html";
+  $("#petitsChevaux").click(function () {
+    if (gameDetails.petitsChevaux.unlocked == true) {
+      location.href = "petitsChevaux/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -317,7 +317,7 @@ $(document).ready(function () {
   });
 
   $("#ten").click(function () {
-    if (gameDetails.ten.unlocked == true) {
+    if (gameDetails.tenXTen.unlocked == true) {
       location.href = "tenXTen/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
@@ -334,9 +334,9 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#yatzyYahtzee").click(function () {
-    if (gameDetails.yatzyYahtzee.unlocked == true) {
-      location.href = "yatzyYahtzee/index.html";
+  $("#yatzyYahtzeeYams").click(function () {
+    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
+      location.href = "yatzyYahtzeeYams/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
