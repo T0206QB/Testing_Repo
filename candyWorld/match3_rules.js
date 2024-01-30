@@ -1,1 +1,483 @@
-!function(){void 0===window.playtouchGame&&(window.playtouchGame={}),void 0===window.playtouchGame.match3&&(window.playtouchGame.match3={}),window.playtouchGame.match3.RulesClass=class{constructor(){}static result_continue(){return-1}static result_handleFalse(){return 0}static result_handleTrue(){return 1}static match_getPosibilities(r){var s=[["y","-x"],["-x","-y"],["-y","x"],["-x","y"],["y","x"],["x","-y"],["-y","-x"]],e=[r];for(let t=0;t<s.length;t++){var l=[];for(let e=0;e<r.length;e++)l.push(this.match_applyRule(s[t],r[e]));e.push(l)}return this.match_clearDuplicate(e)}static match_applyRule(t,r){var s=r.getCopy();for(let e=0;e<t.length;e++){var l=0==e?"x":"y";switch(t[e]){case"x":s[l]=parseInt(r.x);break;case"-x":s[l]=parseInt(-r.x);break;case"y":s[l]=parseInt(r.y);break;case"-y":s[l]=parseInt(-r.y)}}return s}static match_clearDuplicate(r){for(let t=0;t<r.length;t++)for(let e=r.length-1;0<=e;e--)t!=e&&JSON.stringify(r[t])===JSON.stringify(r[e])&&r.splice(e,1);return r}static match_3(){return[new c(0,1),new c(0,2)]}static match_4(){return[new c(0,1),new c(0,2),new c(0,3)]}static match_5(){return[new c(0,1),new c(0,2),new c(0,3),new c(0,4)]}static match_T5(){return[new c(0,1),new c(0,2),new c(1,2),new c(-1,2)]}static match_T6(){return[new c(0,1),new c(0,2),new c(1,2),new c(-1,2),new c(2,2)]}static match_T7(){return[new c(0,1),new c(0,2),new c(1,2),new c(-1,2),new c(2,2),new c(-2,2)]}static match_L4(){return[new c(0,1),new c(0,2),new c(1,2)]}static match_L5(){return[new c(0,1),new c(0,2),new c(1,2),new c(2,2)]}static match_Cross5(){return[new c(0,1),new c(-1,1),new c(1,1),new c(0,2)]}static match_Cross6(){return[new c(0,1),new c(0,2),new c(-1,2),new c(1,2),new c(0,3)]}static match_Cross7(){return[new c(0,1),new c(0,2),new c(-1,2),new c(1,2),new c(0,3),new c(0,4)]}static match_Cross7_2(){return[new c(0,1),new c(0,2),new c(-1,2),new c(1,2),new c(2,2),new c(0,3)]}static match_Cross8(){return[new c(0,1),new c(0,2),new c(-1,2),new c(-2,2),new c(1,2),new c(0,3),new c(0,4)]}static match_Cross9(){return[new c(0,1),new c(0,2),new c(-1,2),new c(-2,2),new c(1,2),new c(2,2),new c(0,3),new c(0,4)]}static matchItems_all(e,t){return this.result_handleTrue()}static matchItems_color(e,t){return e.uid===t.uid?this.result_continue():e.color===t.color?this.result_handleTrue():this.result_handleFalse()}static matchItems_type_blockLife(e,t){return"blockLife"===e.type||"blockLife"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_type_colorBomb(e,t){return"colorBomb"===e.type||"colorBomb"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_type_virus(e,t){return"virus"===e.type||"virus"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_type_totem(e,t){return"totem"===e.type||"totem"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_type_sinker(e,t){return"sinker"===e.type||"sinker"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_type_copyer(e,t){return"copyer"===e.type||"copyer"===t.type?this.result_handleFalse():this.result_continue()}static matchItems_cell_type_chest(e,t){return"chest"===e.cell.type||"chest"===t.cell.type?this.result_handleFalse():this.result_continue()}static matchItems_type_popper(e,t){return"popper"===e.type||"popper"===t.type?this.result_handleFalse():this.result_continue()}static swapItems_all(e,t){return this.result_handleTrue()}static swapItems_near1Cell(t,r,e){if(t.cell&&r.cell){var s=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<s.length;e++)if(t.cell.x+s[e].x===r.cell.x&&t.cell.y+s[e].y===r.cell.y)return this.result_continue()}return this.result_handleFalse()}static swapItems_near1CellAndMatch(t,r,s){if(t.cell&&r.cell){var l=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<l.length;e++)if(t.cell.x+l[e].x===r.cell.x&&t.cell.y+l[e].y===r.cell.y){s.swapItemByPos(t,r,!0,!0);var i=s.rules.onlyOneMatch,n=(s.rules.onlyOneMatch=!0,s.checkMatch(!1,!1,!0));if(s.rules.onlyOneMatch=i,s.swapItemByPos(t,r,!0,!0),!(n.length<=0))return this.result_handleTrue()}}return this.result_handleFalse()}static swapItems_blockLife(e,t){return"blockLife"==e.type||"blockLife"==t.type||"blockLife"==e.cell.type&&0<e.cell.life||"blockLife"==t.cell.type&&0<t.cell.life?this.result_handleFalse():this.result_continue()}static swapItems_noSwap(e,t){var r=["chest","copyer","virus","popper"];return r.includes(e.type)||r.includes(t.type)||r.includes(e.cell.type)||r.includes(t.cell.type)?this.result_handleFalse():this.result_continue()}static swapItems_match(e,t,r){if(!e.cell||!t.cell)return this.result_handleFalse();r.swapItemByPos(e,t,!0,!0);var s=r.rules.onlyOneMatch,l=(r.rules.onlyOneMatch=!0,r.checkMatch(!1,!1,!0));return r.rules.onlyOneMatch=s,r.swapItemByPos(e,t,!0,!0),l.length<=0?this.result_handleFalse():this.result_handleTrue()}static swapItems_bonus(e,t){var r=["line_v","line_h","line","colorBomb","bomb"];return(!r.includes(e.type)||!r.includes(t.type))&&(r=["totem","chest","sinker","copyer","popper"],"colorBomb"!=e.type&&"colorBomb"!=t.type||r.includes(e.type)||r.includes(t.type)||r.includes(e.cell.type)||r.includes(t.cell.type))?this.result_continue():this.result_handleTrue()}static sortCells_top(e,t){return e.y>=t.y?1:-1}static sortCells_bottom(e,t){return e.y<=t.y?1:-1}static sortCells_left(e,t){return e.x>=t.x?1:-1}static sortCells_right(e,t){return e.x<=t.x?1:-1}static move_bottom_1(){return new c(0,1)}static move_bottomLeftRight_1(){return[new c(1,1),new c(-1,1)]}static move_bottomLeft_1(){return new c(1,1)}static move_bottomRight_1(){return new c(-1,1)}static move_bottomLeftRight_nearBorder_1(e,t){return t.x<=e.logicWidth/2?new c(-1,1):new c(1,1)}static canMove_empty(e,t){return t.item?this.result_continue():this.result_handleTrue()}static canMove_type_void(e,t){return"void"===t.type?this.result_handleFalse():this.result_continue()}static canMove_type_blockLife(e,t){return"blockLife"===e.type||"blockLife"==e.cell.type&&0<e.cell.life?this.result_handleFalse():this.result_continue()}static canMove_type_noMove(e,t){var r=["copyer","virus","chest","popper"];return r.includes(e.type)||r.includes(e.cell.type)||r.includes(t.type)?this.result_handleFalse():this.result_continue()}static posCreateItem_top(t,e,r){var s=[];for(let e=0;e<t;e++)s.push(new c(e,0));return s}static posCreateItem_bottom(t,r,e){var s=[];for(let e=0;e<t;e++)s.push(new c(e,r-1));return s}static posCreateItem_left(e,t,r){var s=[];for(let e=0;e<t;e++)s.push(new c(0,e));return s}static posCreateItem_right(t,r,e){var s=[];for(let e=0;e<r;e++)s.push(new c(t-1,e));return s}static posCreateItem_centerTop_1(e,t,r){return new c(Math.floor((e-1)/2),0)}static canCreateItem_void(e){return"void"!=e.type&&!e.item}static createItemDefault(e,t,r){return t.item=new e.itemClass(t,e),e.applyOption(t.item,r),t.item.create(),t.item}static createItemDefault_type_random4(e,t,r){return t.item=new e.itemClass(t,e,Math.floor(4*Math.random())),e.applyOption(t.item,r),t.item.create(),t.item}static createItemOptionDefault(){return{}}static createItemOption_type_random4(){return{color:Math.floor(4*Math.random())}}static canDestroyItem_all(e){return this.result_handleTrue()}static canDestroyItem_life(e,t,r){return["switcher","sinker","blockLife","popper"].includes(e.item.type)?(e.item.baseLife||(e.item.baseLife=e.item.life),e.item.life--,e.item.updated(),"switcher"==e.item.type&&0<e.item.switcherArrColor.length&&0<e.item.life&&e.item.setColor(e.item.switcherArrColor.shift()),0<e.item.life?this.result_handleFalse():this.result_handleTrue()):this.result_continue()}static canDestroyItem_blockLifeNearDestroyed(t,r){if("blockLife"!=t.item.type){var s=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<s.length;e++){var l=r.getCellByPos(c.sumPos(t.pos,s[e]));l&&l.item&&"blockLife"===l.item.type&&r.checkRules.checkDestroyItem(l,r,void 0,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[])}}return this.result_continue()}static canDestroyItem_totem(e){return"totem"!=e.item.type?this.result_continue():this.result_handleFalse()}static canDestroyItem_cellBlockLife(e,t,r,s){return"blockLife"!=e.type||e.life<=0?this.result_continue():(e.baseLife||(e.baseLife=e.life),e.life--,e.updated(s),e.life<=0&&e.setType(""),this.result_handleFalse())}static canDestroyItem_cellBGLife(e){return"bgLife"!=e.type||e.life<=0||(e.baseLife||(e.baseLife=e.life),e.life--,e.updated(),e.life<=0&&e.setType("")),this.result_continue()}static canDestroyItem_virusNearDestroyed(t,r){if("virus"!=t.item.type){var s=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<s.length;e++){var l=r.getCellByPos(c.sumPos(t.pos,s[e]));l&&l.item&&"virus"===l.item.type&&r.checkRules.checkDestroyItem(l,r,void 0,[this.canDestroyItem_all],[])}}return this.result_continue()}static canDestroyItem_cellChest(e){return"chest"!=e.type?this.result_continue():this.result_handleFalse()}static canDestroyItem_sinkerNearDestroyed(t,r){if("sinker"!=t.item.type){var s=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<s.length;e++){var l=r.getCellByPos(c.sumPos(t.pos,s[e]));l&&l.item&&"sinker"===l.item.type&&"blockLife"!=l.type&&r.checkRules.checkDestroyItem(l,r,void 0,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[])}}return this.result_continue()}static canDestroyItem_copyerNearDestroyed(r,s,l){if("copyer"==r.item.type)return this.result_handleFalse();if(!(l.match.length<=1)){let t=r.item.color;void 0!==l.color&&-1!=l.color?t=l.color:l.color=t;var i=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<i.length;e++){var n=s.getCellByPos(c.sumPos(r.pos,i[e]));n&&n.item&&("copyer"!==n.item.type||(l.triggered_copyer||(l.triggered_copyer=[]),l.triggered_copyer.includes(n.id))||1==l.match.length&&l.match[0].x!=n.x&&l.match[0].y!=n.y||(void 0!==n.item.colorCopyer&&-1!=n.item.colorCopyer||(n.item.colorCopyer=t,n.item.updated()),n.item.colorCopyer===t&&(l.triggered_copyer.push(n.id),s.checkRules.checkDestroyItem(n,s,void 0,[this.canDestroyItem_cellChest,this.canDestroyItem_life_copyer],[]))))}}return this.result_continue()}static canDestroyItem_life_copyer(e,t,r){return!["copyer"].includes(e.item.type)||(e.item.baseLife||(e.item.baseLife=e.item.life),void 0!==e.item.colorCopyer&&-1!=e.item.colorCopyer||!r||void 0===r.color||-1==r.color||(e.item.colorCopyer=r.color,e.item.updated()),void 0!==r.color&&(-1==r.color||e.item.colorCopyer!==r.color))||void 0===e.item.colorCopyer||-1==e.item.colorCopyer?this.result_continue():(e.item.life--,e.item.updated(),0<e.item.life?this.result_handleFalse():this.result_handleTrue())}static canDestroyItem_popperNearDestroyed(t,r,s){if("popper"!=t.item.type&&!(s.match.length<3)){var l=[new c(0,1),new c(1,0),new c(0,-1),new c(-1,0)];for(let e=0;e<l.length;e++){var i=r.getCellByPos(c.sumPos(t.pos,l[e]));i&&i.item&&("popper"!==i.item.type||(s.triggered_popper||(s.triggered_popper=[]),s.triggered_popper.includes(i.id))||1==s.match.length&&s.match[0].x!=i.x&&s.match[0].y!=i.y||(s.triggered_popper.push(i.id),r.checkRules.checkDestroyItem(i,r,void 0,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[])))}}return this.result_continue()}static canDestroyItem_life_popper_os(e,t,r){return"popper"!=e.item.type||r.match.length<=0||"popper"!==r.name?this.result_continue():(e.item.life=0,e.item.updated(),this.result_handleTrue())}static canDestroyItem_oneTime_cell(e,t,r){return t.rulesCache||(t.rulesCache={}),t.rulesCache.checkMove||(t.rulesCache.checkMove={}),t.rulesCache.checkMove.oneTime_cell||(t.rulesCache.checkMove.oneTime_cell=[]),-1==t.rulesCache.checkMove.oneTime_cell.indexOf(e.id)?(t.rulesCache.checkMove.oneTime_cell.push(e.id),this.result_continue()):this.result_handleFalse()}static canDestroyItem_oneTime_cell_rulesNoItem(e,t,r){return t.rulesCache||(t.rulesCache={}),t.rulesCache.checkMove||(t.rulesCache.checkMove={}),t.rulesCache.checkMove.oneTime_cell||(t.rulesCache.checkMove.oneTime_cell=[]),-1==t.rulesCache.checkMove.oneTime_cell.indexOf(e.id)?this.result_continue():this.result_handleFalse()}static canTouch_type_item_blockLife(e){return e.item&&"blockLife"===e.item.type?this.result_handleFalse():this.result_continue()}static canTouch_type_item_virus(e){return e.item&&"virus"===e.item.type?this.result_handleFalse():this.result_continue()}static canTouch_type_item_copyer(e){return e.item&&"copyer"===e.item.type?this.result_handleFalse():this.result_continue()}static canTouch_type_cell_blockLife(e){return"blockLife"===e.type?this.result_handleFalse():this.result_continue()}static canTouch_type_cell_chest(e){return"chest"===e.type?this.result_handleFalse():this.result_continue()}static canTouch_type_item_popper(e){return e.item&&"popper"===e.item.type?this.result_handleFalse():this.result_continue()}};var c=window.playtouchGame.match3.Pos}();
+
+;(function(){
+	class RulesClass {
+		constructor(){}
+
+		static result_continue(){return -1;}
+		static result_handleFalse(){return 0;}
+		static result_handleTrue(){return 1;}
+
+		static match_getPosibilities(arrayPos){
+			let rules = [["y","-x"],["-x","-y"],["-y","x"],["-x","y"],["y","x"],["x","-y"],["-y","-x"]];
+			let ret = [arrayPos];
+			for (let i = 0; i < rules.length; i++) {
+				let newPos = [];
+				for (let y = 0; y < arrayPos.length; y++) {
+					newPos.push(this.match_applyRule(rules[i],arrayPos[y]));
+				}
+				ret.push(newPos);
+			}
+			return this.match_clearDuplicate(ret);
+		}
+		static match_applyRule(rule,pos){
+			let ret = pos.getCopy();
+			for (let i = 0; i < rule.length; i++) {
+				let key = (i==0)?"x":"y";
+				switch(rule[i]){
+					case "x":
+						ret[key] = parseInt(pos.x);
+					break;
+					case "-x":
+						ret[key] = parseInt(-pos.x);
+					break;
+					case "y":
+						ret[key] = parseInt(pos.y);
+					break;
+					case "-y":
+						ret[key] = parseInt(-pos.y);
+					break;
+				}
+			}
+			return ret;
+		}
+		static match_clearDuplicate(arrayPos){
+			for (let i = 0; i < arrayPos.length; i++) {
+				for(let y = arrayPos.length-1;y >= 0;y--){
+					if(i == y){continue;}
+					if(JSON.stringify(arrayPos[i]) === JSON.stringify(arrayPos[y])){
+						arrayPos.splice(y,1);
+					}
+				}
+			}
+			return arrayPos;
+		}
+
+		static match_3(){return [new Pos(0,1),new Pos(0,2)];}
+		static match_4(){return [new Pos(0,1),new Pos(0,2),new Pos(0,3)];}
+		static match_5(){return [new Pos(0,1),new Pos(0,2),new Pos(0,3),new Pos(0,4)];}
+		static match_T5(){return [new Pos(0,1),new Pos(0,2),new Pos(1,2),new Pos(-1,2)];}
+		static match_T6(){return [new Pos(0,1),new Pos(0,2),new Pos(1,2),new Pos(-1,2),new Pos(2,2)];}
+		static match_T7(){return [new Pos(0,1),new Pos(0,2),new Pos(1,2),new Pos(-1,2),new Pos(2,2),new Pos(-2,2)];}
+		static match_L4(){return [new Pos(0,1),new Pos(0,2),new Pos(1,2)];}
+		static match_L5(){return [new Pos(0,1),new Pos(0,2),new Pos(1,2),new Pos(2,2)];}
+
+		static match_Cross5(){return [new Pos(0,1),new Pos(-1,1),new Pos(1,1),new Pos(0,2)];}
+		static match_Cross6(){return [new Pos(0,1),new Pos(0,2),new Pos(-1,2),new Pos(1,2),new Pos(0,3)];}
+		static match_Cross7(){return [new Pos(0,1),new Pos(0,2),new Pos(-1,2),new Pos(1,2),new Pos(0,3),new Pos(0,4)];}
+		static match_Cross7_2(){return [new Pos(0,1),new Pos(0,2),new Pos(-1,2),new Pos(1,2),new Pos(2,2),new Pos(0,3)];}
+		static match_Cross8(){return [new Pos(0,1),new Pos(0,2),new Pos(-1,2),new Pos(-2,2),new Pos(1,2),new Pos(0,3),new Pos(0,4)];}
+		static match_Cross9(){return [new Pos(0,1),new Pos(0,2),new Pos(-1,2),new Pos(-2,2),new Pos(1,2),new Pos(2,2),new Pos(0,3),new Pos(0,4)];}
+
+		//match Item
+		static matchItems_all(item1,item2){return this.result_handleTrue();}
+		static matchItems_color(item1,item2){
+			if(item1.uid === item2.uid){return this.result_continue();}
+			if(item1.color === item2.color){
+				return this.result_handleTrue();
+			}
+			return this.result_handleFalse();
+		}
+		static matchItems_type_blockLife(item1,item2){
+			if(item1.type === "blockLife" || item2.type === "blockLife"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_colorBomb(item1,item2){
+			if(item1.type === "colorBomb" || item2.type === "colorBomb"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_virus(item1,item2){
+			if(item1.type === "virus" || item2.type === "virus"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_totem(item1,item2){
+			if(item1.type === "totem" || item2.type === "totem"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_sinker(item1,item2){
+			if(item1.type === "sinker" || item2.type === "sinker"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_copyer(item1,item2){
+			if(item1.type === "copyer" || item2.type === "copyer"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_cell_type_chest(item1,item2){
+			if(item1.cell.type === "chest" || item2.cell.type === "chest"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static matchItems_type_popper(item1,item2){
+			if(item1.type === "popper" || item2.type === "popper"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+
+		// swapItem
+		static swapItems_all(item1,item2){return this.result_handleTrue();}
+		static swapItems_near1Cell(item1,item2,grid){//1 cell only of distance
+			if(!item1.cell || !item2.cell){return this.result_handleFalse();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+
+			for (let i = 0; i < pos.length; i++) {
+				if(item1.cell.x + pos[i].x === item2.cell.x && item1.cell.y + pos[i].y === item2.cell.y){
+					return this.result_continue();
+				}
+			}
+
+			return this.result_handleFalse();
+		}
+		static swapItems_near1CellAndMatch(item1,item2,grid){//1 cell only of distance and match
+			if(!item1.cell || !item2.cell){return this.result_handleFalse();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+
+			for (let i = 0; i < pos.length; i++) {
+				if(item1.cell.x + pos[i].x === item2.cell.x && item1.cell.y + pos[i].y === item2.cell.y){
+					grid.swapItemByPos(item1,item2,true,true);
+					let savedRule = grid.rules.onlyOneMatch;
+					grid.rules.onlyOneMatch = true;
+					let matches = grid.checkMatch(false,false,true);
+					//restore state
+					grid.rules.onlyOneMatch = savedRule;
+					grid.swapItemByPos(item1,item2,true,true);
+					if(matches.length <= 0){continue;}
+					return this.result_handleTrue();
+				}
+			}
+
+			return this.result_handleFalse();
+		}
+		static swapItems_blockLife(item1,item2){
+			if(item1.type == "blockLife" || item2.type == "blockLife"){
+				return this.result_handleFalse();
+			}
+			if((item1.cell.type == "blockLife" && item1.cell.life >0) || (item2.cell.type == "blockLife" && item2.cell.life >0)){
+				return this.result_handleFalse();
+			}
+			return this.result_continue();
+		}
+		static swapItems_noSwap(item1,item2){
+			let listExclude = ["chest","copyer","virus","popper"];
+			if(listExclude.includes(item1.type) || listExclude.includes(item2.type)){return this.result_handleFalse();}
+			if(listExclude.includes(item1.cell.type) || listExclude.includes(item2.cell.type)){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static swapItems_match(item1,item2,grid){//match
+			if(!item1.cell || !item2.cell){return this.result_handleFalse();}
+
+			grid.swapItemByPos(item1,item2,true,true);
+			let savedRule = grid.rules.onlyOneMatch;
+			grid.rules.onlyOneMatch = true;
+			let matches = grid.checkMatch(false,false,true);
+			//restore state
+			grid.rules.onlyOneMatch = savedRule;
+			grid.swapItemByPos(item1,item2,true,true);
+			if(matches.length <= 0){return this.result_handleFalse();}
+			return this.result_handleTrue();
+		}
+		static swapItems_bonus(item1,item2){
+			let listBonus = ["line_v","line_h","line","colorBomb","bomb"];
+			if(listBonus.includes(item1.type) && listBonus.includes(item2.type)){
+				return this.result_handleTrue();
+			}
+
+			let listExclude = ["totem","chest","sinker","copyer","popper"];
+			if((item1.type == "colorBomb" || item2.type == "colorBomb") && 
+				!listExclude.includes(item1.type) && 
+				!listExclude.includes(item2.type) && 
+				!listExclude.includes(item1.cell.type) && 
+				!listExclude.includes(item2.cell.type)){
+				return this.result_handleTrue();
+			}
+			return this.result_continue();
+		}
+
+		// sort Cells
+		static sortCells_top(a,b){if(a.y >= b.y){return 1;}return -1;}
+		static sortCells_bottom(a,b){if(a.y <= b.y){return 1;}return -1;}
+		static sortCells_left(a,b){if(a.x >= b.x){return 1;}return -1;}
+		static sortCells_right(a,b){if(a.x <= b.x){return 1;}return -1;}
+		
+		// move
+		static move_bottom_1(){return new Pos(0,1);}
+		static move_bottomLeftRight_1(){return [new Pos(1,1),new Pos(-1,1)];}
+		static move_bottomLeft_1(){return new Pos(1,1);}
+		static move_bottomRight_1(){return new Pos(-1,1);}
+		static move_bottomLeftRight_nearBorder_1(grid,item){
+			if(item.x <= grid.logicWidth/2){return new Pos(-1,1)}
+			else{return new Pos(1,1);}
+		}
+
+		// canMove
+		static canMove_empty(item, cell){
+			if(!cell.item){
+				return this.result_handleTrue();
+			}
+			return this.result_continue();
+		}
+		static canMove_type_void(item, cell){
+			if(cell.type === "void"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canMove_type_blockLife(item, cell){
+			if(item.type === "blockLife" || (item.cell.type == "blockLife" && item.cell.life >0)){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canMove_type_noMove(item, cell){
+			let listExclude = ["copyer","virus","chest","popper"];
+			if(listExclude.includes(item.type)){return this.result_handleFalse();}
+			if(listExclude.includes(item.cell.type)){return this.result_handleFalse();}
+			if(listExclude.includes(cell.type)){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+
+
+		// posCreateItem
+		static posCreateItem_top(width,height,cells){
+			let ret = [];
+			for (let x = 0; x < width; x++){ret.push(new Pos(x,0));}
+			return ret;
+		}
+		static posCreateItem_bottom(width,height,cells){
+			let ret = [];
+			for (let x = 0; x < width; x++){ret.push(new Pos(x,height-1));}
+			return ret;
+		}
+		static posCreateItem_left(width,height,cells){
+			let ret = [];
+			for (let y = 0; y < height; y++){ret.push(new Pos(0,y));}
+			return ret;
+		}
+		static posCreateItem_right(width,height,cells){
+			let ret = [];
+			for (let y = 0; y < height; y++){ret.push(new Pos(width-1,y));}
+			return ret;
+		}
+		static posCreateItem_centerTop_1(width,height,cells){
+			return new Pos(Math.floor((width-1)/2),0);
+		}
+
+		// canCreateItem
+		static canCreateItem_void(cell){
+			if(cell.type == "void"){return false;}
+			if(!cell.item){return true;}
+			return false;
+		}
+
+		// createItem
+		static createItemDefault(gridObject,cell,itemOption){
+			cell.item = new gridObject.itemClass(cell,gridObject);
+			gridObject.applyOption(cell.item,itemOption);
+			cell.item.create();
+			return cell.item;
+		}
+		static createItemDefault_type_random4(gridObject,cell,itemOption){
+			cell.item = new gridObject.itemClass(cell,gridObject,Math.floor(Math.random()*4));
+			gridObject.applyOption(cell.item,itemOption);
+			cell.item.create();
+			return cell.item;
+		}
+
+		// createItemOption
+		static createItemOptionDefault(){return {};}
+		static createItemOption_type_random4(){return {color:Math.floor(Math.random()*4)};}
+		
+		// canDestroyItem
+		static canDestroyItem_all(cell){
+			return this.result_handleTrue();
+		}
+		static canDestroyItem_life(cell,grid,match){
+			let listLife = ["switcher","sinker","blockLife","popper"];
+			if(!listLife.includes(cell.item.type)){return this.result_continue();}
+			if(!cell.item.baseLife){cell.item.baseLife = cell.item.life;}
+			cell.item.life--;
+			cell.item.updated();
+			if(cell.item.type == "switcher" && cell.item.switcherArrColor.length > 0 && cell.item.life > 0){
+				cell.item.setColor(cell.item.switcherArrColor.shift());
+			}
+			if(cell.item.life > 0){return this.result_handleFalse();}
+			return this.result_handleTrue();
+		}
+		static canDestroyItem_blockLifeNearDestroyed(cell,grid){
+			if(cell.item.type == "blockLife"){return this.result_continue();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			for (let i = 0; i < pos.length; i++) {
+				let nearCell = grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+				if(!nearCell || !nearCell.item){continue;}
+				if(nearCell.item.type === "blockLife"){
+					grid.checkRules.checkDestroyItem(nearCell,grid,undefined,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[]);
+				}
+			}
+			return this.result_continue();
+		}
+		static canDestroyItem_totem(cell){
+			if(cell.item.type != "totem"){return this.result_continue();}
+			return this.result_handleFalse();
+		}
+		static canDestroyItem_cellBlockLife(cell,grid,match,reason){
+			if(cell.type != "blockLife"){return this.result_continue();}
+			if(cell.life <= 0){return this.result_continue();}
+			if(!cell.baseLife){cell.baseLife = cell.life;}
+			cell.life--;
+			cell.updated(reason);
+			if(cell.life <= 0){cell.setType("");}
+			return this.result_handleFalse();
+		}
+		static canDestroyItem_cellBGLife(cell){
+			if(cell.type != "bgLife"){return this.result_continue();}
+			if(cell.life <= 0){return this.result_continue();}
+			if(!cell.baseLife){cell.baseLife = cell.life;}
+			cell.life--;
+			cell.updated();
+			if(cell.life <= 0){cell.setType("");}
+			return this.result_continue();
+		}
+		static canDestroyItem_virusNearDestroyed(cell,grid){
+			if(cell.item.type == "virus"){return this.result_continue();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			for (let i = 0; i < pos.length; i++) {
+				let nearCell = grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+				if(!nearCell || !nearCell.item){continue;}
+				if(nearCell.item.type === "virus"){
+					grid.checkRules.checkDestroyItem(nearCell,grid,undefined,[this.canDestroyItem_all],[]);
+				}
+			}
+			return this.result_continue();
+		}
+		static canDestroyItem_cellChest(cell){
+			if(cell.type != "chest"){return this.result_continue();}
+			return this.result_handleFalse();
+		}
+		static canDestroyItem_sinkerNearDestroyed(cell,grid){
+			if(cell.item.type == "sinker"){return this.result_continue();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			for (let i = 0; i < pos.length; i++) {
+				let nearCell = grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+				if(!nearCell || !nearCell.item){continue;}
+				if(nearCell.item.type === "sinker"){
+					if(nearCell.type == "blockLife"){continue;}
+					// TODO >> verifier le type de la cell >>
+					grid.checkRules.checkDestroyItem(nearCell,grid,undefined,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[]);
+				}
+			}
+			return this.result_continue();
+		}
+		static canDestroyItem_copyerNearDestroyed(cell,grid,match){
+			if(cell.item.type == "copyer"){return this.result_handleFalse();}
+			if(match.match.length <= 1){return this.result_continue();}
+
+			let colorCheck = cell.item.color;
+			if(typeof match.color != "undefined" && match.color != -1){
+				colorCheck = match.color;
+			}else{
+				match.color = colorCheck;
+			}
+
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			for (let i = 0; i < pos.length; i++) {
+				let nearCell = grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+				if(!nearCell || !nearCell.item){continue;}
+				if(nearCell.item.type !== "copyer"){continue;}
+
+				if(!match.triggered_copyer){ match.triggered_copyer = []};
+				if(match.triggered_copyer.includes(nearCell.id)){continue;}
+
+				if(match.match.length == 1 && (match.match[0].x != nearCell.x && match.match[0].y != nearCell.y)){continue;}
+				if(typeof nearCell.item.colorCopyer == "undefined" || nearCell.item.colorCopyer == -1){nearCell.item.colorCopyer = colorCheck;nearCell.item.updated();}
+				if(nearCell.item.colorCopyer !== colorCheck){continue;}
+				match.triggered_copyer.push(nearCell.id);
+				grid.checkRules.checkDestroyItem(nearCell,grid,undefined,[this.canDestroyItem_cellChest,this.canDestroyItem_life_copyer],[]);
+			}
+			return this.result_continue();
+		}
+		static canDestroyItem_life_copyer(cell,grid,match){
+			let listLife = ["copyer"];
+			if(!listLife.includes(cell.item.type)){return this.result_continue();}
+			if(!cell.item.baseLife){cell.item.baseLife = cell.item.life;}
+			if((typeof cell.item.colorCopyer == "undefined" || cell.item.colorCopyer == -1) && match && typeof match.color != "undefined" && match.color != -1){cell.item.colorCopyer = match.color;cell.item.updated();}
+			if(typeof match.color != "undefined" && (match.color == -1 || cell.item.colorCopyer !== match.color)){return this.result_continue();}
+			if(typeof cell.item.colorCopyer == "undefined" || cell.item.colorCopyer == -1){return this.result_continue();}
+			cell.item.life--;
+			cell.item.updated();
+			if(cell.item.life > 0){return this.result_handleFalse();}
+			return this.result_handleTrue();
+		}
+		static canDestroyItem_popperNearDestroyed(cell,grid,match){
+			if(cell.item.type == "popper"){return this.result_continue();}
+			if(match.match.length < 3){return this.result_continue();}
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			for (let i = 0; i < pos.length; i++) {
+				let nearCell = grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+				if(!nearCell || !nearCell.item){continue;}
+				if(nearCell.item.type !== "popper"){continue;}
+
+				if(!match.triggered_popper){ match.triggered_popper = []};
+				if(match.triggered_popper.includes(nearCell.id)){continue;}
+
+				if(match.match.length == 1 && (match.match[0].x != nearCell.x && match.match[0].y != nearCell.y)){continue;}
+				match.triggered_popper.push(nearCell.id);
+				grid.checkRules.checkDestroyItem(nearCell,grid,undefined,[this.canDestroyItem_oneTime_cell,this.canDestroyItem_cellChest,this.canDestroyItem_life],[]);
+			}
+			return this.result_continue();
+		}
+		static canDestroyItem_life_popper_os(cell,grid,match){
+			if(cell.item.type != "popper"){return this.result_continue();}
+			if(match.match.length <= 0){return this.result_continue();}
+			if(match.name !== "popper"){return this.result_continue();}
+			cell.item.life = 0;
+			cell.item.updated();
+			return this.result_handleTrue();
+		}
+		static canDestroyItem_oneTime_cell(cell,grid,match){
+			if(!grid.rulesCache){grid.rulesCache = {};}
+			if(!grid.rulesCache.checkMove){grid.rulesCache.checkMove = {};}
+			if(!grid.rulesCache.checkMove.oneTime_cell){grid.rulesCache.checkMove.oneTime_cell = [];}
+			if(grid.rulesCache.checkMove.oneTime_cell.indexOf(cell.id) == -1){
+				grid.rulesCache.checkMove.oneTime_cell.push(cell.id);
+				return this.result_continue();
+			}
+			return this.result_handleFalse();
+		}
+		static canDestroyItem_oneTime_cell_rulesNoItem(cell,grid,match){
+			if(!grid.rulesCache){grid.rulesCache = {};}
+			if(!grid.rulesCache.checkMove){grid.rulesCache.checkMove = {};}
+			if(!grid.rulesCache.checkMove.oneTime_cell){grid.rulesCache.checkMove.oneTime_cell = [];}
+			if(grid.rulesCache.checkMove.oneTime_cell.indexOf(cell.id) == -1){
+				return this.result_continue();
+			}
+			return this.result_handleFalse();
+		}
+
+		
+
+		// canTouch
+		static canTouch_type_item_blockLife(cell){
+			if(cell.item && cell.item.type === "blockLife"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canTouch_type_item_virus(cell){
+			if(cell.item && cell.item.type === "virus"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canTouch_type_item_copyer(cell){
+			if(cell.item && cell.item.type === "copyer"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canTouch_type_cell_blockLife(cell){
+			if(cell.type === "blockLife"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canTouch_type_cell_chest(cell){
+			if(cell.type === "chest"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+		static canTouch_type_item_popper(cell){
+			if(cell.item && cell.item.type === "popper"){return this.result_handleFalse();}
+			return this.result_continue();
+		}
+
+	}
+
+
+	if(typeof window.playtouchGame === "undefined"){window.playtouchGame = {};}
+	if(typeof window.playtouchGame.match3 === "undefined"){window.playtouchGame.match3 = {};}
+	window.playtouchGame.match3.RulesClass = RulesClass;
+	var Pos = window.playtouchGame.match3.Pos;
+})();

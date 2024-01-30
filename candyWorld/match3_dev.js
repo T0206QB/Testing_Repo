@@ -1,1 +1,933 @@
-!function(){var n=window.playtouchGame.match3.Pos;class r extends window.playtouchGame.match3.Grid{constructor(){super()}init(){return super.init(...arguments),this.addRules("match",[this.rulesClass.match_Cross9,this.rulesClass.match_Cross8,this.rulesClass.match_Cross7,this.rulesClass.match_Cross7_2,this.rulesClass.match_T7,this.rulesClass.match_5,this.rulesClass.match_Cross6,this.rulesClass.match_Cross5,this.rulesClass.match_T6,this.rulesClass.match_T5,this.rulesClass.match_L5,this.rulesClass.match_4,this.rulesClass.match_3]),this.addRules("matchItems",[this.rulesClass.matchItems_type_popper,this.rulesClass.matchItems_cell_type_chest,this.rulesClass.matchItems_type_sinker,this.rulesClass.matchItems_type_copyer,this.rulesClass.matchItems_type_virus,this.rulesClass.matchItems_type_blockLife,this.rulesClass.matchItems_type_colorBomb,this.rulesClass.matchItems_type_totem,this.rulesClass.matchItems_color,this.rulesClass.matchItems_all]),this.addRules("swapItems",[this.rulesClass.swapItems_near1Cell,this.rulesClass.swapItems_noSwap,this.rulesClass.swapItems_blockLife]),this.addRules("swapItemsMatch",[this.rulesClass.swapItems_bonus,this.rulesClass.swapItems_match]),this.addRules("sortCells",this.rulesClass.sortCells_bottom),this.addRules("move",[this.rulesClass.move_bottom_1,this.rulesClass.move_bottomLeftRight_nearBorder_1,this.rulesClass.move_bottomLeftRight_1]),this.addRules("canMove",[this.rulesClass.canMove_type_noMove,this.rulesClass.canMove_type_blockLife,this.rulesClass.canMove_type_void,this.rulesClass.canMove_empty]),this.addRules("canCreateItem",[this.rulesClass.canCreateItem_void]),this.addRules("canDestroyNoItem",[this.rulesClass.canDestroyItem_oneTime_cell_rulesNoItem,this.rulesClass.canDestroyItem_cellBGLife]),this.addRules("canDestroyItem",[this.rulesClass.canDestroyItem_oneTime_cell,this.rulesClass.canDestroyItem_cellChest,this.rulesClass.canDestroyItem_cellBlockLife,this.rulesClass.canDestroyItem_totem,this.rulesClass.canDestroyItem_popperNearDestroyed,this.rulesClass.canDestroyItem_virusNearDestroyed,this.rulesClass.canDestroyItem_blockLifeNearDestroyed,this.rulesClass.canDestroyItem_sinkerNearDestroyed,this.rulesClass.canDestroyItem_copyerNearDestroyed,this.rulesClass.canDestroyItem_life,this.rulesClass.canDestroyItem_all]),this.addRules("createItem",this.rulesClass.createItemDefault_type_random4),this.addRules("canTouch",[this.rulesClass.canTouch_type_item_popper,this.rulesClass.canTouch_type_item_copyer,this.rulesClass.canTouch_type_cell_chest]),this}}class l extends window.playtouchGame.match3.Cell{constructor(){super(...arguments)}}function a(t){for(let e=t.length-1;0<e;e--){var s=Math.floor(Math.random()*(e+1));[t[e],t[s]]=[t[s],t[e]]}}void 0===window.playtouchGame&&(window.playtouchGame={}),void 0===window.playtouchGame.match3&&(window.playtouchGame.match3={}),window.playtouchGame.main=new class{constructor(){}createGrid(e,t,s,i=0){return this.grid=new r,this.grid.init(e,t,l),this.timeoutId=[],this.TIME_BETWEEN_DESTROY=s,this.TIME_BETWEEN_DESTROY_START=i,this}destroy(){for(var e=0;e<this.timeoutId.length;e++)clearTimeout(this.timeoutId[e]);delete this.grid,playtouch.seedsField.uproot("createItem_color")}clearTimeoutId(e){for(var t=0;t<this.timeoutId.length;t++)this.timeoutId[t]===e&&this.timeoutId.splice(t,1)}isTimeoutExist(){return Math.min(1,this.timeoutId.length)}createItem(e,t,s,i=!1){var r=this.grid.getCell(e,t);if(r.item){if(i)return this.destroyItem(e,t),this.createItem(...arguments);this.grid.applyOption(r.item,s),r.item.updated()}else this.grid.itemCreateOnPos(e,t,s)}loadLd(t,e){"string"==typeof t&&(t=JSON.parse(t)),this.ld=t,this.lvl=e,window.saveStateLvl||(window.saveStateLvl={}),window.saveStateLvl[e]={st:"ok",mp:void 0,pack:t.old.split("_")[0],lvl:t.old.split("_")[1]};var s="createItem_color",i=(playtouch.seedsField.plant(s,e+(t.seed?"_"+t.seed:0)),window.saveStateLvl[e].seedValue=t.seed||"",[]);for(let e=0;e<t.grid.length;e++)t.grid[e].spawnPoint&&i.push(new n(t.grid[e].x,t.grid[e].y));this.grid.rules.posCreateItem=[],this.grid.addRules("posCreateItem",[function(e,t,s,i){return e}.bind(void 0,i)]),this.grid.addRules("createItemOption",function(e,t){var s=0,s=c2_callFunction("tuto_gameMain_isOnTuto",[],"match3:dev")?playtouch.seedsField.random(e):Math.random();return{color:Math.floor(s*t)}}.bind(void 0,s,t.nbColor)),this.currentLDColor=t.nbColor,this.grid.addRules("createItem",function(e,t,s,i,r){for(i.item=new s.itemClass(i,s,Math.floor(playtouch.seedsField.random(t)*e)),s.applyOption(i.item,r);0<s.checkMatch(!1,!1,!0).length;)i.item.color=Math.floor(playtouch.seedsField.random(t)*e);return i.item.create(),i.item}.bind(void 0,t.nbColor,s)),this.grid.ld_load(t.grid,t.nbColor);for(let e=0;e<i.length;e++)this.grid.getCell(i[e].x,i[e].y).isSpawn=!0;this.grid.addRules("createItem",function(e,t,s,i){s.item=new t.itemClass(s,t),t.applyOption(s.item,i);i=c2_callFunction("cnd_totemLeftToCreate");return s&&s.isSpawn&&0<i&&c2_callFunction("canCreateTotem")&&(t=t.cells.filter(function(e){if(e.item&&"totem"==e.item.type)return e}).length)<e&&t<i&&(s.item.type="totem"),s.item.create(),s.item}.bind(void 0,this.grid.cells.filter(function(e){if(e.item&&"totem"==e.item.type)return e}).length)),this.grid.movePossible(!0)}add1ColorOnCreate(e=6){this.currentLDColor=Math.min(e,this.currentLDColor+1),this.grid.addRules("createItemOption",function(e){return{color:Math.floor(Math.random()*e)}}.bind(void 0,this.currentLDColor))}scoreDestroyBonus(){c2_callFunction("addScoreGlobal",[100])}destroyBombRadius(s,e,t,i=-1,r=-1,l=-1,a=!0,o=void 0){-1!==r&&(m=this.grid.getCell(e,t),i=this.grid.getCell(i,r),m.item&&m.item.setType(""),i.item)&&i.item.setType("");let h=l;var c=[];for(let t=-s;t<=s;t++)for(let e=-s;e<=s;e++)a&&Math.abs(e)==s&&Math.abs(t)==s||c.push(new n(t,e));var r=new n(e,t),m=this.grid.getCellByPos(r);m.item&&(["totem","key","copyer","sinker","switcher","exploder","popper","blockLife","virus"].includes(m.item.type)||m.item.setType(""),-1==h)&&(h=m.item.color),this.destroyBombR(r,c,h,o)}destroyBombR(s,i,e,t="bonus_Bomb"){var r=[],l={match:[],name:t,color:e};for(let t=0;t<i.length;t++){var a=n.sumPos(s,i[t]),a=this.grid.getCellByPos(a);let e=void 0;var o=l;a&&(r.push(a),a.item&&"copyer"==a.item.type&&(o.match=[s],e=[this.grid.rulesClass.canDestroyItem_oneTime_cell,this.grid.rulesClass.canDestroyItem_life_copyer]),a.item&&"popper"==a.item.type&&(o.match=[s],e=[this.grid.rulesClass.canDestroyItem_life_popper_os,this.grid.rulesClass.canDestroyItem_oneTime_cell,this.grid.rulesClass.canDestroyItem_life]),this.destroyItemByTimeout(this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,a,this.grid,o,e,void 0,"bonus"),s,a.pos))}this.check_coat([s],r)}destroyLineCross(e,t,s,i){var r=this.grid.getCell(e,t),s=this.grid.getCell(s,i);r.item&&r.item.setType(""),s.item&&s.item.setType(""),this.destroyLineVertical(e,t),this.destroyLineHorizontal(e,t)}destroyLineVertical(e,t,s=1,i=-1,r=-1,l=-1){var a;-1!==r&&(a=this.grid.getCell(e,t),i=this.grid.getCell(i,r),a.item&&a.item.setType(""),i.item)&&i.item.setType("");for(var o=0;o<s;o++){var h=[],c=e-Math.floor(s/2)+o;for(let e=0;e<this.grid.cells.length;e++)this.grid.cells[e].x==c&&h.push(this.grid.cells[e]);this.destroyLine(new n(e,t),h,l)}}destroyLineHorizontal(e,t,s=1,i=-1,r=-1,l=-1){var a;-1!==r&&(a=this.grid.getCell(e,t),i=this.grid.getCell(i,r),a.item&&a.item.setType(""),i.item)&&i.item.setType("");for(var o=0;o<s;o++){var h=[],c=t-Math.floor(s/2)+o;for(let e=0;e<this.grid.cells.length;e++)this.grid.cells[e].y==c&&h.push(this.grid.cells[e]);this.destroyLine(new n(e,t),h,l)}}destroyLine(t,s,e=-1){var i=[],r=[];for(let e=0;e<s.length;e++)s[e].item&&"sinker"==s[e].item.type&&i.push(s[e]);var l=this.grid.getCellByPos(t);let a=e;l&&l.item&&-1==a&&(a=l.item.color);for(var o=0;o<s.length;o++){var h=s[o];let e=!0;for(var c=0;c<i.length;c++)if(!n.equal(h.pos,i[c].pos)&&(h.pos.x==i[c].pos.x||h.pos.y==i[c].pos.y)){var m=n.distPos(t,i[c].pos),d=n.distPos(t,h.pos);if((0<m&&0<d||m<0&&d<0)&&Math.abs(d)>Math.abs(m)){e=!1;break}}if(e){r.push(h);let e=void 0;h.item&&"copyer"==h.item.type&&(e=[this.grid.rulesClass.canDestroyItem_life_copyer]),this.destroyItemByTimeout(this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,h,this.grid,{match:[t],name:"bonus_line",color:a},e,void 0,"bonus"),t,h.pos)}}this.check_coat([t],r)}destroyColorBomb(e,t,s,i=""){var r=[];let l=0;var a=this.grid.grid[e][t];a.item&&r.push(a);for(let e=0;e<this.grid.cellsSortTop.length;e++){var o=this.grid.cellsSortTop[e];o.item&&"colorBomb"!==o.item.type&&"blockLife"!==o.item.type&&"chest"!==o.type&&o.item.color===s&&(""!==i&&""===o.item.type&&o.item.setType(i,!1),r.push(o))}for(let e=0;e<r.length;e++)r[e].item&&(this.destroyItemByTimeout(this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,r[e],this.grid,void 0,void 0,void 0,"bonus_colorBomb"),new n(0,0),r[e].pos,l/2),l++);this.check_coat([new n(e,t)],r)}destroyColorBomb_all(e,t){let s=0;var i=[];for(let e=0;e<this.grid.cellsSortTop.length;e++){var r=this.grid.cellsSortTop[e];r.item&&(this.destroyItemByTimeout(this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,r,this.grid,void 0,void 0,void 0,"bonus_colorBomb"),new n(0,0),r.pos,s/10),i.push(r),s++)}this.check_coat([new n(e,t)],i)}destroyTotem(e,t){e=this.grid.getCell(e,t);return!!e.item&&"totem"==e.item.type&&!("blockLife"==e.type&&0<e.life||"chest"==e.type&&0<e.life)&&this.grid.checkRules.checkDestroyItem(e,this.grid,void 0,[this.grid.rulesClass.canDestroyItem_all],[])}destroyItem(e,t,s=""){e=this.grid.grid[e][t];e.item&&this.grid.checkRules.checkDestroyItem(e,this.grid,void 0,void 0,void 0,s)}destroyKey(){let t=!1;for(let e=0;e<this.grid.cells.length;e++)"chest"==this.grid.cells[e].type&&(this.grid.cells[e].life--,this.grid.cells[e].life<=0&&(this.grid.cells[e].setType(""),t=!0),this.grid.cells[e].updated());t&&this.grid.checkMatch(!0)}destroyItemByTimeout(e,t,s,i){var r=playtouch.arrayWaitForFunction.waitForFunctionJS(this.TIME_BETWEEN_DESTROY_START+(void 0===i?Math.abs(n.distPos(t,s)):i)*this.TIME_BETWEEN_DESTROY,()=>{this.clearTimeoutId(r),e()});this.timeoutId.push(r)}setItemType(e,t,s=""){e=this.grid.getCell(e,t);e.item&&e.item.setType(s)}addStarterItem(e,t){var s,i=[],r={used:0,type:e};for(let e=0;e<this.grid.cellsSortTop.length;e++){let t=this.grid.cellsSortTop[e];"bgLife"!==t.type&&"coat"!==t.type&&""!==t.type||!t.item||""!==t.item.type||playtouchGame.main.ld.grid.find(e=>e.items&&n.equal(t.pos,new n(e.x,e.y)))||i.push(t)}return i.length<=0||(s=i[Math.floor(Math.random()*i.length)],e={type:e},void 0!==t&&(e.color=t),window.eventToFire.fireEvent("c2:libJewel:itemStarter",this.grid.getCell(s.x,s.y).item.uid),this.createItem(s.x,s.y,e),r.color=this.grid.getCell(s.x,s.y).item.color,r.used=1,r.x=s.x,r.y=s.y),JSON.stringify(r)}addVirus(){var e,t=[new n(0,1),new n(1,0),new n(0,-1),new n(-1,0)],s=[],i=["line_h","line_v","bomb","colorBomb"];for(let e=0;e<this.grid.cells.length;e++){var r=this.grid.cells[e];if(r.item&&"virus"==r.item.type)for(let e=0;e<t.length;e++){var l=this.grid.getCellByPos(n.sumPos(r.pos,t[e]));!l||""!=l.type&&"coat"!=l.type||l.item&&""!==l.item.type&&!i.includes(l.item.type)||s.push(l)}}return!(s.length<=0||((e=s[Math.floor(Math.random()*s.length)]).item?""!==e.item.type&&!i.includes(e.item.type)||(e.setType(""),e.item.setType("virus"),0):(e.setType(""),this.grid.itemCreateOnCell(e,{type:"virus"}),0)))}victory_destroyAllBonus(){var t=["line","line_h","line_v","bomb","colorBomb"],s=["blockLife","chest"];let i=!1;for(let e=0;e<this.grid.cells.length;e++){var r=this.grid.cells[e];!r.item||s.includes(r.type)||t.includes(r.item.type)&&(this.destroyItem(r.x,r.y,"victory"),i=!0)}return i}victory_createBonusLine(e){let t=!1;var s=[],i=["blockLife","chest"];for(let e=0;e<this.grid.cells.length;e++){var r=this.grid.cells[e];!r.item||""==!r.item.type||i.includes(r.type)||(s.push(r.item),t=!0)}a(s);for(var l=0;l<e&&!(s.length<=l);l++)this.createItem(s[l].x,s[l].y,{type:.5<Math.random()?"line_v":"line_h"});return t}exploder_addTurn(t){for(let e=0;e<this.grid.cells.length;e++){var s=this.grid.cells[e];s.item&&"exploder"==s.item.type&&(s.item.timer=Math.max(t,s.item.timer+t))}}check_coat_fromC2Match(e={match:[]}){"string"==typeof e&&(e=JSON.parse(e));for(var t=[],s=0;s<e.match.length;s++)t.push(new n(e.match[s].x,e.match[s].y));this.check_coat(t)}check_coat(t=[],s=[],e){if(t.length<=0)return!1;let i=!1;for(let e=0;e<t.length;e++)(t[e].pos||(t[e]=this.grid.getCellByPos(t[e]),t[e]))&&"coat"==t[e].type&&(i=!0);if(!i)return!1;for(let e=0;e<s.length;e++)s[e].pos||(s[e]=this.grid.getCellByPos(s[e]));s.push(...t);for(let e=0;e<s.length;e++)!s[e].item||"popper"==s[e].item.type||"copyer"==s[e].item.type||"blockLife"==s[e].item.type||""!=s[e].type&&"totem"!=s[e].type||s[e].setType("coat")}createOnMatch(e,t){let s=!1,i;(e="string"==typeof e?JSON.parse(e):e).match.unshift(new n(e.posCreate.x,e.posCreate.y));for(var r=0;r<e.match.length&&(0!=r&&e.match[r].x==e.posCreate.x&&e.match[r].y==e.posCreate.y||!(i=this.grid.getCellByPos(e.match[r]))||!(s=!i.item||""==i.item.type||s));r++);if(s){var l={type:"",color:t};switch(e.name){case"match_4":l.type=["line_v","line_h"][Math.round(Math.random())];break;case"match_4_v":l.type="line_v";break;case"match_4_h":l.type="line_h";break;case"match_T7":case"match_5":case"match_Cross9":case"match_Cross8":case"match_Cross7":case"match_Cross7_2":l.type="colorBomb";break;case"match_T5":case"match_T6":case"match_L4":case"match_L5":case"match_Cross6":case"match_Cross5":l.type="bomb"}""!=l.type&&this.createItem(i.x,i.y,l)}}resetPopper(e,t){e=this.grid.getCell(e,t);e&&(t=e.item)&&"popper"==t.type&&(t.baseLife||(t.baseLife=t.life),t.life=t.baseLife,t.updated())}forceUpdateItem(e,t){e=this.grid.getCell(e,t);e.item&&e.item.updated()}},window.playtouchGame.utils=new class{constructor(){this.timerMatch={}}sortPosWall(e){for(var t=[(e=Object.values(e)).splice(0,1)[0]];0<e.length;){for(var s=!1,i=0;i<e.length;i++){var r=t[t.length-1];if(r.destX==e[i].startX&&r.destY==e[i].startY){t.push(e.splice(i,1)[0]),s=!0;break}var l=t[0];if(l.destX==e[i].startX&&l.destY==e[i].startY){t.unshift(e.splice(i,1)[0]),s=!0;break}if((r=t[t.length-1]).destX==e[i].destX&&r.destY==e[i].destY){r=e.splice(i,1)[0];t.push({startX:r.destX,startY:r.destY,destX:r.startX,destY:r.startY}),s=!0;break}if((l=t[0]).startX==e[i].startX&&l.startY==e[i].startY){r=e.splice(i,1)[0];t.unshift({startX:r.destX,startY:r.destY,destX:r.startX,destY:r.startY}),s=!0;break}}s||t.push(e.splice(0,1)[0])}return JSON.stringify(t)}getBezierXY(e,t,s,i,r,l,a,o,h,c){switch(e){case"x":return Math.pow(1-t,3)*s+3*t*Math.pow(1-t,2)*r+3*t*t*(1-t)*a+t*t*t*h;case"y":return Math.pow(1-t,3)*i+3*t*Math.pow(1-t,2)*l+3*t*t*(1-t)*o+t*t*t*c}}startTime(e="default"){this.timerMatch[e]||(this.timerMatch[e]={lastTime:-1,arr:[],countZero:0}),this.timerMatch[e].lastTime=window.performance.now()}endTime(e="default"){var t;this.timerMatch[e]&&((t=window.performance.now()-this.timerMatch[e].lastTime)<=0?this.timerMatch[e].countZero++:(this.timerMatch[e].arr.push(t),this.timerMatch[e].average=this.getTimeAverage(e),this.timerMatch[e].allTime=this.getAllTime(e),this.timerMatch[e].sum=this.sumAllTime(e)))}getTimeAverage(e="default"){return!this.timerMatch[e]||this.timerMatch[e].arr.length<=0?0:Math.round(this.timerMatch[e].arr.reduce((e,t)=>e+t)/this.timerMatch[e].arr.length*100)/100}getAllTime(e="default"){var t;return!this.timerMatch[e]||this.timerMatch[e].arr.length<=0?0:(t=this.timerMatch[e].arr.sort((e,t)=>t-e),Math.round(100*t[t.length-1])/100+">"+this.getTimeAverage(e)+"<"+Math.round(100*t[0])/100)}resetAllTime(e="default"){this.timerMatch[e]&&(this.timerMatch[e].arr=[])}sumAllTime(e="default"){return!this.timerMatch[e]||this.timerMatch[e].arr.length<=0?0:this.timerMatch[e].arr.reduce((e,t)=>e+t,0)}decompressString(e,t){var s,i,r=e.split("|"),l=((1===r.length||16<r[0].length)&&r.unshift("plain"),s=r.shift(),e=r.join("|"),"lz_Base64"===(t=void 0===t?s:t)&&(e=LZUTF8.decompress(e,{inputEncoding:t.split("_")[1]})),{width:"w",height:"h",cells:"c",option:"o",life:"l",starValues:"S",nbColor:"n",grid:"g",type:"t",void:"v",items:"i",color:"C",spawnPoint:"s",value:"V",bgLife:"b",blockLife:"B",sinker:"si",key:"k",totem:"to",exploder:"e",switcher:"sw",virus:"vi",chest:"ch",copyer:"Co",popper:"p",cndLose:"cl",cndWin:"cw",cndType:"ct",turns:"T"});for(i in l){var a=new RegExp('"'+l[i]+'"',"g");e=e.replace(a,'"'+i+'"')}return e}getLastNotifByName(e,t){var s,i={name:"",timeEnd:-1};for(s in e="string"==typeof e?JSON.parse(e):e)"active"==e[s].state&&-1!=e[s].name.indexOf(t)&&e[s].timeEnd>i.timeEnd&&(i.name=e[s].name,i.timeEnd=e[s].timeEnd);return i.name}}}();
+/* 
+
+*/
+;(function(){
+	var TAG_EVENT = "c2:libJewel:";
+	var Pos = window.playtouchGame.match3.Pos;
+
+	class Main {
+		constructor(){}
+
+		createGrid(logicWidth,logicHeight,timeBetweenDestroy,timeBetweenDestroyStart=0){
+			this.grid = new GridCustom();
+			this.grid.init(logicWidth,logicHeight, CellCustom);
+			this.timeoutId = [];
+			this.TIME_BETWEEN_DESTROY = timeBetweenDestroy;
+			this.TIME_BETWEEN_DESTROY_START = timeBetweenDestroyStart;
+
+			return this;
+		}
+
+		destroy(){
+			for (var i = 0; i < this.timeoutId.length; i++) {
+				clearTimeout(this.timeoutId[i]);
+			}
+			delete this.grid;
+			
+			// seed
+			// playtouch.seedsField.uproot("createItem_color_"+this.lvl+((this.ld.seed)?"_"+this.ld.seed:""));
+			playtouch.seedsField.uproot("createItem_color");
+			// 
+		}
+
+		clearTimeoutId(id){
+			for (var i = 0; i < this.timeoutId.length; i++) {
+				if(this.timeoutId[i] === id){
+					this.timeoutId.splice(i,1);
+				}
+			}
+		}
+
+		isTimeoutExist(){
+			return Math.min(1,this.timeoutId.length);
+		}
+
+		createItem(x,y,option,destroy=false){
+			let cell = this.grid.getCell(x,y);
+			
+			if(cell.item){
+				if(destroy){
+					this.destroyItem(x,y);
+					return this.createItem(...arguments);
+				}
+				this.grid.applyOption(cell.item,option);
+				cell.item.updated();
+			}else{
+				this.grid.itemCreateOnPos(x,y,option);
+			}
+		}
+
+		loadLd(ld,lvl){
+			if(typeof ld === "string"){ld = JSON.parse(ld);}
+			this.ld = ld;
+			this.lvl = lvl;
+			// console.log("START LVL :",lvl);
+			if(!window.saveStateLvl){window.saveStateLvl = {};}
+			window.saveStateLvl[lvl] = {
+				st:"ok",
+				mp:undefined,
+				pack : ld.old.split("_")[0],
+				lvl : ld.old.split("_")[1]
+			};
+
+			// seed
+			var seedName = "createItem_color";
+			// playtouch.seedsField.plant(seedName, lvl);
+			playtouch.seedsField.plant(seedName, lvl+((ld.seed)?"_"+ld.seed:0));
+			//
+			
+			window.saveStateLvl[lvl].seedValue = ((ld.seed)?ld.seed:"");
+
+			let spawnPoint = [];
+			for (let i = 0; i < ld.grid.length; i++) {
+				if(ld.grid[i].spawnPoint){spawnPoint.push(new Pos(ld.grid[i].x,ld.grid[i].y))}
+			}
+			
+			this.grid.rules["posCreateItem"] = [];
+			this.grid.addRules("posCreateItem",[
+				function (spawnPoint,width,height,cells){
+					return spawnPoint;
+				}.bind(undefined,spawnPoint)
+			]);
+			
+			
+			this.grid.addRules("createItemOption",
+				function(seedName,nbColor){
+					var rand = 0;
+					if(c2_callFunction("tuto_gameMain_isOnTuto",[],"match3:dev")){
+						rand = playtouch.seedsField.random(seedName);
+					}else{
+						rand = Math.random();
+					}
+					return {color:Math.floor(rand*nbColor)}
+				}.bind(undefined,seedName,ld.nbColor)
+			);
+
+			this.currentLDColor = ld.nbColor;
+			//createItem without match
+			this.grid.addRules("createItem",
+				function (nbColor,seedName,gridObject,cell,itemOption){
+					cell.item = new gridObject.itemClass(cell,gridObject,Math.floor(playtouch.seedsField.random(seedName)*nbColor));
+					gridObject.applyOption(cell.item,itemOption);
+					while(gridObject.checkMatch(false,false,true).length > 0){
+						cell.item.color = Math.floor(playtouch.seedsField.random(seedName)*nbColor);
+					}
+					cell.item.create();
+					return cell.item;
+				}.bind(undefined,ld.nbColor,seedName)
+			);
+
+			//load ld
+			this.grid.ld_load(ld.grid,ld.nbColor);
+
+			for (let i = 0; i < spawnPoint.length; i++) {
+				this.grid.getCell(spawnPoint[i].x,spawnPoint[i].y).isSpawn = true;
+			}
+
+			//revert createItem to normal
+			this.grid.addRules("createItem",
+				function (maxTotemInGrid,gridObject,cell,itemOption){
+					cell.item = new gridObject.itemClass(cell,gridObject);
+					gridObject.applyOption(cell.item,itemOption);
+					let totemLeftToCreate = c2_callFunction("cnd_totemLeftToCreate");
+					if(cell && cell.isSpawn && totemLeftToCreate > 0 && c2_callFunction("canCreateTotem")){
+						let totemInGrid = gridObject.cells.filter(function(a){if(a.item && a.item.type == "totem"){return a}}).length;
+						if(totemInGrid < maxTotemInGrid && totemInGrid < totemLeftToCreate){
+							cell.item.type = "totem";
+						}
+					}
+					cell.item.create();
+					return cell.item;
+				}.bind(undefined,this.grid.cells.filter(function(a){if(a.item && a.item.type == "totem"){return a}}).length)
+			);
+			
+
+			// DEBUG
+			// var result = this.grid.movePossible();
+			// window.saveStateLvl[lvl].mp = result;
+			// console.log("result",lvl,window.saveStateLvl[lvl]);
+			// localStorage.setItem("saveStateLvl",JSON.stringify(saveStateLvl));
+			// if(result){
+			// 	eventToFire.fireEvent("c2:ldLoaded");
+			// }else{
+			// 	if(!window.saveStateLvl[lvl].retryCount)window.saveStateLvl[lvl].retryCount = 0;
+			// 	window.saveStateLvl[lvl].retryCount++;
+			// 	ld.seed = "customSeedLD_"+Math.floor(Math.random()*9999);
+			// 	this.destroy();
+			// 	this.createGrid(ld.width,ld.height,0.04,0,1);
+			// 	this.loadLd(ld,lvl);
+			// 	return;
+			// }
+			// DEBUG
+
+			this.grid.movePossible(true);
+			// this.grid.drawGrid();
+		}
+
+		add1ColorOnCreate(maxColor = 6){
+			this.currentLDColor = Math.min(maxColor, this.currentLDColor+1);
+			this.grid.addRules("createItemOption",
+				function(nbColor){
+					return {color:Math.floor(Math.random()*nbColor)}
+				}.bind(undefined,this.currentLDColor)
+			);
+		}
+
+		//BONUS
+		scoreDestroyBonus(){
+			c2_callFunction("addScoreGlobal",[100]);
+		}
+
+		destroyBombRadius(radius,x,y,x2=-1,y2=-1,color=-1,removeCorner=true,typeDestroy=undefined){
+			if(y2 !== -1) {
+				let cell1 = this.grid.getCell(x,y);
+				let cell2 = this.grid.getCell(x2,y2);
+				if(cell1.item){cell1.item.setType("");}
+				if(cell2.item){cell2.item.setType("");}
+			};
+			let colorBonus = color;
+			
+			let arr = [];
+			for (let x = -radius; x <= radius; x++) {
+				for (let y = -radius; y <= radius; y++) {
+					if(removeCorner && Math.abs(y) == radius && Math.abs(x)== radius){continue;}
+					arr.push(new Pos(x,y));
+				}
+			}
+			let startPos = new Pos(x,y);
+			let startCell = this.grid.getCellByPos(startPos);
+			if(startCell.item){
+				let listExclude = ["totem","key","copyer","sinker","switcher", "exploder","popper","blockLife","virus"];
+				if(!listExclude.includes(startCell.item.type)){startCell.item.setType("");}
+				if(colorBonus == -1) colorBonus = startCell.item.color;
+			}
+
+			this.destroyBombR(startPos,arr,colorBonus,typeDestroy);
+		}
+
+		destroyBombR(startPos,posToCheck,colorBonus,typeDestroy = "bonus_Bomb"){
+			let toDestroy = [];
+			let match = {"match":[],name:typeDestroy,color:colorBonus};
+			for (let i = 0; i < posToCheck.length; i++) {
+				let posCell = Pos.sumPos(startPos,posToCheck[i]);
+				let cell = this.grid.getCellByPos(posCell);
+				let cur_rulesDestroy = undefined;
+				let cur_match = match;
+				if(!cell){continue;}
+				toDestroy.push(cell);
+				if(cell.item && cell.item.type == "copyer"){cur_match.match=[startPos];cur_rulesDestroy = [this.grid.rulesClass.canDestroyItem_oneTime_cell,this.grid.rulesClass.canDestroyItem_life_copyer];}
+				if(cell.item && cell.item.type == "popper"){cur_match.match=[startPos];cur_rulesDestroy = [this.grid.rulesClass.canDestroyItem_life_popper_os,this.grid.rulesClass.canDestroyItem_oneTime_cell,this.grid.rulesClass.canDestroyItem_life];}
+				this.destroyItemByTimeout(
+					this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,cell,this.grid,cur_match,cur_rulesDestroy,undefined,"bonus"),
+					startPos,
+					cell.pos
+				);
+			}
+			this.check_coat([startPos],toDestroy);
+		}
+
+		destroyLineCross(x,y,x2,y2){
+			let cell1 = this.grid.getCell(x,y);
+			let cell2 = this.grid.getCell(x2,y2);
+			if(cell1.item){cell1.item.setType("");}
+			if(cell2.item){cell2.item.setType("");}
+			
+			this.destroyLineVertical(x,y);
+			this.destroyLineHorizontal(x,y);
+		}
+
+		destroyLineVertical(x,y,nbLine=1,x2=-1,y2=-1,color=-1){
+			if(y2 !== -1) {
+				let cell1 = this.grid.getCell(x,y);
+				let cell2 = this.grid.getCell(x2,y2);
+				if(cell1.item){cell1.item.setType("");}
+				if(cell2.item){cell2.item.setType("");}
+			};
+			for (var lineNb = 0; lineNb < nbLine; lineNb++) {
+				let arr = [];
+				let posCheck = (x - Math.floor(nbLine/2) + lineNb);
+				for (let i = 0; i < this.grid.cells.length; i++) {
+					if(this.grid.cells[i].x == posCheck){
+						arr.push(this.grid.cells[i]);
+					}
+				}
+				// this.destroyLine(new Pos(posCheck,y),arr);
+				this.destroyLine(new Pos(x,y),arr,color);
+			}
+		}
+
+		destroyLineHorizontal(x,y,nbLine=1,x2=-1,y2=-1,color=-1){
+			if(y2 !== -1) {
+				let cell1 = this.grid.getCell(x,y);
+				let cell2 = this.grid.getCell(x2,y2);
+				if(cell1.item){cell1.item.setType("");}
+				if(cell2.item){cell2.item.setType("");}
+			};
+
+			for (var lineNb = 0; lineNb < nbLine; lineNb++) {
+				let arr = [];
+				let posCheck = (y - Math.floor(nbLine/2) + lineNb);
+				for (let i = 0; i < this.grid.cells.length; i++) {
+					if(this.grid.cells[i].y == posCheck){
+						arr.push(this.grid.cells[i]);
+					}
+				}
+				// this.destroyLine(new Pos(x,posCheck),arr);
+				this.destroyLine(new Pos(x,y),arr,color);
+			}
+		}
+		
+		destroyLine(posStart,arrayToDestroy,color = -1){
+			let arrOfBlockable = [];
+			let arrOfDestroy = []
+			
+			for (let i = 0; i < arrayToDestroy.length; i++) {
+				if(!arrayToDestroy[i].item){continue;}
+				if(arrayToDestroy[i].item.type == "sinker"){arrOfBlockable.push(arrayToDestroy[i]);}
+			}	
+			let cellStart = this.grid.getCellByPos(posStart);
+			let colorBonus = color;
+			if(cellStart && cellStart.item && colorBonus == -1){colorBonus = cellStart.item.color;}
+
+			for (var i = 0; i < arrayToDestroy.length; i++) {
+				let cell = arrayToDestroy[i];
+				let canDestroy = true;
+				for (var y = 0; y < arrOfBlockable.length; y++) {
+					if(Pos.equal(cell.pos,arrOfBlockable[y].pos)){continue;}//same pos
+					if(cell.pos.x != arrOfBlockable[y].pos.x && cell.pos.y != arrOfBlockable[y].pos.y){continue;}
+					let distBlockable = Pos.distPos(posStart,arrOfBlockable[y].pos);
+					let distItem = Pos.distPos(posStart,cell.pos);
+					if(((distBlockable > 0 && distItem > 0) || (distBlockable < 0 && distItem < 0)) && 
+						Math.abs(distItem) > Math.abs(distBlockable)){
+						canDestroy = false;
+						break;
+					}
+				}
+				if(!canDestroy){continue;}
+				arrOfDestroy.push(cell);
+				
+				let cur_rulesDestroy = undefined;
+				if(cell.item && cell.item.type == "copyer"){cur_rulesDestroy = [this.grid.rulesClass.canDestroyItem_life_copyer];}
+				this.destroyItemByTimeout(
+					this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,cell,this.grid,{"match":[posStart],name:"bonus_line",color:colorBonus},cur_rulesDestroy,undefined,"bonus"),
+					posStart,
+					cell.pos
+				);
+			}
+			this.check_coat([posStart],arrOfDestroy);
+		}
+
+		destroyColorBomb(x,y,color,type=""){
+			let toDestroy = [];
+			let destroyCount = 0;
+			
+			//cell colorBomb
+			let cell = this.grid.grid[x][y];
+			if(cell.item){
+				// cell.item.setType("");
+				toDestroy.push(cell);
+			}
+			
+			for (let i = 0; i < this.grid.cellsSortTop.length; i++) {
+				let newCell = this.grid.cellsSortTop[i];
+				if(!newCell.item){continue};
+				if(newCell.item.type === "colorBomb"){continue};
+				if(newCell.item.type === "blockLife"){continue};
+				if(newCell.type === "chest"){continue};
+				// if(newCell.type === "blockLife"){continue};
+				if(newCell.item.color === color){
+					if(type !== "" && newCell.item.type === ""){
+						newCell.item.setType(type,false);
+					}
+					toDestroy.push(newCell);
+				}
+			}
+
+			for (let i = 0; i < toDestroy.length; i++) {
+				if(!toDestroy[i].item){continue};
+				this.destroyItemByTimeout(
+					this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,toDestroy[i],this.grid,undefined,undefined,undefined,"bonus_colorBomb"),
+					new Pos(0,0),
+					toDestroy[i].pos,
+					destroyCount/2
+				);
+				destroyCount++;
+			}
+			this.check_coat([new Pos(x,y)],toDestroy);
+		}
+
+		destroyColorBomb_all(x,y){
+			let destroyCount = 0;
+			let arr = [];		
+			for (let i = 0; i < this.grid.cellsSortTop.length; i++) {
+				let newCell = this.grid.cellsSortTop[i];
+				if(!newCell.item){continue};
+				this.destroyItemByTimeout(
+					this.grid.checkRules.checkDestroyItem.bind(this.grid.checkRules,newCell,this.grid,undefined,undefined,undefined,"bonus_colorBomb"),
+					new Pos(0,0),
+					newCell.pos,
+					destroyCount/10
+				);
+				arr.push(newCell);
+				destroyCount++;
+			}
+			this.check_coat([new Pos(x,y)],arr);
+		}
+
+		destroyTotem(x,y){
+			let cell = this.grid.getCell(x,y);
+			if(!cell.item){return false;}
+			if(cell.item.type != "totem"){return false;}
+			if(cell.type == "blockLife" && cell.life > 0){return false;}
+			if(cell.type == "chest" && cell.life > 0){return false;}
+			return this.grid.checkRules.checkDestroyItem(cell,this.grid,undefined,[this.grid.rulesClass.canDestroyItem_all],[]);
+		}
+
+		destroyItem(x,y,reason = ""){
+			let cell = this.grid.grid[x][y];
+			if(!cell.item){return;}
+			this.grid.checkRules.checkDestroyItem(cell,this.grid,undefined,undefined,undefined,reason);
+		}
+
+		destroyKey(){
+			let chestDestroyed = false;
+			for (let i = 0; i < this.grid.cells.length; i++) {
+				if(this.grid.cells[i].type == "chest"){
+					this.grid.cells[i].life--;
+					if(this.grid.cells[i].life <= 0){
+						this.grid.cells[i].setType("");
+						chestDestroyed = true;
+					}
+					this.grid.cells[i].updated();
+				}
+			}
+			if(chestDestroyed){
+				this.grid.checkMatch(true);
+			}
+		}
+
+		destroyItemByTimeout(callback,pos1,pos2,idDestroy){
+			var id = playtouch.arrayWaitForFunction.waitForFunctionJS(
+				this.TIME_BETWEEN_DESTROY_START+((typeof idDestroy == "undefined")?Math.abs(Pos.distPos(pos1,pos2)):idDestroy)*this.TIME_BETWEEN_DESTROY,
+				() => {
+					this.clearTimeoutId(id);
+					callback()
+				}
+			);
+			this.timeoutId.push(id);
+		}
+
+		setItemType(x,y,type=""){
+			let cell = this.grid.getCell(x,y);
+			if(!cell.item){return;}
+			cell.item.setType(type);
+		}
+
+		addStarterItem(type,color){
+			let allPos = [];
+			let ret = {used:0,type:type};
+			for (let i = 0; i < this.grid.cellsSortTop.length; i++) {
+				let newCell = this.grid.cellsSortTop[i];
+				if(newCell.type !== "bgLife" && newCell.type!== "coat" && newCell.type !== ""){continue;}
+				if(!newCell.item){continue;}
+				if(newCell.item.type !== ""){continue;}
+				if(playtouchGame.main.ld.grid.find((a)=>(a.items && Pos.equal(newCell.pos,new Pos(a.x,a.y))))){continue;} //remove LD position
+				allPos.push(newCell);
+			}
+			if(allPos.length <= 0){return JSON.stringify(ret);}
+			let posToadd = allPos[Math.floor(Math.random()*allPos.length)];
+
+			let option = {"type":type};
+			if(typeof color !== "undefined"){option["color"] = color;}
+			window.eventToFire.fireEvent(TAG_EVENT+"itemStarter",this.grid.getCell(posToadd.x,posToadd.y).item.uid);
+
+			this.createItem(posToadd.x,posToadd.y,option);
+			ret.color = this.grid.getCell(posToadd.x,posToadd.y).item.color;
+			ret.used = 1;
+			ret.x = posToadd.x;
+			ret.y = posToadd.y;
+		
+			return JSON.stringify(ret);
+		}
+
+		addVirus(){
+			let pos = [new Pos(0,1),new Pos(1,0),new Pos(0,-1),new Pos(-1,0)];
+			let allVirus = [];
+			let listCanBeVirus = ["line_h","line_v","bomb","colorBomb"];
+			for (let i = 0; i < this.grid.cells.length; i++) {
+				let cell = this.grid.cells[i];
+				if(!cell.item){continue;}
+				if(cell.item.type != "virus"){continue;}
+				for (let i = 0; i < pos.length; i++) {
+					let nearCell = this.grid.getCellByPos(Pos.sumPos(cell.pos,pos[i]));
+					if(!nearCell){continue;}
+					if(nearCell.type != "" && nearCell.type != "coat"){continue;}
+
+					if(!nearCell.item){allVirus.push(nearCell);continue;}
+					if(nearCell.item.type === "" || listCanBeVirus.includes(nearCell.item.type)){allVirus.push(nearCell);}
+				}
+			}
+			if(allVirus.length <= 0){return false;}
+			let virusToAdd = allVirus[Math.floor(Math.random()*allVirus.length)];
+			
+			if(!virusToAdd.item){
+				virusToAdd.setType("");
+				this.grid.itemCreateOnCell(virusToAdd,{type:"virus"});
+				return true;
+			}
+			if(virusToAdd.item.type === "" || listCanBeVirus.includes(virusToAdd.item.type)){
+				virusToAdd.setType("");
+				virusToAdd.item.setType("virus");
+				return true;
+			}
+
+			return false;
+		}
+
+		victory_destroyAllBonus(){
+			let arrBonus = ["line","line_h","line_v","bomb","colorBomb"];
+			let arrCellBlock = ["blockLife","chest"];
+			let ret = false;
+			for (let i = 0; i < this.grid.cells.length; i++) {
+				let cell =  this.grid.cells[i];
+				if(!cell.item){continue;}
+				if(arrCellBlock.includes(cell.type)){continue;}
+				if(!arrBonus.includes(cell.item.type)){continue;}
+				this.destroyItem(cell.x,cell.y,"victory");
+				ret = true;
+			}
+			return ret;
+		}
+		
+		victory_createBonusLine(count){
+			let ret = false;
+			let itemAvailable = [];
+			let arrCellBlock = ["blockLife","chest"];
+			for (let i = 0; i < this.grid.cells.length; i++) {
+				let cell =  this.grid.cells[i];
+				if(!cell.item){continue;}
+				if(!cell.item.type == ""){continue;}
+				if(arrCellBlock.includes(cell.type)){continue;}
+				itemAvailable.push(cell.item);
+				ret = true;
+			}
+			shuffle(itemAvailable);
+
+			for (var i = 0; i < count; i++) {
+				if(i >= itemAvailable.length){break;}
+				this.createItem(itemAvailable[i].x,itemAvailable[i].y,{"type":((Math.random()>0.5)?"line_v":"line_h")});
+			}
+			return ret;
+		}
+
+		exploder_addTurn(value){
+			//add timer on exploder
+			for (let i = 0; i < this.grid.cells.length; i++) {
+				let cell =  this.grid.cells[i];
+				if(!cell.item){continue;}
+				if(cell.item.type != "exploder"){continue;}
+				cell.item.timer = Math.max(value,cell.item.timer+value);
+			}
+		}
+
+		check_coat_fromC2Match(c2Match = {"match":[]}){
+			if(typeof c2Match == "string"){c2Match = JSON.parse(c2Match);}
+			let arr = [];
+			for (var i = 0; i < c2Match.match.length; i++) {
+				arr.push(new Pos(c2Match.match[i].x,c2Match.match[i].y));
+			}
+			this.check_coat(arr);
+		}
+		
+		check_coat(arrStart = [],arrToAdd = [],fromBonus = false){
+			if(arrStart.length <= 0){return false;}
+			// convert all pos to cell and check if it's a cell_coat
+			let asCoat = false;
+			for (let i = 0; i < arrStart.length; i++) {
+				if(!arrStart[i].pos){
+					arrStart[i] = this.grid.getCellByPos(arrStart[i]);
+					if(!arrStart[i]){continue;}
+				}
+				if(arrStart[i].type == "coat"){asCoat = true;}
+			}
+			if(!asCoat){return false;}
+			for (let i = 0; i < arrToAdd.length; i++) {
+				if(!arrToAdd[i].pos){
+					arrToAdd[i] = this.grid.getCellByPos(arrToAdd[i]);
+				}
+			}
+			//
+			arrToAdd.push(...arrStart);
+			for (let i = 0; i < arrToAdd.length; i++) {
+				if(!arrToAdd[i].item){continue;}
+				if(arrToAdd[i].item.type == "popper"){continue;}
+				if(arrToAdd[i].item.type == "copyer"){continue;}
+				if(arrToAdd[i].item.type == "blockLife"){continue;}
+				// console.log(arrToAdd[i],arrToAdd[i].type,arrToAdd[i].item);
+				if(arrToAdd[i].type != "" && arrToAdd[i].type != "totem"){continue;}
+				arrToAdd[i].setType("coat");
+			}
+		}
+
+		createOnMatch(match,color){
+			if(typeof match === "string"){match = JSON.parse(match);}
+
+			let cellOkForBonus = false;
+			let cell;
+			match.match.unshift(new Pos(match.posCreate.x,match.posCreate.y));
+			
+			for (var i = 0; i < match.match.length; i++) {
+				if(i != 0 && match.match[i].x == match.posCreate.x && match.match[i].y == match.posCreate.y){continue;} // already checked in pos 0
+
+				cell = this.grid.getCellByPos(match.match[i]);
+				if(!cell){continue;}
+				if(!cell.item){cellOkForBonus = true;}
+				else if(cell.item.type == ""){cellOkForBonus = true;}
+
+				if(cellOkForBonus){break;}
+			}
+
+			// create bonus
+			if(cellOkForBonus){
+				let optionItem = {"type":"","color":color};
+				switch (match.name) {
+					case "match_4":
+						optionItem.type = (["line_v","line_h"])[Math.round(Math.random())];
+					break;
+					case "match_4_v":
+						optionItem.type = "line_v";
+					break;
+					case "match_4_h":
+						optionItem.type = "line_h";
+					break;
+					case "match_T7":
+					case "match_5":
+					case "match_Cross9":
+					case "match_Cross8":
+					case "match_Cross7":
+					case "match_Cross7_2":
+						optionItem.type = "colorBomb";
+					break;
+					case "match_T5":
+					case "match_T6":
+					case "match_L4":
+					case "match_L5":
+					case "match_Cross6":
+					case "match_Cross5":
+						optionItem.type = "bomb";
+					break;
+				}
+				if(optionItem.type != ""){this.createItem(cell.x,cell.y,optionItem);}
+			}
+
+		}
+
+		resetPopper(x,y){
+			let cell = this.grid.getCell(x,y);
+			if(!cell){return;}
+			let item = cell.item;
+			if(!item){return;}
+			if(item.type != "popper"){return;}
+			if(!item.baseLife){item.baseLife = item.life;}
+			item.life = item.baseLife;
+			item.updated();
+		}
+		
+		forceUpdateItem(x,y){
+			let cell = this.grid.getCell(x,y);
+			if(!cell.item){return;}
+			cell.item.updated();
+		}
+
+		//--------------------------------
+		
+
+	}
+
+
+	class GridCustom extends window.playtouchGame.match3.Grid {
+		constructor() {super();}
+
+		init(){
+			super.init(...arguments);
+
+			this.addRules("match",[
+				this.rulesClass.match_Cross9,
+				this.rulesClass.match_Cross8,
+				this.rulesClass.match_Cross7,
+				this.rulesClass.match_Cross7_2,
+				this.rulesClass.match_T7,
+				this.rulesClass.match_5,
+				this.rulesClass.match_Cross6,
+				this.rulesClass.match_Cross5,
+				this.rulesClass.match_T6,
+				this.rulesClass.match_T5,
+				this.rulesClass.match_L5,
+				this.rulesClass.match_4,
+				this.rulesClass.match_3
+			]);
+
+			this.addRules("matchItems",[
+				this.rulesClass.matchItems_type_popper,
+				this.rulesClass.matchItems_cell_type_chest,
+				this.rulesClass.matchItems_type_sinker,
+				this.rulesClass.matchItems_type_copyer,
+				this.rulesClass.matchItems_type_virus,
+				this.rulesClass.matchItems_type_blockLife,
+				this.rulesClass.matchItems_type_colorBomb,
+				this.rulesClass.matchItems_type_totem,
+				this.rulesClass.matchItems_color,
+				this.rulesClass.matchItems_all
+			]);
+
+			this.addRules("swapItems",[
+				this.rulesClass.swapItems_near1Cell,
+				this.rulesClass.swapItems_noSwap,
+				this.rulesClass.swapItems_blockLife
+			]);
+
+			this.addRules("swapItemsMatch",[
+				this.rulesClass.swapItems_bonus,
+				this.rulesClass.swapItems_match
+			]);
+
+			this.addRules("sortCells", 
+				this.rulesClass.sortCells_bottom
+			);
+
+			this.addRules("move",[	
+				this.rulesClass.move_bottom_1,
+				this.rulesClass.move_bottomLeftRight_nearBorder_1,
+				this.rulesClass.move_bottomLeftRight_1
+			]);
+
+			this.addRules("canMove",[
+				this.rulesClass.canMove_type_noMove,
+				this.rulesClass.canMove_type_blockLife,
+				this.rulesClass.canMove_type_void,
+				this.rulesClass.canMove_empty
+			]);
+
+			this.addRules("canCreateItem",[
+				this.rulesClass.canCreateItem_void
+			]);
+
+			//used always and don't have any check on item, no block
+			this.addRules("canDestroyNoItem",[
+				this.rulesClass.canDestroyItem_oneTime_cell_rulesNoItem,
+				this.rulesClass.canDestroyItem_cellBGLife
+			]);
+
+			this.addRules("canDestroyItem",[
+				this.rulesClass.canDestroyItem_oneTime_cell,
+				this.rulesClass.canDestroyItem_cellChest,
+				this.rulesClass.canDestroyItem_cellBlockLife,
+				this.rulesClass.canDestroyItem_totem,
+				this.rulesClass.canDestroyItem_popperNearDestroyed,
+				this.rulesClass.canDestroyItem_virusNearDestroyed,
+				this.rulesClass.canDestroyItem_blockLifeNearDestroyed,
+				this.rulesClass.canDestroyItem_sinkerNearDestroyed,
+				this.rulesClass.canDestroyItem_copyerNearDestroyed,
+				this.rulesClass.canDestroyItem_life,
+				this.rulesClass.canDestroyItem_all
+			]);
+
+			this.addRules("createItem",
+				this.rulesClass.createItemDefault_type_random4
+			);
+			
+			this.addRules("canTouch",[
+				this.rulesClass.canTouch_type_item_popper,
+				// this.rulesClass.canTouch_type_item_blockLife,
+				// this.rulesClass.canTouch_type_item_virus,
+				this.rulesClass.canTouch_type_item_copyer,
+				// this.rulesClass.canTouch_type_cell_blockLife,
+				this.rulesClass.canTouch_type_cell_chest
+			]);
+
+			return this;
+		}
+	}
+
+	class CellCustom extends window.playtouchGame.match3.Cell {
+		constructor() {
+			super(...arguments);
+		}
+	}
+
+
+	class Utils {
+		constructor(){
+			this.timerMatch={};
+		}
+
+		sortPosWall(c){
+			c = Object.values(c);
+			var d = [c.splice(0,1)[0]];
+			while(c.length > 0){
+				var used = false;
+				for(var i =0;i < c.length;i++){
+					var checkCase = d[d.length-1];
+					if(checkCase.destX == c[i].startX && checkCase.destY == c[i].startY){
+						d.push(c.splice(i,1)[0]);
+						used = true;
+						break;
+					}
+					var checkCaseBefore = d[0];
+					if(checkCaseBefore.destX == c[i].startX && checkCaseBefore.destY == c[i].startY){
+						d.unshift(c.splice(i,1)[0]);
+						used = true;
+						break;
+					}
+					checkCase = d[d.length-1];
+					if(checkCase.destX == c[i].destX && checkCase.destY == c[i].destY){
+						let newC = c.splice(i,1)[0];
+						d.push({startX:newC.destX,startY:newC.destY,destX:newC.startX,destY:newC.startY});
+						used = true;
+						break;
+					}
+					checkCaseBefore = d[0];
+					if(checkCaseBefore.startX == c[i].startX && checkCaseBefore.startY == c[i].startY){
+						let newC = c.splice(i,1)[0];
+						d.unshift({startX:newC.destX,startY:newC.destY,destX:newC.startX,destY:newC.startY});
+						used = true;
+						break;
+					}
+				}
+				if(!used){
+					d.push(c.splice(0,1)[0]);
+				}
+			}
+			return JSON.stringify(d);
+		};
+
+		getBezierXY(type,t, sx, sy, cp1x, cp1y, cp2x, cp2y, ex, ey) {
+			switch( type){
+			  case 'x': return Math.pow(1-t,3) * sx + 3 * t * Math.pow(1 - t, 2) * cp1x 
+				+ 3 * t * t * (1 - t) * cp2x + t * t * t * ex;
+			  case 'y': return Math.pow(1-t,3) * sy + 3 * t * Math.pow(1 - t, 2) * cp1y 
+				+ 3 * t * t * (1 - t) * cp2y + t * t * t * ey;
+			}
+		}
+
+		//debug utils count time between events
+		startTime(tag="default"){
+			if(!this.timerMatch[tag]){this.timerMatch[tag] = {lastTime:-1,arr:[],countZero : 0};}
+			this.timerMatch[tag].lastTime = window.performance.now();
+		}
+		endTime(tag="default"){
+			if(!this.timerMatch[tag]){return;}
+			let time = window.performance.now() - this.timerMatch[tag].lastTime;
+			if(time <= 0){this.timerMatch[tag].countZero++;return;}
+			this.timerMatch[tag].arr.push(time);
+			this.timerMatch[tag].average = this.getTimeAverage(tag);
+			this.timerMatch[tag].allTime = this.getAllTime(tag);
+			this.timerMatch[tag].sum = this.sumAllTime(tag);
+		}
+		getTimeAverage(tag="default"){
+			if(!this.timerMatch[tag]){return 0;}
+			if(this.timerMatch[tag].arr.length <= 0){return 0;}
+			return Math.round((this.timerMatch[tag].arr.reduce((a,b)=>a+b)/this.timerMatch[tag].arr.length)*100)/100;
+		}
+		getAllTime(tag="default"){
+			if(!this.timerMatch[tag]){return 0;}
+			if(this.timerMatch[tag].arr.length <= 0){return 0;}
+			let sort = this.timerMatch[tag].arr.sort((a,b)=>b-a);
+			return Math.round((sort[sort.length-1])*100)/100+">"+this.getTimeAverage(tag)+"<"+Math.round((sort[0])*100)/100;
+		}
+		resetAllTime(tag="default"){
+			if(!this.timerMatch[tag]){return ;}
+			this.timerMatch[tag].arr = [];
+		}
+		sumAllTime(tag="default"){
+			if(!this.timerMatch[tag]){return 0;}
+			if(this.timerMatch[tag].arr.length <= 0){return 0;}
+			return this.timerMatch[tag].arr.reduce((sum, a) => sum + a, 0);
+		}
+		
+
+		//--- LD
+		decompressString(txt, compressor){
+			let bs="|";
+			var txtSplit = txt.split(bs), autoDecompressor;
+			if(txtSplit.length === 1 || txtSplit[0].length>16) txtSplit.unshift("plain");
+			autoDecompressor = txtSplit.shift();
+			txt = txtSplit.join(bs);
+			if(typeof compressor === "undefined") compressor = autoDecompressor;
+			switch(compressor){
+				case "lz_Base64":
+					txt = LZUTF8.decompress(txt, {inputEncoding:compressor.split("_")[1]});
+					break;
+				case "plain": case "": default:
+					//
+					break;
+			}
+
+			let strReplace ={
+				"width":"w",
+				"height":"h",
+				"cells": "c",
+				"option":"o",
+				"life":"l",
+				"starValues":"S",
+				"nbColor":"n",
+				"grid":"g",
+				"type":"t",
+				"void":"v",
+				"items":"i",
+				"color":"C",
+				"spawnPoint":"s",
+				"value":"V",
+				"bgLife":"b",
+				"blockLife":"B",
+				"sinker":"si",
+				"key":"k",
+				"totem":"to",
+				"exploder":"e",
+				"switcher":"sw",
+				"virus":"vi",
+				"chest":"ch",
+				"copyer":"Co",
+				"popper":"p",
+				"cndLose":"cl",
+				"cndWin":"cw",
+				"cndType":"ct",
+				"turns":"T",
+			}
+		
+			for(let i in strReplace){
+				let re = new RegExp("\""+strReplace[i]+"\"","g");
+				txt = txt.replace(re,"\""+i+"\"")
+			}
+			return txt;
+		};
+
+		//--- life manager
+		getLastNotifByName(list,name){
+			list = (typeof list == "string") ? JSON.parse(list):list;
+			var obj = {name:'',timeEnd:-1};
+			for(var i in list){
+				if(list[i].state =='active' && list[i].name.indexOf(name) != -1){
+					if(list[i].timeEnd > obj.timeEnd){
+						obj.name = list[i].name;
+						obj.timeEnd = list[i].timeEnd;
+					}
+				}
+			}
+			return obj.name;
+		}
+	}
+
+	function shuffle(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+	}
+
+	if(typeof window.playtouchGame === "undefined"){window.playtouchGame = {};}
+	if(typeof window.playtouchGame.match3 === "undefined"){window.playtouchGame.match3 = {};}
+
+	window.playtouchGame.main = new Main();
+	window.playtouchGame.utils = new Utils();
+})();
