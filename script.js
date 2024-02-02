@@ -32,7 +32,7 @@ var gameDetails = {
 
   // },
   candy: {
-    name: "Lollipop World",
+    name: "Candy World",
     premium: false,
     unlocked: true,
     price: "0.10",
