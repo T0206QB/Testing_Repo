@@ -1,2 +1,36 @@
+name: build_on_pull_request
 
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Configure AWS credentials from Web Widgets account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-duration-seconds: 1200
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+        role-to-assume: arn:aws:iam::228722564141:role/service-role/codebuild-webwidgets-web
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync . s3://stla-ivww-s3-iconic-games
+    - name: Create CloudFront invalidation
+      run: |
+        aws cloudfront create-invalidation --distribution-id E2M29BRFCNG43I --paths "/*"
+     
 
