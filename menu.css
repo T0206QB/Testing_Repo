@@ -121,7 +121,7 @@ body {
 
 .gameApp {
   flex: 1 0 calc(20% - 4%);
-  padding: 1.05%;
+  padding: 1rem;
   margin: 0px 0px;
   cursor: pointer;
   display: flex;
@@ -169,7 +169,11 @@ body {
 
 #newImage {
   height: 30%;
-  width: 30%;
+    width: 30%;
+    z-index: 1;
+    left: 11rem;
+    position: absolute;
+    bottom: 11rem;
 }
 
 #content {
