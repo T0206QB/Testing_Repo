@@ -1,5 +1,5 @@
 ;(function(){
-	var PLIBS_VERSION = "2.3.0";
+	var PLIBS_VERSION = "2.4.0";
 	var PLIBS_TAG = "PLib";
 
 /*********************************************
@@ -466,7 +466,7 @@
 				var
 	*********************************************/
 	var arrayWaitForFunction = function(){};
-	arrayWaitForFunction.prototype.version = "1.5.0";
+	arrayWaitForFunction.prototype.version = "1.6.0";
 	arrayWaitForFunction.prototype.tag = "W4F";
 	arrayWaitForFunction.prototype.array = [];
 	arrayWaitForFunction.prototype.arrayJs = [];
@@ -557,60 +557,95 @@
 	};
 
 	arrayWaitForFunction.prototype.clearArrayWait = function(persistentLevel){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.clearArrayWaitByArray(a,persistentLevel));
+	};
+	arrayWaitForFunction.prototype.clearArrayWaitByArray = function(array,persistentLevel){
 		var persistentLevel = ((typeof(persistentLevel) === "undefined")?0:persistentLevel);
-		for (var i = this.array.length - 1; i >= 0; i--) {
-			if(this.array[i].persistentLevel <= persistentLevel){
-				this.array.splice(i,1)[0];
+
+		for (var i = array.length - 1; i >= 0; i--) {
+			if(array[i].persistentLevel <= persistentLevel){
+				array.splice(i,1)[0];
 			}
 		};
-		// this.array = [];
 	};
 
 	arrayWaitForFunction.prototype.stopWaitById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array.splice(i,1);
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.stopWaitByIdByArray(a,id));
+	};
+	arrayWaitForFunction.prototype.stopWaitByIdByArray = function(array,id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array.splice(i,1);
 				break;
 			}
 		};
 	};
 
 	arrayWaitForFunction.prototype.getTimeUntilEndOf = function(id, defaultTime){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.getTimeUntilEndOfByArray(listOfArray[i],id,defaultTime);
+			if(ret !== defaultTime){return ret;}
+		}
+		return defaultTime;
+	};
+	arrayWaitForFunction.prototype.getTimeUntilEndOfByArray = function(array, id, defaultTime){
 		if(typeof defaultTime === "undefined") defaultTime = -1;
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				return this.array[i].time;
-				break;
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				return array[i].time;
 			}
 		};
 		return defaultTime;
 	};
 
 	arrayWaitForFunction.prototype.addTimeById = function(id, timeToAdd){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].time += timeToAdd;
-				return this.array[i].time;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.addTimeByIdByArray(listOfArray[i],id,timeToAdd);
+			if(ret !== -1){return ret;}
+		}
+		return -1;
+	};
+	arrayWaitForFunction.prototype.addTimeByIdByArray = function(array, id, timeToAdd){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].time += timeToAdd;
+				return array[i].time;
 			}
 		};
 		return -1;
 	};
 
 	arrayWaitForFunction.prototype.setTimeById = function(id, timeToSet){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].time = timeToSet;
-				return this.array[i].time;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.setTimeByIdByArray(listOfArray[i],id,timeToSet);
+			if(ret !== -1){return ret;}
+		}
+		return -1;
+	};
+	arrayWaitForFunction.prototype.setTimeByIdByArray = function(array, id, timeToSet){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].time = timeToSet;
+				return array[i].time;
 			}
 		};
 		return -1;
 	};
 
 	arrayWaitForFunction.prototype.startWaitNowById = function(id){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.startWaitNowByIdByArray(a,id));
+	};
+	arrayWaitForFunction.prototype.startWaitNowByIdByArray = function(array, id){
 		var toDestroy;
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				toDestroy = this.array.splice(i,1)[0];
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				toDestroy = array.splice(i,1)[0];
 				break;
 			}
 		};
@@ -620,37 +655,76 @@
 	};
 
 	arrayWaitForFunction.prototype.pauseById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].active = false;
-				return this.array[i].active;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.pauseByIdByArray(listOfArray[i],id);
+			if(ret !== false){return ret;}
+		}
+		return false;
+	};
+	arrayWaitForFunction.prototype.pauseByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].active = false;
+				return true;
 			}
 		};
 		return false;
 	};
 
 	arrayWaitForFunction.prototype.resumeById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].active = true;
-				return this.array[i].active;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.resumeByIdByArray(listOfArray[i],id);
+			if(ret !== false){return ret;}
+		}
+		return false;
+	};
+	arrayWaitForFunction.prototype.resumeByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].active = true;
+				return true;
 			}
 		};
 		return false;
 	};
 
-	arrayWaitForFunction.prototype.pauseAll = function(){
-		for (var i = 0; i < this.array.length; i++) {
-				this.array[i].active = false;
-		};
+	arrayWaitForFunction.prototype.isPausedById = function(id){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.isPausedByIdByArray(listOfArray[i],id);
+			if(ret !== -1){return ret;}
+		}
 		return false;
+	};
+	arrayWaitForFunction.prototype.isPausedByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){return !array[i].active;}
+		};
+		return -1;
+	};
+
+	arrayWaitForFunction.prototype.pauseAll = function(){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.pauseAllByArray(a));
+		return false;
+	};
+	arrayWaitForFunction.prototype.pauseAllByArray = function(array){
+		for (var i = 0; i < array.length; i++) {
+				array[i].active = false;
+		};
 	};
 
 	arrayWaitForFunction.prototype.resumeAll = function(){
-		for (var i = 0; i < this.array.length; i++) {
-			this.array[i].active = true;
-		}
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.resumeAllByArray(a));
 		return true;
+	};
+	arrayWaitForFunction.prototype.resumeAllByArray = function(array){
+		for (var i = 0; i < array.length; i++) {
+			array[i].active = true;
+		}
 	};
 
 /*********************************************
@@ -1548,7 +1622,7 @@ var tweeningVariables = {};
 				var
 	*********************************************/
 	var blocksSpreading = function(){};
-	blocksSpreading.prototype.version = "1.0.0";
+	blocksSpreading.prototype.version = "1.1.0";
 	blocksSpreading.prototype.SCALE_MIN=0.1;
 	blocksSpreading.prototype.blocks = [];
 	/*********************************************
@@ -1604,17 +1678,25 @@ var tweeningVariables = {};
 		if(!layer){return 1;}
 		return ((layer.scale * layoutScale) - 1) * layer.zoomRate + 1;
 	};
-	blocksSpreading.prototype.getXOnLayer = function(layerName,pos){
+	blocksSpreading.prototype.getXOnLayer = function(layerName,pos,layoutScale){
 		let layerDest =  cr_getC2Runtime().getLayer(layerName);
 		let layer0 =  cr_getC2Runtime().getLayer(0);
+		let currLayoutScale = cr_getC2Runtime().running_layout.scale;
 		if(!layerDest || !layer0){return pos;}
-		return layerDest.canvasToLayer(layer0.layerToCanvas(pos,0,true),0,true);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = layoutScale;}
+		let ret = layerDest.canvasToLayer(layer0.layerToCanvas(pos,0,true),0,true);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = currLayoutScale;}
+		return ret;
 	};
-	blocksSpreading.prototype.getYOnLayer = function(layerName,pos){
+	blocksSpreading.prototype.getYOnLayer = function(layerName,pos,layoutScale){
 		let layerDest =  cr_getC2Runtime().getLayer(layerName);
 		let layer0 =  cr_getC2Runtime().getLayer(0);
+		let currLayoutScale = cr_getC2Runtime().running_layout.scale;
 		if(!layerDest || !layer0){return pos;}
-		return layerDest.canvasToLayer(0,layer0.layerToCanvas(0,pos,false),false);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = layoutScale;}
+		let ret = layerDest.canvasToLayer(0,layer0.layerToCanvas(0,pos,false),false);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = currLayoutScale;}
+		return ret;
 	};
 	blocksSpreading.prototype.get2DigitComma = function(nb){
 		return Math.round((nb)*100)/100;
@@ -1659,7 +1741,7 @@ var tweeningVariables = {};
 			let heightBlock = this._getSizeForFunc(scale_curr,false,scaleSize,block);
 			let placementToPush = {
 				name:block.name,
-				pos:this.get2DigitComma(func_posLayer(block.layerName,containerStartPos+curPos+((isHorizontal)?widthBlock:heightBlock)/2))
+				pos:this.get2DigitComma(func_posLayer(block.layerName,containerStartPos+curPos+((isHorizontal)?widthBlock:heightBlock)/2,scale_curr))
 			}
 			if(scaleSize){
 				placementToPush.width = this.get2DigitComma(widthBlock);

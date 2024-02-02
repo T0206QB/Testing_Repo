@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1691992158,
+	"version": 1705908586,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -335,6 +335,7 @@
 		"images/bannertile.png",
 		"images/selectionholder-sheet0.png",
 		"images/canvas_masktilebottom_p1.png",
+		"images/buttonplacer-sheet0.png",
 		"media/321.m4a",
 		"media/321.ogg",
 		"media/3210.m4a",
@@ -445,6 +446,8 @@
 		"media/giftrise.ogg",
 		"media/logo.m4a",
 		"media/logo.ogg",
+		"media/nodiamond.m4a",
+		"media/nodiamond.ogg",
 		"icon-16.png",
 		"icon-32.png",
 		"icon-114.png",

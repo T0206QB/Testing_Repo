@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1691489541,
+	"version": 1705908119,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -98,7 +98,7 @@
 		"images/splashlandscape6-sheet0.png",
 		"images/test1-sheet0.png",
 		"images/bgground-sheet0.png",
-		"images/gmground-sheet0.png",
+		"images/gmground_0-sheet0.png",
 		"images/timebar-sheet0.png",
 		"images/filltimerbarbackground-sheet0.png",
 		"images/filltimeroverlay-sheet0.png",
@@ -136,6 +136,9 @@
 		"images/bgsplash-sheet1.png",
 		"images/iap_restorepurchase-sheet0.png",
 		"images/bannergraph.png",
+		"images/gmground_1-sheet0.png",
+		"images/gmground_2-sheet0.png",
+		"images/gmground_3-sheet0.png",
 		"media/321.m4a",
 		"media/321.ogg",
 		"media/3210.m4a",

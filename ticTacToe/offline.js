@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1692165803,
+	"version": 1705910502,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -114,6 +114,7 @@
 		"images/gameoverstateicone-sheet1.png",
 		"images/gameoverstateicone-sheet2.png",
 		"images/line.png",
+		"images/epholder-sheet0.png",
 		"media/321.m4a",
 		"media/321.ogg",
 		"media/3210.m4a",

@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1692106289,
+	"version": 1705910131,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -114,6 +114,7 @@
 		"images/gamehintbackbutt-sheet0.png",
 		"images/revivecamanim-sheet0.png",
 		"images/revivecamanim-sheet1.png",
+		"images/revivecamanim-sheet2.png",
 		"images/revivebuttanim-sheet0.png",
 		"images/revivebuttanim-sheet1.png",
 		"images/equal-sheet0.png",
@@ -150,7 +151,6 @@
 		"images/iap_shop_overlay-sheet0.png",
 		"images/iap_shop_overlay-sheet1.png",
 		"images/iap_shop_overlay-sheet2.png",
-		"images/iap_shop_close-sheet0.png",
 		"images/iap_shop_spritefont.png",
 		"images/iap_restorepurchase-sheet0.png",
 		"images/banner_bgcanvas.png",
@@ -158,6 +158,9 @@
 		"images/loadingscreen-default-000.jpg",
 		"images/watchadsbanner-sheet0.png",
 		"images/watchadsbanner-sheet1.png",
+		"images/keypad_dir_arrows-sheet0.png",
+		"images/rebirth_background-sheet0.png",
+		"images/hintanimationbackground-sheet0.png",
 		"media/321.m4a",
 		"media/321.ogg",
 		"media/3210.m4a",

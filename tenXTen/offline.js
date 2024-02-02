@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1691991693,
+	"version": 1705910341,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -191,6 +191,7 @@
 		"images/customshapebase-sheet2.png",
 		"images/trophygo.png",
 		"images/shapesselector_holder-sheet0.png",
+		"images/replay_bg-sheet0.png",
 		"media/321.m4a",
 		"media/321.ogg",
 		"media/3210.m4a",
@@ -243,6 +244,8 @@
 		"media/1line.ogg",
 		"media/notification.m4a",
 		"media/notification.ogg",
+		"media/nodiamond.m4a",
+		"media/nodiamond.ogg",
 		"loading-logo.png",
 		"icon-16.png",
 		"icon-32.png",

@@ -1,6 +1,6 @@
 ﻿{
-	"name": "Tangram Puzzle 2.0",
-	"short_name": "Tangram Puzzle 2.0",
+	"name": "tangramPuzzle20",
+	"short_name": "tangramPuzzle20",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "any",

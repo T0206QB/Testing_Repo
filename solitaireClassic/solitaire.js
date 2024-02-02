@@ -447,7 +447,7 @@ Deck.prototype.getDeckHeight = function(cardHeight, baseOffsetPx,   redOffset, g
 	}
 	return [toRet[toRet.length-1] * baseOffsetPx + cardHeight/2, toRet];
 };
-Deck.prototype.getCardsDisplacement = function(maxHeight, cardHeight, baseOffsetPx,   redOffset, greyOffset, whiteOffset, collapsTreshold, step){
+Deck.prototype.getCardsDisplacement = function(maxHeight, cardHeight, baseOffsetPx, redOffset, greyOffset, whiteOffset, collapsTreshold, step){
 	var currentDisplacement=0, globalOffset = 100, alreadyCollapsed=false, totHeight=999999999, offsetsRule, maxLoop = 200, toRet=[];
 	if(typeof collapsTreshold !== "number") collapsTreshold = 80;
 	if(typeof redOffset !== "number") redOffset = 1;

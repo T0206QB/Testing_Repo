@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #1A1A1A;
   font-family: sans-serif;
   color: #FFFFFF;
@@ -9,7 +9,8 @@ body{
   opacity: 0;
   margin-top: 2%;
 }
-.flexcontainer{
+
+.flexcontainer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -17,9 +18,11 @@ body{
   overflow-y: auto;
   scrollbar-width: none;
 }
+
 .flexcontainer::-webkit-scrollbar {
   display: none;
 }
+
 #rightContainer {
   width: 50%;
   display: flex;
@@ -28,10 +31,12 @@ body{
   justify-content: center;
   border-left: 1px solid white;
 }
+
 #rightContainer #payment-button-container {
   width: 100%;
   padding-top: 5%;
 }
+
 #rightContainer #paypal-button-container {
   text-align: center;
   font-size: 32px;
@@ -39,6 +44,7 @@ body{
   width: 30%;
   padding-left: 13%;
 }
+
 #rightContainer #payment-button-divider {
   font-size: 31px;
   text-align: center;
@@ -46,14 +52,16 @@ body{
   padding-right: 5%;
   float: left;
 }
-#rightContainer #subscribe-button-container{
+
+#rightContainer #subscribe-button-container {
   text-align: center;
   font-size: 32px;
   float: left;
   width: 30%;
   padding-right: 13%;
 }
-#rightContainer #subscribe-button{
+
+#rightContainer #subscribe-button {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -63,12 +71,14 @@ body{
   background: #00358e;
   border-radius: 28px;
 }
+
 #subscribe-button p {
   margin: 0;
   padding-top: 2%;
   font-style: oblique;
   font-weight: bold;
 }
+
 #rightContainer #return-button {
   width: 40px;
   padding: 30px;
@@ -78,41 +88,48 @@ body{
   right: 0;
   float: right;
 }
+
 #rightContainer #betaBanner {
   font-size: 32px;
   font-style: italic;
   opacity: 0.2;
 }
+
 #rightContainer #preview-container {
   padding: 10%;
   text-align: center;
 }
+
 #rightContainer #preview-image {
   border-radius: 35px;
   text-align: center;
   box-shadow: 0 0 20px 8px #f49c04;
 }
+
 #rightContainer #details {
   text-align: center;
   padding-top: 10%;
   font-size: 32px;
 }
-.flexdiv{
+
+.flexdiv {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: fit-content;
 }
-.gameApp{
+
+.gameApp {
   flex: 1 0 calc(20% - 4%);
-  padding: 1.5%;
-  margin: 26px 0px;
+  padding: 1.05%;
+  margin: 0px 0px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.gameimg{
+
+.gameimg {
   padding: 0;
   height: 240px;
   width: 240px;
@@ -122,21 +139,45 @@ body{
   border-radius: 16px;
   position: relative;
 }
-.gameimg img{
+
+.gameimg img {
   object-fit: cover;
   border-radius: 35px;
 }
+
 .gameimg .icon {
   width: 100%;
   height: 100%;
   position: absolute;
 }
-.gameimg .overlay{
+
+.gameimg .overlay {
   position: absolute;
   visibility: hidden;
 }
-.gamename{
+
+.gameimg .new {
+  position: absolute;
+  /* visibility: hidden; */
+}
+
+.gamename {
   text-align: center;
   padding: 20px;
   font-size: 32px;
+}
+
+#newImage {
+  height: 30%;
+  width: 30%;
+}
+
+#content {
+  position: relative;
+}
+
+#content img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

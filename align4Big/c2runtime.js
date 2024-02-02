@@ -10267,7 +10267,7 @@ window["cr_setSuspended"] = function(s)
 			this.is_else_block = (this.conditions[0].type == null && this.conditions[0].func == cr.system_object.prototype.cnds.Else);
 		}
 	};
-	window["_c2hh_"] = "09594603F2740B9F8BDB95722D03AAEAC7E4DC5F";
+	window["_c2hh_"] = "1D959B0AEB9E312A703352A9469C4528FA56871E";
 	EventBlock.prototype.postInit = function (hasElse/*, prevBlock_*/)
 	{
 		var i, len;
@@ -22224,6 +22224,31 @@ cr.plugins_.NinePatch = function(runtime)
 	{
 		return true;
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
 	Acts.prototype.SetEffect = function (effect)
@@ -23561,6 +23586,36 @@ cr.plugins_.Rex_Hash = function(runtime)
 				}
 			}
             break;
+        }
+	};
+    Acts.prototype.shiftArray = function (key){
+        if (key != ""){
+		    var keys = key.split(".");
+            var last_key = keys.splice(keys.length-1, 1);
+            this._set_entry_byKeys(keys);
+			if(Array.isArray(this._current_entry[last_key])){
+				this._current_entry[last_key].shift();
+			}
+        }
+	};
+    Acts.prototype.popArray = function (key){
+        if (key != ""){
+		    var keys = key.split(".");
+            var last_key = keys.splice(keys.length-1, 1);
+            this._set_entry_byKeys(keys);
+			if(Array.isArray(this._current_entry[last_key])){
+				this._current_entry[last_key].pop();
+			}
+        }
+	};
+    Acts.prototype.spliceArray = function (key,start,count){
+        if (key != ""){
+		    var keys = key.split(".");
+            var last_key = keys.splice(keys.length-1, 1);
+            this._set_entry_byKeys(keys);
+			if(Array.isArray(this._current_entry[last_key])){
+				this._current_entry[last_key].splice(start,count);
+			}
         }
 	};
 	function Exps() {};
@@ -26371,6 +26426,31 @@ cr.plugins_.Sprite = function(runtime)
 	{
 		return this.collisionsEnabled;
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
 	Acts.prototype.Spawn = function (obj, layer, imgpt)
@@ -26685,7 +26765,7 @@ cr.plugins_.Sprite = function(runtime)
 		if(!forceDelete && anim.frames.length <= 1){return;}
 		var frameRemoved = anim.frames.splice(frameNumber,1)[0];
 		frameRemoved.toDestroy = true;
-		this.runtime.glwrap.deleteTexture(frameRemoved.webGL_texture);
+		if (this.runtime.glwrap){this.runtime.glwrap.deleteTexture(frameRemoved.webGL_texture);}
 		removeFrameToDestroy(this.type.all_frames);
 		for (let i = 0; i < this.type.instances.length; i++) {
 			const elem = this.type.instances[i];
@@ -26771,13 +26851,13 @@ cr.plugins_.Sprite = function(runtime)
 		ret.set_float(this.curFrame.height);
 	};
 	Exps.prototype.getCurrentImageBase64 = function (ret){
-		ret.set_string(getDataUrlByImg(this.curFrame.texture_img));
+		ret.set_string(this.curFrame.getDataUri());
 	};
 	Exps.prototype.getImageBase64ByAnimationAndFrame = function (ret, animationName, frameNumber){
 		var anim = this.type.animations.find((a)=>a.name==animationName);
 		if(!anim){return "";}
 		if(frameNumber >= anim.frames.length){return "";}
-		ret.set_string(getDataUrlByImg(anim.frames[frameNumber].texture_img));
+		ret.set_string(anim.frames[frameNumber].getDataUri());
 	};
 	function getDataUrlByImg(img){
 		var canvas = document.createElement('canvas');
@@ -27449,6 +27529,31 @@ cr.plugins_.Spritefont2 = function(runtime)
 		else
 			return cr.equals_nocase(this.text, text_to_compare);
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {}
 	Acts.prototype.SetText = function(param)
@@ -28077,6 +28182,31 @@ cr.plugins_.Text = function(runtime)
 		else
 			return cr.equals_nocase(this.text, text_to_compare);
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
 	Acts.prototype.SetText = function(param)
@@ -28379,6 +28509,31 @@ cr.plugins_.TiledBg = function(runtime)
 	{
 		return true;
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
 	Acts.prototype.SetEffect = function (effect)
@@ -28457,6 +28612,9 @@ cr.plugins_.Touch = function(runtime)
 		this.runtime = type.runtime;
 		this.touches = [];
 		this.mouseDown = false;
+		this.mouseXcanvas = 0;
+		this.mouseYcanvas = 0;
+		this.mouseDetected = false;
 	};
 	var instanceProto = pluginProto.Instance.prototype;
 	var dummyoffset = {left: 0, top: 0};
@@ -28839,8 +28997,8 @@ cr.plugins_.Touch = function(runtime)
 		}
 		this.runtime.tick2Me(this);
 	};
-	instanceProto.onPointerMove = function (info)
-	{
+	instanceProto.onPointerMove = function (info){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
 		if (info["pointerType"] === info["MSPOINTER_TYPE_MOUSE"] || info["pointerType"] === "mouse")
 			return;
 		if (info.preventDefault)
@@ -28856,8 +29014,8 @@ cr.plugins_.Touch = function(runtime)
 			t.update(nowtime, info.pageX - offset.left, info.pageY - offset.top, info.width || 0, info.height || 0, info.pressure || 0);
 		}
 	};
-	instanceProto.onPointerStart = function (info)
-	{
+	instanceProto.onPointerStart = function (info){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
 		if (info["pointerType"] === info["MSPOINTER_TYPE_MOUSE"] || info["pointerType"] === "mouse")
 			return;
 		if (info.preventDefault && cr.isCanvasInputEvent(info))
@@ -28877,8 +29035,8 @@ cr.plugins_.Touch = function(runtime)
 		this.runtime.trigger(cr.plugins_.Touch.prototype.cnds.OnTouchObject, this);
 		this.runtime.isInUserInputEvent = false;
 	};
-	instanceProto.onPointerEnd = function (info, isCancel)
-	{
+	instanceProto.onPointerEnd = function (info, isCancel){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
 		if (info["pointerType"] === info["MSPOINTER_TYPE_MOUSE"] || info["pointerType"] === "mouse")
 			return;
 		if (info.preventDefault && cr.isCanvasInputEvent(info))
@@ -28898,8 +29056,7 @@ cr.plugins_.Touch = function(runtime)
 		}
 		this.runtime.isInUserInputEvent = false;
 	};
-	instanceProto.onTouchMove = function (info)
-	{
+	instanceProto.onTouchMove = function (info){
 		if (info.preventDefault)
 			info.preventDefault();
 		var nowtime = cr.performance_now();
@@ -28921,8 +29078,7 @@ cr.plugins_.Touch = function(runtime)
 			}
 		}
 	};
-	instanceProto.onTouchStart = function (info)
-	{
+	instanceProto.onTouchStart = function (info){
 		if (info.preventDefault && cr.isCanvasInputEvent(info))
 			info.preventDefault();
 		var offset = this.runtime.isDomFree ? dummyoffset : jQuery(this.runtime.canvas).offset();
@@ -28948,8 +29104,7 @@ cr.plugins_.Touch = function(runtime)
 		}
 		this.runtime.isInUserInputEvent = false;
 	};
-	instanceProto.onTouchEnd = function (info, isCancel)
-	{
+	instanceProto.onTouchEnd = function (info, isCancel){
 		if (info.preventDefault && cr.isCanvasInputEvent(info))
 			info.preventDefault();
 		this.runtime.isInUserInputEvent = true;
@@ -28999,8 +29154,8 @@ cr.plugins_.Touch = function(runtime)
 		return (e["sourceCapabilities"] && e["sourceCapabilities"]["firesTouchEvents"]) ||
 				(e.originalEvent && e.originalEvent["sourceCapabilities"] && e.originalEvent["sourceCapabilities"]["firesTouchEvents"]);
 	};
-	instanceProto.onMouseDown = function(info)
-	{
+	instanceProto.onMouseDown = function(info){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
 		if (isCompatibilityMouseEvent(info))
 			return;
 		var t = { pageX: info.pageX, pageY: info.pageY, "identifier": 0 };
@@ -29008,8 +29163,14 @@ cr.plugins_.Touch = function(runtime)
 		this.onTouchStart(fakeinfo);
 		this.mouseDown = true;
 	};
-	instanceProto.onMouseMove = function(info)
-	{
+	instanceProto.onMouseMove = function(info){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
+		try{
+			var offset = this.runtime.isDomFree ? {left: 0, top: 0} : jQuery(this.runtime.canvas).offset();
+			this.mouseXcanvas = info.pageX - offset.left;
+			this.mouseYcanvas = info.pageY - offset.top;
+			this.mouseDetected = true;
+		}catch(e){}
 		if (!this.mouseDown)
 			return;
 		if (isCompatibilityMouseEvent(info))
@@ -29018,8 +29179,8 @@ cr.plugins_.Touch = function(runtime)
 		var fakeinfo = { changedTouches: [t] };
 		this.onTouchMove(fakeinfo);
 	};
-	instanceProto.onMouseUp = function(info)
-	{
+	instanceProto.onMouseUp = function(info){
+		if(window.pt_preventClickOnMenu && info.target.nodeName != "CANVAS"){return;}
 		if (info.preventDefault && this.runtime.had_a_click && !this.runtime.isMobile)
 			info.preventDefault();
 		this.runtime.had_a_click = true;
@@ -29198,6 +29359,19 @@ cr.plugins_.Touch = function(runtime)
 	Cnds.prototype.OnPermissionDenied = function (type)
 	{
 		return this.trigger_permission === type;
+	};
+	Cnds.prototype.mouseIsOverObject = function (obj){
+		if(!this.mouseDetected){
+			var sol = obj.getCurrentSol();
+			cr.clearArray(sol.else_instances);
+			sol.select_all = false;
+			cr.clearArray(sol.instances);
+			return false;
+		}
+		var cnd = this.runtime.getCurrentCondition();
+		var mx = this.mouseXcanvas;
+		var my = this.mouseYcanvas;
+		return cr.xor(this.runtime.testAndSelectCanvasPointOverlap(obj, mx, my, cnd.inverted), cnd.inverted);
 	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
@@ -30343,8 +30517,37 @@ cr.plugins_.c2canvas = function(runtime)
 		else
 			glw.quad(q.tlx, q.tly, q.trx, q.try_, q.brx, q.bry, q.blx, q.bly);
 	};
-	pluginProto.cnds = {};
-	var cnds = pluginProto.cnds;
+	function Cnds() {};
+	Cnds.prototype.OnURLLoaded = function ()
+	{
+		return true;
+	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
+	pluginProto.cnds = new Cnds();
 	pluginProto.acts = {};
 	var acts = pluginProto.acts;
 	acts.SetEffect = function (effect)
@@ -30876,8 +31079,7 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 			ctx.save();
 			ctx.scale(myscale, myscale);
 		}
-		if (this.text_changed || this.width !== this.lastwrapwidth)
-		{
+		if (this.text_changed || this.width !== this.lastwrapwidth){
 			this.WordWrap(this.text, this.lines, ctx, this.width, this.wrapType);
 			this.text_changed = false;
 			this.lastwrapwidth = this.width;
@@ -30932,15 +31134,15 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 				penY += this.ptSize;
 			}
 		}
-		for (i = 0; i < this.lines.length; i++)
-		{
+		for (i = 0; i < this.lines.length; i++){
 			drawX = penX;
 			drawY = penY;
-			if (this.halign === 1)		// center
+			if (this.halign === 1){	// center
 				drawX = penX + (this.width - this.lines[i].width) / 2;
-			else if (this.halign === 2)	// right
+			}
+			else if (this.halign === 2){	// right
 				drawX = penX + (this.width - this.lines[i].width);
-			if (this.hasStroke) ctx.save();
+			}
 			if (this.hasShadow){	// activeShadow
 				ctx.save();
 				ctx.shadowColor = this.shadowColor;
@@ -30951,6 +31153,7 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 				ctx.restore();
 			}
 			if (this.hasStroke){	// activeShadow
+				ctx.save();
 				ctx.strokeStyle = this.strokeStyle;
 				ctx.lineWidth = this.lineWidth;
 				ctx.lineCap = LINE_CAP[this.lineCap];
@@ -30959,13 +31162,23 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 				ctx.restore();
 			}
 			ctx.fillText(this.lines[i].text, drawX, drawY);
-			if (this.hasStroke && this.hasShadow) ctx.restore();
 			penY += line_height;
-			if (penY >= endY - line_height)
+			var toRemove = 0;
+			if(this.fixSameDisplay && this.valign ===0){
+				toRemove += Math.max(line_height/2 +2, 0);
+			}
+			if(this.fixVAlignCenter){
+				if(this.valign ===0){
+					toRemove += this.ptSize/2;
+				}else{
+					toRemove += this.ptSize;
+				}
+			}
+			if (penY - toRemove > endY - line_height){
 				break;
+			}
 		}
-		if (this.angle !== 0 || glmode)
-			ctx.restore();
+		if (this.angle !== 0 || glmode){ctx.restore();}
 		this.last_render_tick = this.runtime.tickcount;
 	};
 	instanceProto.drawGL = function(glw)
@@ -30985,8 +31198,7 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 		var absscaledheight = Math.abs(scaledheight);
 		var halfw = this.runtime.draw_width / 2 + (this.hasStroke ? this.lineWidth*2 : 0) + (this.hasShadow ? Math.abs(this.shadowOffsetX)*2 : 0);
 		var halfh = this.runtime.draw_height / 2 + (this.hasStroke ? this.lineWidth*2 : 0) + (this.hasShadow ? Math.abs(this.shadowOffsetY)*2 : 0);
-		if (!this.myctx)
-		{
+		if (!this.myctx){
 			this.mycanvas = document.createElement("canvas");
 			this.mycanvas.width = absscaledwidth;
 			this.mycanvas.height = absscaledheight;
@@ -31255,6 +31467,31 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 		else
 			return cr.equals_nocase(this.text, text_to_compare);
 	};
+	Cnds.prototype.compareXOnCanvas = function (cmp, x){
+		return cr.do_cmp(this.layer.layerToCanvas(this.x,0,true), cmp, x);
+	};
+	Cnds.prototype.compareYOnCanvas = function (cmp, y){
+		return cr.do_cmp(this.layer.layerToCanvas(0,this.y,false), cmp, y);
+	};
+	Cnds.prototype.pickDistanceOnCanvas = function (which, x, y){
+		var sol = this.getCurrentSol();
+		var instances = sol.getObjects();
+		if (!instances.length){return false;}
+		var inst = instances[0];
+		var pickMe = inst;
+		var dist = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+		var i, len, d;
+		for (i = 1, len = instances.length; i < len; i++){
+			inst = instances[i];
+			d = cr.distanceTo(inst.layer.layerToCanvas(inst.x,0,true), inst.layer.layerToCanvas(0,inst.y,false), x, y);
+			if ((which === 0 && d < dist) || (which === 1 && d > dist)){
+				dist = d;
+				pickMe = inst;
+			}
+		}
+		sol.pick_one(pickMe);
+		return true;
+	};
 	pluginProto.cnds = new Cnds();
 	function Acts() {};
 	Acts.prototype.SetText = function(param)
@@ -31440,17 +31677,17 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 		return new Intl.NumberFormat().format(parseInt(t));
 	};
 	var replacer = function(whole, textKey){
-			var textsActions = textKey.split("|"),
-				toParse = textsActions.pop();
-			if(typeof this[toParse] !== "undefined") toParse = this[toParse];
-			else if(typeof this["__defaultValue"] !== "undefined") toParse = this["__defaultValue"];
-			else toParse = whole;
-			while(textsActions.length){
-				var currAction = textsActions.pop();
-				if(typeof textParser[currAction] === "function") toParse = textParser[currAction](toParse);
-			}
-			return toParse;
-		};
+		var textsActions = textKey.split("|"),
+			toParse = textsActions.pop();
+		if(typeof this[toParse] !== "undefined") toParse = this[toParse];
+		else if(typeof this["__defaultValue"] !== "undefined") toParse = this["__defaultValue"];
+		else toParse = whole;
+		while(textsActions.length){
+			var currAction = textsActions.pop();
+			if(typeof textParser[currAction] === "function") toParse = textParser[currAction](toParse);
+		}
+		return toParse;
+	};
 	textParser.parse = function(stringToParse, parseObject, keywordRegexp){
 		if(typeof stringToParse !== "string") stringToParse ="";
 		if(typeof parseObject !== "object") parseObject={};
@@ -31556,6 +31793,23 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 		this.need_text_redraw = true;
 		this.runtime.redraw = true;
 	};
+	Acts.prototype.setHotspot = function (hotspotX, hotspotY){
+		this.hotspotX = Math.min(1,Math.max(0,hotspotX));
+		this.hotspotY = Math.min(1,Math.max(0,hotspotY));
+		this.set_bbox_changed()
+	};
+	Acts.prototype.setHotspotX = function (hotspotX){
+		this.hotspotX = Math.min(1,Math.max(0,hotspotX));
+		this.set_bbox_changed()
+	};
+	Acts.prototype.setHotspotY = function ( hotspotY){
+		this.hotspotY = Math.min(1,Math.max(0,hotspotY));
+		this.set_bbox_changed()
+	};
+	Acts.prototype.forceUpdateLines = function(){
+		if (!this.myctx || this.text_changed){this.drawGL(this.runtime.glwrap);}
+		this.WordWrap(this.text, this.lines, this.myctx, this.width, this.wrapType);
+	}
 	pluginProto.acts = new Acts();
 	function Exps() {};
 	Exps.prototype.Text = function(ret)
@@ -31583,10 +31837,10 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 		ret.set_int(w);
 	};
 	Exps.prototype.TextHeight = function (ret){
-		ret.set_int(this.lines.length * (this.pxHeight + this.line_height_offset) - this.line_height_offset);
+		ret.set_int(this.lines.length * (this.pxHeight + this.line_height_offset));
 	};
-	Exps.prototype.getTextWidthByPt = function (ret,text,fontSize,step,maxSize){
-		ret.set_int(this.type.plugin.getTextWidth(text,this.fontstyle + " " + fontSize + "pt " + this.facename,step,maxSize));
+	Exps.prototype.getTextWidthByPt = function (ret,text,fontSize){
+		ret.set_int(this.type.plugin.getTextWidth(text,this.fontstyle + " " + fontSize + "pt " + this.facename));
 	};
 	Exps.prototype.getTextPtByWidth = function (ret,text,width,step,maxSize){
 		ret.set_float(this.getTextPtByWidth(text,width,step,maxSize));
@@ -31634,6 +31888,18 @@ cr.plugins_.playtouch_textEnhanced = function(runtime)
 	};
 	Exps.prototype.shadowOffsetY = function (ret){
 		ret.set_float(this.shadowOffsetY);
+	};
+	Exps.prototype.getHotspotX = function (ret){
+		ret.set_float(this.hotspotX);
+	};
+	Exps.prototype.getHotspotY = function (ret){
+		ret.set_float(this.hotspotY);
+	};
+	Exps.prototype.getLines = function (ret){
+		ret.set_string(JSON.stringify(this.lines));
+	};
+	Exps.prototype.getLinesCount = function (ret){
+		ret.set_int(this.lines.length);
 	};
 	pluginProto.exps = new Exps();
 }());
@@ -32566,6 +32832,9 @@ cr.behaviors.Fade = function(runtime)
 		if (t < 0)
 			t = 0;
 		this.fadeOutTime = t;
+	};
+	Acts.prototype.setDestroy = function (destroyType){
+		this.destroy = destroyType;	// 0 = no, 1 = after fade out
 	};
 	behaviorProto.acts = new Acts();
 	function Exps() {};
@@ -34344,35 +34613,35 @@ cr.behaviors.scrollto = function(runtime)
 }());
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.NinePatch,
-	cr.plugins_.AJAX,
+	cr.plugins_.cjs,
 	cr.plugins_.c2canvas,
+	cr.plugins_.AJAX,
 	cr.plugins_.Arr,
 	cr.plugins_.Audio,
 	cr.plugins_.Browser,
-	cr.plugins_.cjs,
-	cr.plugins_.Dictionary,
 	cr.plugins_.CJSAds,
+	cr.plugins_.Dictionary,
 	cr.plugins_.Keyboard,
 	cr.plugins_.Mouse,
 	cr.plugins_.Function,
-	cr.plugins_.playtouch_textEnhanced,
-	cr.plugins_.TouchEnhanced,
-	cr.plugins_.Rex_CSV2Array,
-	cr.plugins_.Rex_SpriteBank,
 	cr.plugins_.Rex_Nickname,
+	cr.plugins_.Rex_SLGBoard,
+	cr.plugins_.Rex_CSV2Array,
+	cr.plugins_.playtouch_textEnhanced,
 	cr.plugins_.Sprite,
+	cr.plugins_.Spritefont2,
+	cr.plugins_.proxy,
+	cr.plugins_.Rex_SLGSquareTx,
+	cr.plugins_.Rex_Hash,
+	cr.plugins_.TouchEnhanced,
+	cr.plugins_.Rex_SpriteBank,
 	cr.plugins_.HTML_iFrame_Pode,
 	cr.plugins_.Rex_CSV,
-	cr.plugins_.Spritefont2,
-	cr.plugins_.Rex_SLGBoard,
-	cr.plugins_.Rex_SLGSquareTx,
-	cr.plugins_.proxy,
-	cr.plugins_.Rex_Hash,
-	cr.plugins_.Cookie,
 	cr.plugins_.Text,
-	cr.plugins_.WebStorage,
 	cr.plugins_.TiledBg,
 	cr.plugins_.Touch,
+	cr.plugins_.Cookie,
+	cr.plugins_.WebStorage,
 	cr.behaviors.Anchor,
 	cr.behaviors.jumpthru,
 	cr.behaviors.maf_Tween,
@@ -34402,6 +34671,12 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.cnds.Compare,
 	cr.system_object.prototype.exps["int"],
 	cr.plugins_.Rex_Hash.prototype.exps.At,
+	cr.plugins_.Function.prototype.cnds.OnFunction,
+	cr.plugins_.proxy.prototype.cnds.onEventName,
+	cr.plugins_.Sprite.prototype.cnds.IsAnimPlaying,
+	cr.plugins_.Sprite.prototype.acts.SetY,
+	cr.plugins_.Function.prototype.exps.Call,
+	cr.plugins_.Sprite.prototype.exps.Height,
 	cr.plugins_.Touch.prototype.cnds.OnTouchObject,
 	cr.plugins_.Arr.prototype.acts.Clear,
 	cr.plugins_.Arr.prototype.acts.SetSize,
@@ -34411,7 +34686,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Arr.prototype.acts.JSONLoad,
 	cr.plugins_.WebStorage.prototype.exps.LocalValue,
 	cr.system_object.prototype.cnds.TriggerOnce,
-	cr.plugins_.Function.prototype.cnds.OnFunction,
 	cr.plugins_.Sprite.prototype.cnds.OnCreated,
 	cr.plugins_.Sprite.prototype.cnds.IsOnLayer,
 	cr.plugins_.Sprite.prototype.exps.UID,
@@ -34420,8 +34694,9 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Audio.prototype.acts.PreloadByName,
 	cr.plugins_.Touch.prototype.cnds.OnTouchEnd,
 	cr.plugins_.Audio.prototype.cnds.IsTagPlaying,
+	cr.plugins_.Sprite.prototype.exps.Count,
+	cr.plugins_.Function.prototype.exps.Param,
 	cr.system_object.prototype.cnds.Every,
-	cr.plugins_.Function.prototype.exps.Call,
 	cr.system_object.prototype.acts.SetLayoutScale,
 	cr.system_object.prototype.acts.ScrollY,
 	cr.plugins_.Sprite.prototype.acts.SetSize,
@@ -34430,12 +34705,15 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Sprite.prototype.exps.Y,
 	cr.plugins_.Sprite.prototype.acts.SetVisible,
 	cr.plugins_.Sprite.prototype.acts.SetScale,
+	cr.plugins_.Sprite.prototype.cnds.IsVisible,
 	cr.system_object.prototype.acts.RestartLayout,
 	cr.system_object.prototype.acts.SetTimescale,
 	cr.plugins_.Spritefont2.prototype.cnds.IsBoolInstanceVarSet,
 	cr.plugins_.Spritefont2.prototype.cnds.CompareInstanceVar,
 	cr.plugins_.Spritefont2.prototype.acts.SetScale,
 	cr.system_object.prototype.cnds.ForEach,
+	cr.plugins_.Sprite.prototype.acts.SetAnim,
+	cr.plugins_.Sprite.prototype.acts.SetAnimFrame,
 	cr.system_object.prototype.cnds.PickByComparison,
 	cr.behaviors.Pin.prototype.acts.Pin,
 	cr.plugins_.Sprite.prototype.acts.SetInstanceVar,
@@ -34443,16 +34721,12 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.cnds.PickAll,
 	cr.plugins_.Sprite.prototype.cnds.CompareInstanceVar,
 	cr.plugins_.playtouch_textEnhanced.prototype.acts.SetOpacity,
-	cr.plugins_.Sprite.prototype.acts.SetY,
 	cr.plugins_.Sprite.prototype.cnds.PickByUID,
-	cr.plugins_.Function.prototype.exps.Param,
 	cr.plugins_.Sprite.prototype.cnds.CompareOpacity,
 	cr.system_object.prototype.cnds.IsNaN,
 	cr.system_object.prototype.exps.tokencount,
 	cr.system_object.prototype.exps.tokenat,
 	cr.behaviors.Pin.prototype.acts.Unpin,
-	cr.plugins_.Sprite.prototype.acts.SetAnim,
-	cr.plugins_.Sprite.prototype.acts.SetAnimFrame,
 	cr.plugins_.Sprite.prototype.exps.ImagePointX,
 	cr.plugins_.Sprite.prototype.exps.AnimationFrame,
 	cr.plugins_.Sprite.prototype.exps.ImagePointY,
@@ -34464,7 +34738,6 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.maf_Tween.prototype.cnds.tweenIsEnd,
 	cr.behaviors.maf_Tween.prototype.cnds.isOnTween,
 	cr.system_object.prototype.cnds.OnLayoutEnd,
-	cr.plugins_.Sprite.prototype.exps.Count,
 	cr.plugins_.Function.prototype.acts.SetReturnValue,
 	cr.plugins_.Sprite.prototype.acts.SetBoolInstanceVar,
 	cr.plugins_.Sprite.prototype.cnds.IsBoolInstanceVarSet,
@@ -34479,7 +34752,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.playtouch_textEnhanced.prototype.cnds.CompareInstanceVar,
 	cr.plugins_.playtouch_textEnhanced.prototype.acts.MoveToBottom,
 	cr.plugins_.Sprite.prototype.acts.MoveToBottom,
-	cr.plugins_.Sprite.prototype.exps.Height,
 	cr.plugins_.playtouch_textEnhanced.prototype.acts.MoveToTop,
 	cr.system_object.prototype.cnds.ForEachOrdered,
 	cr.system_object.prototype.acts.AddVar,
@@ -34540,7 +34812,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.CJSAds.prototype.cnds.OnFullscreenHidden,
 	cr.plugins_.Sprite.prototype.exps.LayerName,
 	cr.plugins_.Spritefont2.prototype.acts.SetVisible,
-	cr.plugins_.Sprite.prototype.cnds.IsAnimPlaying,
 	cr.plugins_.CJSAds.prototype.acts.RefreshFullscreen,
 	cr.system_object.prototype.exps.abs,
 	cr.plugins_.Spritefont2.prototype.acts.Destroy,
@@ -34584,7 +34855,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Sprite.prototype.acts.Spawn,
 	cr.plugins_.Sprite.prototype.acts.SetMirrored,
 	cr.plugins_.Sprite.prototype.acts.SetAngle,
-	cr.plugins_.Sprite.prototype.cnds.IsVisible,
 	cr.plugins_.Audio.prototype.acts.SetSilent,
 	cr.plugins_.Audio.prototype.acts.StopAll,
 	cr.plugins_.Audio.prototype.cnds.IsSilent,
@@ -34610,7 +34880,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Rex_Hash.prototype.exps.CurKey,
 	cr.plugins_.Rex_Hash.prototype.exps.CurValue,
 	cr.plugins_.AJAX.prototype.cnds.OnError,
-	cr.plugins_.proxy.prototype.cnds.onEventName,
 	cr.plugins_.Rex_Hash.prototype.exps.ToString,
 	cr.plugins_.Cookie.prototype.exps.GetCookie,
 	cr.plugins_.proxy.prototype.cnds.isDefined,
@@ -34638,21 +34907,26 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.NinePatch.prototype.acts.MoveToLayer,
 	cr.plugins_.NinePatch.prototype.acts.MoveToTop,
 	cr.plugins_.Sprite.prototype.exps.PickedCount,
-	cr.plugins_.Sprite.prototype.exps.BBoxBottom,
-	cr.plugins_.Sprite.prototype.exps.BBoxTop,
 	cr.plugins_.Sprite.prototype.exps.BBoxRight,
 	cr.plugins_.Sprite.prototype.exps.BBoxLeft,
+	cr.plugins_.Sprite.prototype.exps.BBoxBottom,
+	cr.plugins_.Sprite.prototype.exps.BBoxTop,
+	cr.plugins_.NinePatch.prototype.exps.LayerName,
+	cr.plugins_.Sprite.prototype.exps.renderedWidth,
+	cr.plugins_.Sprite.prototype.exps.renderedHeight,
 	cr.plugins_.NinePatch.prototype.acts.SetPos,
 	cr.plugins_.NinePatch.prototype.acts.SetSize,
 	cr.system_object.prototype.exps.clamp,
 	cr.plugins_.NinePatch.prototype.acts.SetInstanceVar,
 	cr.plugins_.Sprite.prototype.cnds.IsOnScreen,
-	cr.plugins_.Sprite.prototype.cnds.PickDistance,
+	cr.plugins_.Sprite.prototype.cnds.pickDistanceOnCanvas,
+	cr.system_object.prototype.exps.layertocanvasx,
+	cr.system_object.prototype.exps.layertocanvasy,
 	cr.plugins_.Keyboard.prototype.cnds.OnKeyCode,
-	cr.plugins_.Sprite.prototype.cnds.CompareY,
+	cr.plugins_.Sprite.prototype.cnds.compareYOnCanvas,
 	cr.plugins_.NinePatch.prototype.exps.Y,
 	cr.plugins_.NinePatch.prototype.exps.X,
-	cr.plugins_.Sprite.prototype.cnds.CompareX,
+	cr.plugins_.Sprite.prototype.cnds.compareXOnCanvas,
 	cr.plugins_.Keyboard.prototype.cnds.OnKeyCodeReleased,
 	cr.plugins_.Sprite.prototype.cnds.OnDestroyed,
 	cr.system_object.prototype.exps["float"],
@@ -34681,12 +34955,13 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Audio.prototype.exps.getLastTagEnded,
 	cr.system_object.prototype.exps.layerindex,
 	cr.system_object.prototype.exps.canvastolayerx,
-	cr.system_object.prototype.exps.layertocanvasx,
 	cr.system_object.prototype.exps.canvastolayery,
-	cr.system_object.prototype.exps.layertocanvasy,
 	cr.plugins_.Function.prototype.exps.thisReturnValue,
+	cr.system_object.prototype.cnds.PickByEvaluate,
+	cr.plugins_.Touch.prototype.cnds.mouseIsOverObject,
 	cr.system_object.prototype.exps.ceil,
 	cr.plugins_.TiledBg.prototype.exps.LayerName,
+	cr.plugins_.NinePatch.prototype.acts.SetOpacity,
 	cr.plugins_.Sprite.prototype.cnds.OnAnimFinished,
 	cr.plugins_.Rex_SLGSquareTx.prototype.acts.SetOffset,
 	cr.plugins_.Rex_SLGBoard.prototype.acts.SetupLayout,
@@ -34704,7 +34979,6 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.exps.newline,
 	cr.behaviors.Fade.prototype.acts.RestartFade,
 	cr.plugins_.Touch.prototype.cnds.IsInTouch,
-	cr.system_object.prototype.cnds.PickByEvaluate,
 	cr.system_object.prototype.exps.distance,
 	cr.behaviors.Fade.prototype.cnds.OnFadeOutEnd,
 	cr.plugins_.Sprite.prototype.acts.AddInstanceVar,
@@ -34767,7 +35041,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.TiledBg.prototype.exps.Y,
 	cr.plugins_.TiledBg.prototype.exps.Width,
 	cr.plugins_.Browser.prototype.acts.ExecJs,
-	cr.plugins_.Browser.prototype.acts.Alert,
 	cr.plugins_.Keyboard.prototype.cnds.OnKey,
 	cr.system_object.prototype.exps.cubic,
 	cr.system_object.prototype.acts.ScrollToObject,
@@ -34786,6 +35059,7 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.exps.rgb,
 	cr.plugins_.playtouch_textEnhanced.prototype.acts.SetPos,
 	cr.plugins_.playtouch_textEnhanced.prototype.exps.BBoxLeft,
+	cr.plugins_.Sprite.prototype.cnds.CompareX,
 	cr.plugins_.TiledBg.prototype.exps.Opacity,
 	cr.plugins_.playtouch_textEnhanced.prototype.exps.Text,
 	cr.plugins_.Sprite.prototype.cnds.IsOverlapping,
@@ -34796,9 +35070,10 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.TiledBg.prototype.acts.MoveToTop,
 	cr.plugins_.Touch.prototype.exps.YAt,
 	cr.plugins_.Touch.prototype.exps.TouchCount,
+	cr.plugins_.Mouse.prototype.cnds.IsOverObject,
+	cr.plugins_.Mouse.prototype.cnds.OnWheel,
 	cr.plugins_.Sprite.prototype.acts.SetHeight,
 	cr.behaviors.maf_Tween.prototype.acts.stopTween,
-	cr.plugins_.Audio.prototype.acts.SetMuted,
 	cr.system_object.prototype.exps.choose,
 	cr.plugins_.Sprite.prototype.acts.SetWidth,
 	cr.plugins_.playtouch_textEnhanced.prototype.cnds.IsOnLayer,
@@ -34810,3 +35085,4 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.c2canvas.prototype.acts.PasteObject,
 	cr.plugins_.proxy.prototype.exps.eventParam
 ];};
+

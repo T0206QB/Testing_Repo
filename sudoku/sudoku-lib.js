@@ -30,7 +30,8 @@
         "hard": 44,
         "very hard": 35,
         "insane": 26,
-        "inhuman": 17,
+        "daily": 30,
+        "inhuman": 17
     };
 
     // Blank character and board representation
