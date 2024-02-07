@@ -7,17 +7,13 @@ body {
   display: flex;
   -webkit-tap-highlight-color: transparent;
   opacity: 0;
-  margin-top: 2%;
   overflow: hidden;
 }
 
 .flexcontainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: none;
+  margin: 2rem 0rem 0rem 6rem;
+  width: 100%;
+  overflow: scroll;
 }
 
 .flexcontainer::-webkit-scrollbar {
@@ -115,43 +111,19 @@ body {
 
 .flexdiv {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  width: fit-content;
 }
 
 .gameApp {
-  flex: 1 0 calc(20% - 4%);
-  padding: 1.05%;
-  margin-left: 60px;
-  margin-right: 60px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.gameimg {
-  padding: 0;
-  height: 240px;
-  /* width: 240px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 16px;
-  position: relative;
-}
-
-.gameimg img {
-  object-fit: cover;
-  border-radius: 35px;
+   margin-right: 4rem;
+   width:230px;
+   
 }
 
 .gameimg .icon {
-  /* width: 100%; */
-  height: 100%;
-  position: absolute;
-}
+  width: 14rem;
+  height:14rem;
+} 
 
 .gameimg .overlay {
   position: absolute;
@@ -160,13 +132,12 @@ body {
 
 .gameimg .new {
   position: absolute;
-  /* visibility: hidden; */
 }
 
 .gamename {
   text-align: center;
   padding: 20px;
-  font-size: 32px;
+  font-size:25px;
 }
 
 #newImage {
@@ -182,4 +153,46 @@ body {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+/* 10.1 => (1920px - 1200px) */
+@media only screen and (min-width: 1920px) and (max-height: 1200px) {
+  .flexcontainer {
+    margin: 4rem 2rem 0rem 8.5rem;
+  }
+  .gameApp {
+    margin-right:6rem;
+    width:350px;
+  }
+  .gameimg .icon {
+  width: 21rem;
+  height:21rem;
+  } 
+  .gamename {
+  text-align: center;
+  padding: 33px;
+  font-size: 2.8rem;
+  }
+}
+
+/* 12.3 => (1920px - 720px) */
+@media only screen and (min-width: 1920px) and (min-height: 720px) { 
+  .ds_belowtext{
+  .flexcontainer {
+    margin: 4rem 2rem 0rem 8.5rem;
+  }
+  .gameApp {
+    margin-right:6rem;
+    width:350px;
+  }
+  .gameimg .icon {
+  width: 21rem;
+  height:21rem;
+  } 
+  .gamename {
+  text-align: center;
+  padding: 33px;
+  font-size: 2.8rem;
+  }
+}
 }
