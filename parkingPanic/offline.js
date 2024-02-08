@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1707381587,
+	"version": 1690185116,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -123,7 +123,6 @@
 		"images/wall-sheet0.png",
 		"images/bgcover_tiled.png",
 		"images/watchadbutton-sheet0.png",
-		"images/watchadbutton-sheet1.png",
 		"images/bannergraph.png",
 		"media/321.m4a",
 		"media/321.ogg",
