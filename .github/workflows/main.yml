@@ -1,18 +1,16 @@
 name: build_on_pull_request
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
-    - main
+      - main
+      - dev
 
 jobs:
-  build:
+  if_merged_main:
     runs-on: ubuntu-latest
-
-    # These permissions are needed to interact with GitHub's OIDC Token endpoint
-    permissions:
-      id-token: write
-      contents: read
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
 
     steps:
     - name: Checkout Repository
@@ -32,5 +30,26 @@ jobs:
     - name: Create CloudFront invalidation
       run: |
         aws cloudfront create-invalidation --distribution-id E2M29BRFCNG43I --paths "/*"
-     
 
+  if_merged_dev:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.base.ref == 'dev'
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Configure AWS credentials from Web Widgets account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-duration-seconds: 1200
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+        role-to-assume: arn:aws:iam::228722564141:role/service-role/codebuild-webwidgets-web
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync . s3://web-widgets-dev/games-dev
+    - name: Create CloudFront invalidation
+      run: |
+        aws cloudfront create-invalidation --distribution-id E2M29BRFCNG43I --paths "/*"
