@@ -1,5 +1,5 @@
 ;(function(){
-	var PLIBS_VERSION = "2.1.0";
+	var PLIBS_VERSION = "2.4.0";
 	var PLIBS_TAG = "PLib";
 
 /*********************************************
@@ -466,7 +466,7 @@
 				var
 	*********************************************/
 	var arrayWaitForFunction = function(){};
-	arrayWaitForFunction.prototype.version = "1.4.0";
+	arrayWaitForFunction.prototype.version = "1.6.0";
 	arrayWaitForFunction.prototype.tag = "W4F";
 	arrayWaitForFunction.prototype.array = [];
 	arrayWaitForFunction.prototype.arrayJs = [];
@@ -546,67 +546,106 @@
 		};
 
 		if(typeof(toDestroy) != 'undefined'){
-			c2_callFunction(toDestroy.callback,[toDestroy.param], PLIBS_TAG+":"+this.__proto__.tag);
-			window.eventToFire.fireEvent("c2:arrayWaitForFunction:trigger",toDestroy.id,toDestroy.callback,toDestroy.param);
+			if(typeof toDestroy.callback === "function"){
+				toDestroy.callback(toDestroy.param);
+			}else{
+				c2_callFunction(toDestroy.callback,[toDestroy.param], PLIBS_TAG+":"+this.__proto__.tag);
+				window.eventToFire.fireEvent("c2:arrayWaitForFunction:trigger",toDestroy.id,toDestroy.callback,toDestroy.param);
+			}
 			this.checkArrayEndOfTime(arrayToCheck);
 		}
 	};
 
 	arrayWaitForFunction.prototype.clearArrayWait = function(persistentLevel){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.clearArrayWaitByArray(a,persistentLevel));
+	};
+	arrayWaitForFunction.prototype.clearArrayWaitByArray = function(array,persistentLevel){
 		var persistentLevel = ((typeof(persistentLevel) === "undefined")?0:persistentLevel);
-		for (var i = this.array.length - 1; i >= 0; i--) {
-			if(this.array[i].persistentLevel <= persistentLevel){
-				this.array.splice(i,1)[0];
+
+		for (var i = array.length - 1; i >= 0; i--) {
+			if(array[i].persistentLevel <= persistentLevel){
+				array.splice(i,1)[0];
 			}
 		};
-		// this.array = [];
 	};
 
 	arrayWaitForFunction.prototype.stopWaitById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array.splice(i,1);
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.stopWaitByIdByArray(a,id));
+	};
+	arrayWaitForFunction.prototype.stopWaitByIdByArray = function(array,id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array.splice(i,1);
 				break;
 			}
 		};
 	};
 
 	arrayWaitForFunction.prototype.getTimeUntilEndOf = function(id, defaultTime){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.getTimeUntilEndOfByArray(listOfArray[i],id,defaultTime);
+			if(ret !== defaultTime){return ret;}
+		}
+		return defaultTime;
+	};
+	arrayWaitForFunction.prototype.getTimeUntilEndOfByArray = function(array, id, defaultTime){
 		if(typeof defaultTime === "undefined") defaultTime = -1;
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				return this.array[i].time;
-				break;
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				return array[i].time;
 			}
 		};
 		return defaultTime;
 	};
 
 	arrayWaitForFunction.prototype.addTimeById = function(id, timeToAdd){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].time += timeToAdd;
-				return this.array[i].time;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.addTimeByIdByArray(listOfArray[i],id,timeToAdd);
+			if(ret !== -1){return ret;}
+		}
+		return -1;
+	};
+	arrayWaitForFunction.prototype.addTimeByIdByArray = function(array, id, timeToAdd){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].time += timeToAdd;
+				return array[i].time;
 			}
 		};
 		return -1;
 	};
 
 	arrayWaitForFunction.prototype.setTimeById = function(id, timeToSet){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].time = timeToSet;
-				return this.array[i].time;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.setTimeByIdByArray(listOfArray[i],id,timeToSet);
+			if(ret !== -1){return ret;}
+		}
+		return -1;
+	};
+	arrayWaitForFunction.prototype.setTimeByIdByArray = function(array, id, timeToSet){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].time = timeToSet;
+				return array[i].time;
 			}
 		};
 		return -1;
 	};
 
 	arrayWaitForFunction.prototype.startWaitNowById = function(id){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.startWaitNowByIdByArray(a,id));
+	};
+	arrayWaitForFunction.prototype.startWaitNowByIdByArray = function(array, id){
 		var toDestroy;
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				toDestroy = this.array.splice(i,1)[0];
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				toDestroy = array.splice(i,1)[0];
 				break;
 			}
 		};
@@ -616,37 +655,76 @@
 	};
 
 	arrayWaitForFunction.prototype.pauseById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].active = false;
-				return this.array[i].active;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.pauseByIdByArray(listOfArray[i],id);
+			if(ret !== false){return ret;}
+		}
+		return false;
+	};
+	arrayWaitForFunction.prototype.pauseByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].active = false;
+				return true;
 			}
 		};
 		return false;
 	};
 
 	arrayWaitForFunction.prototype.resumeById = function(id){
-		for (var i = 0; i < this.array.length; i++) {
-			if(this.array[i].id == id){
-				this.array[i].active = true;
-				return this.array[i].active;
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.resumeByIdByArray(listOfArray[i],id);
+			if(ret !== false){return ret;}
+		}
+		return false;
+	};
+	arrayWaitForFunction.prototype.resumeByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){
+				array[i].active = true;
+				return true;
 			}
 		};
 		return false;
 	};
 
-	arrayWaitForFunction.prototype.pauseAll = function(){
-		for (var i = 0; i < this.array.length; i++) {
-				this.array[i].active = false;
-		};
+	arrayWaitForFunction.prototype.isPausedById = function(id){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		for (var i = 0; i < listOfArray.length; i++) {
+			let ret = this.isPausedByIdByArray(listOfArray[i],id);
+			if(ret !== -1){return ret;}
+		}
 		return false;
+	};
+	arrayWaitForFunction.prototype.isPausedByIdByArray = function(array, id){
+		for (var i = 0; i < array.length; i++) {
+			if(array[i].id == id){return !array[i].active;}
+		};
+		return -1;
+	};
+
+	arrayWaitForFunction.prototype.pauseAll = function(){
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.pauseAllByArray(a));
+		return false;
+	};
+	arrayWaitForFunction.prototype.pauseAllByArray = function(array){
+		for (var i = 0; i < array.length; i++) {
+				array[i].active = false;
+		};
 	};
 
 	arrayWaitForFunction.prototype.resumeAll = function(){
-		for (var i = 0; i < this.array.length; i++) {
-			this.array[i].active = true;
-		}
+		var listOfArray = [this.array,this.arrayEndTick,this.arrayJs];
+		listOfArray.forEach((a)=>this.resumeAllByArray(a));
 		return true;
+	};
+	arrayWaitForFunction.prototype.resumeAllByArray = function(array){
+		for (var i = 0; i < array.length; i++) {
+			array[i].active = true;
+		}
 	};
 
 /*********************************************
@@ -1536,7 +1614,210 @@ var tweeningVariables = {};
             }
         }
 	};
-		
+
+/*********************************************
+			blocksSpreading
+*********************************************/
+	/*********************************************
+				var
+	*********************************************/
+	var blocksSpreading = function(){};
+	blocksSpreading.prototype.version = "1.1.0";
+	blocksSpreading.prototype.SCALE_MIN=0.1;
+	blocksSpreading.prototype.blocks = [];
+	/*********************************************
+				BLOCKS
+	*********************************************/
+	blocksSpreading.prototype.pushblock = function(name,width,height=0,layerName=0){
+		this.blocks.push({
+			_id:this.blocks.length,
+			name:name,
+			width:width,
+			height:height,
+			layerName:layerName,
+			toString:function(){return this._id}
+		});
+		return this.blocks[this.blocks.length-1].id;
+	};
+	blocksSpreading.prototype.setBlockValue = function(id,key,value){
+		if(id >= this.blocks.length){return id;}
+		this.blocks[id][key] = value;
+		return id;
+	};
+	blocksSpreading.prototype.setLastBlockValue = function(key, value){
+		return this.setBlockValue(this.blocks.length-1,key,value);
+	};
+	blocksSpreading.prototype.getblocks = function(){return JSON.stringify(this.blocks);};
+	blocksSpreading.prototype.flushBlocks = function(){this.blocks = [];};
+	/*********************************************
+				UTILS
+	*********************************************/
+	blocksSpreading.prototype.getWidthBlock = function(block,layoutScale=1){
+		if(!cr_getC2Runtime){return block.width;}
+		return block.width * this.getScale(block.layerName,layoutScale)
+	};
+	blocksSpreading.prototype.getWidthBlocks = function(layoutScale=1){
+		return [0,...this.blocks].reduce((accu,block)=>accu+this.getWidthBlock(block,layoutScale));
+	};
+	blocksSpreading.prototype.getHeightBlock = function(block,layoutScale=1){
+		if(!cr_getC2Runtime){return block.height;}
+		return block.height * this.getScale(block.layerName,layoutScale)
+	};
+	blocksSpreading.prototype.getHeightBlocks = function(layoutScale=1){
+		return [0,...this.blocks].reduce((accu,block)=>accu+this.getHeightBlock(block,layoutScale));
+	};
+	blocksSpreading.prototype.getTallerBlocksHeight = function(layoutScale=1){
+		return Math.max(...this.blocks.map((block)=>this.getHeightBlock(block,layoutScale)));
+	};
+	blocksSpreading.prototype.getWiderBlocksWidth = function(layoutScale=1){
+		return Math.max(...this.blocks.map((block)=>this.getWidthBlock(block,layoutScale)));
+	};
+	blocksSpreading.prototype.getScale = function(layerName,layoutScale=1){
+		layoutScale = Math.max(this.SCALE_MIN,layoutScale);
+		let layer =  cr_getC2Runtime().getLayer(layerName);
+		if(!layer){return 1;}
+		return ((layer.scale * layoutScale) - 1) * layer.zoomRate + 1;
+	};
+	blocksSpreading.prototype.getXOnLayer = function(layerName,pos,layoutScale){
+		let layerDest =  cr_getC2Runtime().getLayer(layerName);
+		let layer0 =  cr_getC2Runtime().getLayer(0);
+		let currLayoutScale = cr_getC2Runtime().running_layout.scale;
+		if(!layerDest || !layer0){return pos;}
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = layoutScale;}
+		let ret = layerDest.canvasToLayer(layer0.layerToCanvas(pos,0,true),0,true);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = currLayoutScale;}
+		return ret;
+	};
+	blocksSpreading.prototype.getYOnLayer = function(layerName,pos,layoutScale){
+		let layerDest =  cr_getC2Runtime().getLayer(layerName);
+		let layer0 =  cr_getC2Runtime().getLayer(0);
+		let currLayoutScale = cr_getC2Runtime().running_layout.scale;
+		if(!layerDest || !layer0){return pos;}
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = layoutScale;}
+		let ret = layerDest.canvasToLayer(0,layer0.layerToCanvas(0,pos,false),false);
+		if(typeof layoutScale !== "undefined"){cr_getC2Runtime().running_layout.scale = currLayoutScale;}
+		return ret;
+	};
+	blocksSpreading.prototype.get2DigitComma = function(nb){
+		return Math.round((nb)*100)/100;
+	};
+	/*********************************************
+				PRIVATE FUNCTION
+	*********************************************/
+	blocksSpreading.prototype._getGoodScale = function(scale_curr,containerWidth,containerHeight,scale_stepping,isHorizontal=true,scaleSize=true){
+		let func_highter = (isHorizontal)?this.getTallerBlocksHeight:this.getWiderBlocksWidth;
+		let value_size = (isHorizontal)?containerWidth:containerHeight;
+		let value_highter = (isHorizontal)?containerHeight:containerWidth;
+		while(scale_curr > this.SCALE_MIN && (this._getSizeForFunc(scale_curr,isHorizontal,scaleSize) > value_size || ((scaleSize)?func_highter.call(this)*scale_curr:func_highter.call(this,scale_curr)) > value_highter)){
+			scale_curr = this.get2DigitComma(scale_curr-scale_stepping);
+		}
+		return scale_curr;
+	};
+	blocksSpreading.prototype._getSizeForFunc = function(scale_curr,width=true,scaleSize=true,block=undefined){
+		let allBlocks = typeof block === 'undefined';
+		if(width && allBlocks && scaleSize){return this.getWidthBlocks()*scale_curr;}
+		if(width && allBlocks && !scaleSize){return this.getWidthBlocks(scale_curr);}
+		if(width && !allBlocks && scaleSize){return this.getWidthBlock(block)*scale_curr;}
+		if(width && !allBlocks && !scaleSize){return this.getWidthBlock(block,scale_curr);}
+		if(!width && allBlocks && scaleSize){return this.getHeightBlocks()*scale_curr;}
+		if(!width && allBlocks && !scaleSize){return this.getHeightBlocks(scale_curr);}
+		if(!width && !allBlocks && scaleSize){return this.getHeightBlock(block)*scale_curr;}
+		if(!width && !allBlocks && !scaleSize){return this.getHeightBlock(block,scale_curr);}
+	};
+	blocksSpreading.prototype._getPlacement = function(scale_curr,containerSize,containerStartPos,isHorizontal=true,scaleSize=true){
+		let placement = [];
+		let func_posLayer = (isHorizontal)?this.getXOnLayer:this.getYOnLayer;
+		let blockCount = this.blocks.length;
+	
+		let block_totalSize = this._getSizeForFunc(scale_curr,isHorizontal,scaleSize);
+		let offsetTotal = (block_totalSize > containerSize) ? 0: (containerSize - block_totalSize);
+		let offset = offsetTotal/(blockCount+1);
+		let curPos = (block_totalSize > containerSize)?(containerSize/2 - block_totalSize/2):0;
+	
+		for (let i = 0; i < this.blocks.length; i++) {
+			let block = this.blocks[i];
+			curPos += offset;
+			let widthBlock = this._getSizeForFunc(scale_curr,true,scaleSize,block);
+			let heightBlock = this._getSizeForFunc(scale_curr,false,scaleSize,block);
+			let placementToPush = {
+				name:block.name,
+				pos:this.get2DigitComma(func_posLayer(block.layerName,containerStartPos+curPos+((isHorizontal)?widthBlock:heightBlock)/2,scale_curr))
+			}
+			if(scaleSize){
+				placementToPush.width = this.get2DigitComma(widthBlock);
+				placementToPush.height = this.get2DigitComma(heightBlock);
+			}
+			placement.push(placementToPush);
+			curPos += (isHorizontal)?widthBlock:heightBlock;
+		}
+		return placement;
+	};
+	/*********************************************
+				FUNCTION
+	*********************************************/
+	blocksSpreading.prototype.horizontal_getSizes = function(containerWidth=100,containerHeight=Infinity,containerStartPos=0,scale_max=1,scale_stepping=0.01,autoFlush=true){
+		let blockScale_curr = Math.max(this.SCALE_MIN,scale_max);
+		let placement = [];
+	
+		if(this.blocks.length > 0){
+			blockScale_curr = this._getGoodScale(blockScale_curr,containerWidth,containerHeight,scale_stepping,true,true);
+			placement = this._getPlacement(blockScale_curr,containerWidth,containerStartPos,true,true);
+		};
+	
+		if(autoFlush){this.flushBlocks();}
+		return JSON.stringify({
+			blockScale:blockScale_curr,
+			blocks:placement
+		});
+	};
+	blocksSpreading.prototype.horizontal_getScales = function(containerWidth=100,containerHeight=Infinity,containerStartPos=0,scale_max=1,scale_stepping=0.01,autoFlush=true){
+		let layoutScale_curr = Math.max(this.SCALE_MIN,scale_max);
+		let placement = [];
+	
+		if(this.blocks.length > 0){
+			let canScale = !!(this.blocks.find((block)=>this.getScale(block.layerName,layoutScale_curr)>1));
+			if(canScale){layoutScale_curr = this._getGoodScale(layoutScale_curr,containerWidth,containerHeight,scale_stepping,true,false);}
+			placement = this._getPlacement(layoutScale_curr,containerWidth,containerStartPos,true,false);
+		};
+	
+		if(autoFlush){this.flushBlocks();}
+		return JSON.stringify({
+			layoutScale:layoutScale_curr,
+			blocks:placement
+		});
+	};
+	blocksSpreading.prototype.vertical_getSizes = function(containerWidth=Infinity,containerHeight=100,containerStartPos=0,scale_max=1,scale_stepping=0.01,autoFlush=true){
+		let blockScale_curr = Math.max(this.SCALE_MIN,scale_max);
+		let placement = [];
+	
+		if(this.blocks.length > 0){
+			blockScale_curr = this._getGoodScale(blockScale_curr,containerWidth,containerHeight,scale_stepping,false,true);
+			placement = this._getPlacement(blockScale_curr,containerHeight,containerStartPos,false,true);
+		};
+	
+		if(autoFlush){this.flushBlocks();}
+		return JSON.stringify({
+			blockScale:blockScale_curr,
+			blocks:placement
+		});
+	};
+	blocksSpreading.prototype.vertical_getScales = function(containerWidth=Infinity,containerHeight=100,containerStartPos=0,scale_max=1,scale_stepping=0.01,autoFlush=true){
+		let layoutScale_curr = Math.max(this.SCALE_MIN,scale_max);
+		let placement = [];
+	
+		if(this.blocks.length > 0){
+			let canScale = !!(this.blocks.find((block)=>this.getScale(block.layerName,layoutScale_curr)>1));
+			if(canScale){layoutScale_curr = this._getGoodScale(layoutScale_curr,containerWidth,containerHeight,scale_stepping,false,false);}
+			placement = this._getPlacement(layoutScale_curr,containerHeight,containerStartPos,false,false);
+		};
+	
+		if(autoFlush){this.flushBlocks();}
+		return JSON.stringify({
+			layoutScale:layoutScale_curr,
+			blocks:placement
+		});
+	};
+
 /*********************************************
 				Playtouch object
 *********************************************/
@@ -1554,6 +1835,7 @@ var tweeningVariables = {};
 		toPush.regExp = regExp;
 		toPush.easings = easings;
 		toPush.tweeningVariables = tweeningVariables.init();
+		toPush.blocksSpreading = new blocksSpreading();
 	for(var m in toPush) window.playtouch.modulesManager.register(m, toPush[m]);
 
 })();
