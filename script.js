@@ -162,7 +162,6 @@ const editSavedGamesList = (gameId, flagValue) => {
   const savedGamesList = JSON.parse(localStorage.getItem("gamesList"));
   savedGamesList[`${gameId}`] = (flagValue==="old") ? false : true;
   localStorage.setItem("gamesList", JSON.stringify(savedGamesList));
-  console.log('sgl',savedGamesList, JSON.parse(localStorage.getItem("gamesList")));
 };
 
 $(document).ready(function () {
@@ -221,7 +220,6 @@ $(document).ready(function () {
   // });
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
-      console.log('sglc', JSON.parse(localStorage.getItem("gamesList")));
       if(JSON.parse(localStorage.getItem('gamesList'))[`candy`]){
         editSavedGamesList('candy', 'old');
       }
@@ -288,7 +286,6 @@ $(document).ready(function () {
 
   $("#parking").click(function () {
     if (gameDetails.parking.unlocked == true) {
-      console.log('sglp', JSON.parse(localStorage.getItem("gamesList")));
       if(JSON.parse(localStorage.getItem('gamesList'))[`parking`]){
         editSavedGamesList('parking', 'old');
       }
