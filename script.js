@@ -160,7 +160,7 @@ var gameDetails = {
 var usingPayPal = true; //false for no paypal
 const editSavedGamesList = (gameId, flagValue) => {
   const savedGamesList = JSON.parse(localStorage.getItem("gamesList"));
-  savedGamesList[`${gameId}`] = flagValue==="old" ? 'false' : 'true';
+  savedGamesList[`${gameId}`] = (flagValue==="old") ? false : true;
   localStorage.setItem("gamesList", JSON.stringify(savedGamesList));
   console.log('sgl',savedGamesList, JSON.parse(localStorage.getItem("gamesList")));
 };
