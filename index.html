@@ -1,41 +1,110 @@
 <html>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
 
-<head>
-  <link rel="stylesheet" type="text/css" href="./menu.css" />
-  <script type="text/javascript" src="./../3rdParty/scripts/jquery.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="params.js"></script>
-  <!-- Adding comment for pipeline testing  -->
-  <!-- <script type="text/javascript" src="../IVWWInterface/VDA.js"></script> -->
-  <!-- <script type="text/javascript" src="../paypal.js"></script> -->
-  <script type="text/javascript" src="./../3rdParty/scripts/paypal.js"></script>
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=Ab8qCQR6-uADFqNsCAt9z2RMJNol8uLw3jOhijei2ILW8RhZYeoqPo_SlN69LrQhuhUIR11cQGLvCoEh&disable-funding=credit,card,paylater&currency=USD"
-    defer="defer"></script>
-  <!-- <script src="./../3rdParty/scripts/payment.js"></script> -->
-</head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./menu.css" />
+    <script
+      type="text/javascript"
+      src="./../3rdParty/scripts/jquery.js"
+    ></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="params.js"></script>
+    <script
+      type="text/javascript"
+      src="../../web-widgets-wave-1/rest-api-manager.js"
+    ></script>
+    <!-- Adding comment for pipeline testing  -->
+    <!-- <script type="text/javascript" src="../IVWWInterface/VDA.js"></script> -->
+    <!-- <script type="text/javascript" src="../paypal.js"></script> -->
+    <script
+      type="text/javascript"
+      src="./../3rdParty/scripts/paypal.js"
+    ></script>
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=Ab8qCQR6-uADFqNsCAt9z2RMJNol8uLw3jOhijei2ILW8RhZYeoqPo_SlN69LrQhuhUIR11cQGLvCoEh&disable-funding=credit,card,paylater&currency=USD"
+      defer="defer"
+    ></script>
+    <!-- <script src="./../3rdParty/scripts/payment.js"></script> -->
+  </head>
 
-<body>
-  <div class="flexcontainer">
-    <div class="flexdiv">
-      <div id="candy" class="gameApp">
-        <div class="gameimg">
-          <img src="candyWorld/icon-256.png" class="icon" />
+  <body>
+    <div class="flexcontainer">
+      <div class="flexdiv" id="gameContainer">
+        <div class="flexdiv">
+          <!-- <div id="candy" class="gameApp">
+            <div class="gameimg">
+              <img src="candyWorld/icon-256.png" class="icon" />
+            </div>
+            <div class="gamename">Candy World</div>
+          </div>
+
+          <div id="parking" class="gameApp">
+            <div class="gameimg">
+              <img src="parkingPanic/icon-256.png" class="icon" />
+            </div>
+            <div class="gamename">Parking Panic</div>
+          </div> -->
         </div>
-        <div class="gamename">Candy World</div>
-      </div>
-
-      <div id="parking" class="gameApp">
-        <div class="gameimg">
-          <img src="parkingPanic/icon-256.png" class="icon" />
-        </div>
-        <div class="gamename">Parking Panic</div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
+  <script>
+    var games = [];
 
+    var gameDetails = {
+      candy: {
+        name: "Candy World",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "candy",
+        image: "candyWorld/icon-256.png",
+      },
+      parking: {
+        name: "Parking Panic",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "parking",
+        image: "parkingPanic/icon-256.png",
+      },
+    };
+
+    for (let i in gameDetails) {
+      games.push(gameDetails[i]);
+    }
+    console.log("gd1", gameDetails, games);
+    games.sort((a, b) => a.name.localeCompare(b.name));
+    console.log("gd1", gameDetails, games);
+    var gameContainer = document.getElementById("gameContainer");
+
+    games.forEach((game) => {
+      console.log("gd chk", game);
+      var gameDiv = document.createElement("div");
+      gameDiv.id = game.id;
+      gameDiv.className = "gameApp";
+      if (!JSON.parse(localStorage.getItem("gamesList"))) {
+        localStorage.setItem(
+          "gamesList",
+          JSON.stringify({ candy: true, parking: true })
+        );
+      }
+
+      var gameDivHTML1 = `
+       <div class="gameimg">
+         <img src="${game.image}" class="icon" />
+         <img src="../images/premium-256.png" class="overlay" />`;
+      var gameNewHTML =
+        JSON.parse(localStorage.getItem("gamesList"))[`${game.id}`] === true
+          ? `<img src="newIcon.svg" id ="newImage"/>`
+          : ``;
+
+      var gameDivHTML2 = `</div>
+       <div class="gamename">${game.name}</div>`;
+      gameDiv.innerHTML = gameDivHTML1 + gameNewHTML + gameDivHTML2;
+      gameContainer.appendChild(gameDiv);
+    });
+  </script>
 </html>
 <!-- <div id="woodenEdition2048" class="gameApp">
         <div class="gameimg">

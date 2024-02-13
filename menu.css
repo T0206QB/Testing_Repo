@@ -141,8 +141,12 @@ body {
 }
 
 #newImage {
-  height: 30%;
-  width: 30%;
+  top: 0.5rem;
+  height: 12%;
+  width: 12%;
+  z-index: 1;
+  position: absolute;
+  margin-left: -65px;
 }
 
 #content {
@@ -172,6 +176,13 @@ body {
   text-align: center;
   padding: 1.6rem;
   font-size: 2.8rem;
+  }
+  
+  #newImage {
+    top: 1.5rem;
+    height: 12%;
+    width: 12%;
+    left: 350px;
   }
 }
 
