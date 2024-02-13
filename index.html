@@ -73,13 +73,10 @@
     for (let i in gameDetails) {
       games.push(gameDetails[i]);
     }
-    console.log("gd1", gameDetails, games);
     games.sort((a, b) => a.name.localeCompare(b.name));
-    console.log("gd1", gameDetails, games);
     var gameContainer = document.getElementById("gameContainer");
 
     games.forEach((game) => {
-      console.log("gd chk", game);
       var gameDiv = document.createElement("div");
       gameDiv.id = game.id;
       gameDiv.className = "gameApp";
