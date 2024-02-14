@@ -53,12 +53,12 @@ var gameDetails = {
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // hex: {
-  //   name: "Hex",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  hex: {
+    name: "Hex",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // linkTheNumbers: {
   //   name: "Link The Numbers",
   //   premium: false,
@@ -101,61 +101,61 @@ var gameDetails = {
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // plumber: {
-  //   name: "Plumber World",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  plumber: {
+    name: "Plumber World",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // snakesAndLadders: {
   //   name: "Snakes And Ladders",
   //   premium: false,
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // solitaire: {
-  //   name: "Solitaire Classic",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // sudoku: {
-  //   name: "Sudoku",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // tangram: {
-  //   name: "Tangram Puzzle",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // tenXTen: {
-  //   name: "TenXTen",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // theGame13: {
-  //   name: "The Game 13",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // ticTacToe: {
-  //   name: "Tic Tac Toe",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  solitaire: {
+    name: "Solitaire Classic",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  sudoku: {
+    name: "Sudoku",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  tangram: {
+    name: "Tangram Puzzle",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  tenXTen: {
+    name: "TenXTen",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  theGame13: {
+    name: "The Game 13",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  ticTacToe: {
+    name: "Tic Tac Toe",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
 
-  // yatzyYahtzeeYams: {
-  //   name: "Yatzy Yahtzee Yams",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // }
+  yatzyYahtzeeYams: {
+    name: "Yatzy Yahtzee Yams",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  }
 };
 var usingPayPal = true; //false for no paypal
 $(document).ready(function () {
@@ -240,11 +240,11 @@ $(document).ready(function () {
   //     location.href = "gameOfGoose/index.html";
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
-  // $("#hex").click(function () {
-  //   if (gameDetails.hex.unlocked == true) {
-  //     location.href = "hex/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#hex").click(function () {
+    if (gameDetails.hex.unlocked == true) {
+      location.href = "hex/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   // $("#linkTheNumbers").click(function () {
   //   if (gameDetails.linkTheNumbers.unlocked == true) {
@@ -287,11 +287,11 @@ $(document).ready(function () {
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  // $("#plumber").click(function () {
-  //   if (gameDetails.plumber.unlocked == true) {
-  //     location.href = "plumberWorld/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#plumber").click(function () {
+    if (gameDetails.plumber.unlocked == true) {
+      location.href = "plumberWorld/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   // $("#snakesAndLadders").click(function () {
   //   if (gameDetails.snakesAndLadders.unlocked == true) {
@@ -299,47 +299,47 @@ $(document).ready(function () {
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  // $("#solitaire").click(function () {
-  //   if (gameDetails.solitaire.unlocked == true) {
-  //     location.href = "solitaireClassic/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#solitaire").click(function () {
+    if (gameDetails.solitaire.unlocked == true) {
+      location.href = "solitaireClassic/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#sudoku").click(function () {
-  //   if (gameDetails.sudoku.unlocked == true) {
-  //     location.href = "sudoku/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#sudoku").click(function () {
+    if (gameDetails.sudoku.unlocked == true) {
+      location.href = "sudoku/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#tangram").click(function () {
-  //   if (gameDetails.tangram.unlocked == true) {
-  //     location.href = "tangramPuzzle/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#tangram").click(function () {
+    if (gameDetails.tangram.unlocked == true) {
+      location.href = "tangramPuzzle/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#ten").click(function () {
-  //   if (gameDetails.tenXTen.unlocked == true) {
-  //     location.href = "tenXTen/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#ten").click(function () {
+    if (gameDetails.tenXTen.unlocked == true) {
+      location.href = "tenXTen/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#theGame13").click(function () {
-  //   if (gameDetails.theGame13.unlocked == true) {
-  //     location.href = "theGame13/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#theGame13").click(function () {
+    if (gameDetails.theGame13.unlocked == true) {
+      location.href = "theGame13/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#TicTacToe").click(function () {
-  //   if (gameDetails.ticTacToe.unlocked == true) {
-  //     location.href = "ticTacToe/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#TicTacToe").click(function () {
+    if (gameDetails.ticTacToe.unlocked == true) {
+      location.href = "ticTacToe/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
-  // $("#yatzyYahtzeeYams").click(function () {
-  //   if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
-  //     location.href = "yatzyYahtzeeYams/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#yatzyYahtzeeYams").click(function () {
+    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
+      location.href = "yatzyYahtzeeYams/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   $("body").css("opacity", 100);
 });
