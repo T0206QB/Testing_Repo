@@ -59,6 +59,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
+  hex: {
+    name: "Hex1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // linkTheNumbers: {
   //   name: "Link The Numbers",
   //   premium: false,
@@ -243,6 +249,12 @@ $(document).ready(function () {
   $("#hex").click(function () {
     if (gameDetails.hex.unlocked == true) {
       location.href = "hex/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
+  $("#hex1").click(function () {
+    if (gameDetails.hex.unlocked == true) {
+      location.href = "hex1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
