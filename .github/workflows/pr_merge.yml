@@ -43,7 +43,7 @@ jobs:
 
           #  20240216 - if no pr number, set to success
           if [ -z "${{ github.event.pull_request.number }}" ]; then
-            pr_number="failure"
+            pr_number="failed"
           else
             pr_number="success"
           fi
