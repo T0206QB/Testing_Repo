@@ -3,7 +3,7 @@ name: Updating PR Information in Database upon Successful Code Merge
 on:
   push:
     branches: '**'
-
+ 
 jobs:
   action-on-pr-merge:
     runs-on: ubuntu-latest
