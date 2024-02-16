@@ -155,7 +155,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-
+  ticTacToe: {
+    name: "TicTacToeCompressed",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   yatzyYahtzeeYams: {
     name: "Yatzy Yahtzee Yams",
     premium: false,
@@ -346,7 +351,11 @@ $(document).ready(function () {
       location.href = "ticTacToe/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-
+  $("#TicTacToe1").click(function () {
+    if (gameDetails.ticTacToe.unlocked == true) {
+      location.href = "ticTacToe1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   $("#yatzyYahtzeeYams").click(function () {
     if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
       location.href = "yatzyYahtzeeYams/index.html";
