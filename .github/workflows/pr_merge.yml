@@ -41,7 +41,7 @@ jobs:
           to_branch=${{ github.event.pull_request.base.ref }}
           merge_timestamp=${{ github.event.pull_request.merged_at }}
 
-          pr_number="success"
+          # pr_number="success"
 
           echo "Project Name : $project_name"
           echo "Repo Number: $repo_name"
