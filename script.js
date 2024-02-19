@@ -137,6 +137,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
+  sudoku: {
+    name: "Sudoku1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   tangram: {
     name: "Tangram Puzzle",
     premium: false,
@@ -342,6 +348,12 @@ $(document).ready(function () {
   $("#sudoku").click(function () {
     if (gameDetails.sudoku.unlocked == true) {
       location.href = "sudoku/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
+  $("#sudoku1").click(function () {
+    if (gameDetails.sudoku.unlocked == true) {
+      location.href = "sudoku1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
