@@ -101,6 +101,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
+  parking: {
+    name: "Parking Panic1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // petitsChevaux: {
   //   name: "Petits Chevaux",
   //   premium: false,
@@ -298,6 +304,11 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
+  $("#parking1").click(function () {
+    if (gameDetails.parking.unlocked == true) {
+      location.href = "parkingPanic1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   // $("#petitsChevaux").click(function () {
   //   if (gameDetails.petitsChevaux.unlocked == true) {
   //     location.href = "petitsChevaux/index.html";
