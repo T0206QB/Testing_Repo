@@ -166,6 +166,12 @@ ticTacToe: {
     premium: false,
     unlocked: true,
     price: "0.10",
+  },
+  yatzyYahtzeeYams: {
+    name: "Yatzy Yahtzee Yams1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
   }
 };
 var usingPayPal = true; //false for no paypal
@@ -367,7 +373,11 @@ $("#TicTacToe1").click(function () {
       location.href = "yatzyYahtzeeYams/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-
+  $("#yatzyYahtzeeYams1").click(function () {
+    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
+      location.href = "yatzyYahtzeeYams1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   $("body").css("opacity", 100);
 });
 
