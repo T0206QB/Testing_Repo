@@ -155,7 +155,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  ticTacToe: {
+ticTacToe: {
     name: "TicTacToeCompressed",
     premium: false,
     unlocked: true,
@@ -340,6 +340,12 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
+  $("#tenXTen1").click(function () {
+    if (gameDetails.tenXTen.unlocked == true) {
+      location.href = "tenXTen1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
   $("#theGame13").click(function () {
     if (gameDetails.theGame13.unlocked == true) {
       location.href = "theGame13/index.html";
@@ -351,7 +357,7 @@ $(document).ready(function () {
       location.href = "ticTacToe/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#TicTacToe1").click(function () {
+$("#TicTacToe1").click(function () {
     if (gameDetails.ticTacToe.unlocked == true) {
       location.href = "ticTacToe1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
