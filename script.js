@@ -59,12 +59,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  hex: {
-    name: "Hex1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   // linkTheNumbers: {
   //   name: "Link The Numbers",
   //   premium: false,
@@ -101,12 +96,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  parking: {
-    name: "Parking Panic1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   // petitsChevaux: {
   //   name: "Petits Chevaux",
   //   premium: false,
@@ -137,12 +127,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  sudoku: {
-    name: "Sudoku1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   tangram: {
     name: "Tangram Puzzle",
     premium: false,
@@ -167,24 +152,13 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-ticTacToe: {
-    name: "TicTacToeCompressed",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   yatzyYahtzeeYams: {
     name: "Yatzy Yahtzee Yams",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  yatzyYahtzeeYams: {
-    name: "Yatzy Yahtzee Yams1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  }
 };
 var usingPayPal = true; //false for no paypal
 $(document).ready(function () {
@@ -275,12 +249,6 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#hex1").click(function () {
-    if (gameDetails.hex.unlocked == true) {
-      location.href = "hex1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
   // $("#linkTheNumbers").click(function () {
   //   if (gameDetails.linkTheNumbers.unlocked == true) {
   //     location.href = "linkTheNumbers/index.html";
@@ -316,11 +284,6 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#parking1").click(function () {
-    if (gameDetails.parking.unlocked == true) {
-      location.href = "parkingPanic1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
   // $("#petitsChevaux").click(function () {
   //   if (gameDetails.petitsChevaux.unlocked == true) {
   //     location.href = "petitsChevaux/index.html";
@@ -351,12 +314,6 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  $("#sudoku1").click(function () {
-    if (gameDetails.sudoku.unlocked == true) {
-      location.href = "sudoku1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
   $("#tangram").click(function () {
     if (gameDetails.tangram.unlocked == true) {
       location.href = "tangramPuzzle/index.html";
@@ -366,12 +323,6 @@ $(document).ready(function () {
   $("#ten").click(function () {
     if (gameDetails.tenXTen.unlocked == true) {
       location.href = "tenXTen/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#tenXTen1").click(function () {
-    if (gameDetails.tenXTen.unlocked == true) {
-      location.href = "tenXTen1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -386,19 +337,10 @@ $(document).ready(function () {
       location.href = "ticTacToe/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-$("#TicTacToe1").click(function () {
-    if (gameDetails.ticTacToe.unlocked == true) {
-      location.href = "ticTacToe1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+
   $("#yatzyYahtzeeYams").click(function () {
     if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
       location.href = "yatzyYahtzeeYams/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#yatzyYahtzeeYams1").click(function () {
-    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
-      location.href = "yatzyYahtzeeYams1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("body").css("opacity", 100);
@@ -421,12 +363,12 @@ function createPurchaseContainer(id) {
     $(".flexdiv").css("margin-top", "50px");
     $("body").append(
       '<div id="rightContainer"><div id="bannerContainer">' +
-      '<div id="betaBanner">Micropayment Beta</div>' +
-      '<img id="return-button" src="../images/CLOSE.svg"></div>' +
-      '<div id="preview-container"><img id="preview-image">' +
-      '<div id="details"></div></div><div id="payment-button-container">' +
-      '<div id="paypal-button-container"></div><div id="payment-button-divider">Or</div>' +
-      '<div id="subscribe-button-container"></div></div></div>'
+        '<div id="betaBanner">Micropayment Beta</div>' +
+        '<img id="return-button" src="../images/CLOSE.svg"></div>' +
+        '<div id="preview-container"><img id="preview-image">' +
+        '<div id="details"></div></div><div id="payment-button-container">' +
+        '<div id="paypal-button-container"></div><div id="payment-button-divider">Or</div>' +
+        '<div id="subscribe-button-container"></div></div></div>'
     );
     $("#return-button").click(function () {
       location.replace("index.html");
@@ -461,7 +403,7 @@ function generatePurchaseInformation(id) {
     $("#subscribe-button-container").css({
       float: "none",
       "padding-right": "0%",
-      margin: "auto"
+      margin: "auto",
     });
   }
   var imgsrc = $("#" + id + " .icon").attr("src");
