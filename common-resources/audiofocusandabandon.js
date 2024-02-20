@@ -19,7 +19,6 @@ window.onbeforeunload = function () {
     top.stellaHandle.abandonAudioFocus();
   }
 };
-
 // Start the Construct 2 project running on window load.
 jQuery(document).ready(function () {
   // Create new runtime using the c2canvas
