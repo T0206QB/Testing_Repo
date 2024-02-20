@@ -1,0 +1,59 @@
+name: Updating PR Information in Database upon Successful Code Merge
+
+on:
+  push:
+    branches: '**'
+ 
+jobs:
+  action-on-pr-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+         ref: dev
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x # Choose your desired Python version
+
+      - name: Install dependencies
+        run: pip install -r ./.github/workflows/scripts/requirements.txt 
+
+      - name: Print PR details
+        env:
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        run: |
+          if [ -z "${{ vars.PROJECT_NAME }}" ]; then
+            echo "Warning: PROJECT_NAME environment variable not defined. Setting project_name to 'unknown'."
+            project_name="unknown"
+          else
+            project_name="${{ vars.PROJECT_NAME }}"
+          fi
+
+          repo_name=${{ github.repository }}
+          pr_number=${{ github.event.pull_request.number }}
+          from_branch=${{ github.event.pull_request.head.ref }}
+          to_branch=${{ github.event.pull_request.base.ref }}
+          merge_timestamp=${{ github.event.pull_request.merged_at }}
+
+          #  20240216 - if no pr number, set to success
+          if [ -z "${{ github.event.pull_request.number }}" ]; then
+            # pr_number="failed"
+            pr_number="success"
+          else
+            pr_number="success"
+          fi
+   
+          echo "Project Name : $project_name"
+          echo "Repo Number: $repo_name"
+          echo "PR Number: $pr_number"
+          echo "Merged from: $from_branch"
+          echo "Merged to: $to_branch"
+          echo "Merged at timestamp: $merge_timestamp"
+
+          python .github/workflows/scripts/insert_pr_merge_info_to_db.py "$project_name" $repo_name $pr_number $from_branch $to_branch $merge_timestamp
