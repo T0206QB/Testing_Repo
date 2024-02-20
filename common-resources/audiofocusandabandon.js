@@ -7,8 +7,10 @@ window.setTimeout(function () {
     top.stellaHandle.requestAudioFocus();
   }
 }, 1000);
+
 //wait for VDA to load and abandon audio focus
 window.onbeforeunload = function () {
+  // VDAAndroid.stopMediaPlayer();
   if (top.stellaHandle == null) {
     console.log("failed to load stella handle");
     return;
