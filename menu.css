@@ -139,3 +139,12 @@ body{
   padding: 20px;
   font-size: 32px;
 }
+
+#newImage {
+  height: 25%;
+  width: 25%;
+  z-index: 1;
+  left: 13rem;
+  position: absolute;
+  bottom: 12rem;
+}

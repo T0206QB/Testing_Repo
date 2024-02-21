@@ -10,6 +10,7 @@
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="params.js"></script>
     <!-- Adding comment for pipeline testing  -->
+
     <!-- <script type="text/javascript" src="../IVWWInterface/VDA.js"></script> -->
     <!-- <script type="text/javascript" src="../paypal.js"></script> -->
     <script
@@ -24,7 +25,7 @@
   </head>
 
   <body>
-    <div class="flexcontainer">
+    <div class="flexcontainer" id="gameContainer">
       <div class="flexdiv">
         <!-- <div id="woodenEdition2048" class="gameApp">
         <div class="gameimg">
@@ -54,13 +55,13 @@
         </div>
         <div class="gamename">Bubble Shooter</div>
       </div> -->
-        <div id="candy" class="gameApp">
+        <!-- <div id="candy" class="gameApp">
           <div class="gameimg">
             <img src="candyWorld/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Candy World</div>
-        </div>
+        </div> -->
 
         <!-- <div id="chooChooConnect" class="gameApp">
         <div class="gameimg">
@@ -90,7 +91,7 @@
         </div>
         <div class="gamename">Game of Goose</div>
       </div> -->
-        <div id="hex" class="gameApp">
+        <!-- <div id="hex" class="gameApp">
           <div class="gameimg">
             <img src="hex/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
@@ -103,7 +104,7 @@
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Hex Compressed</div>
-        </div>
+        </div> -->
         <!-- <div id="linkTheNumbers" class="gameApp">
         <div class="gameimg">
           <img src="linkTheNumbers/icon-256.png" class="icon" />
@@ -139,7 +140,7 @@
         </div>
         <div class="gamename">One Line only</div>
       </div> -->
-        <div id="parking" class="gameApp">
+        <!-- <div id="parking" class="gameApp">
           <div class="gameimg">
             <img src="parkingPanic/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
@@ -152,7 +153,7 @@
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Parking Panic Compressed</div>
-        </div>
+        </div> -->
         <!-- <div id="petitsChevaux" class="gameApp">
         <div class="gameimg">
           <img src="petitsChevaux/icon-256.png" class="icon" />
@@ -167,7 +168,7 @@
         </div>
         <div class="gamename">Snakes and Ladders</div>
       </div> -->
-        <div id="sudoku" class="gameApp">
+        <!-- <div id="sudoku" class="gameApp">
           <div class="gameimg">
             <img src="sudoku/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
@@ -180,7 +181,7 @@
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Sudoku Compressed</div>
-        </div>
+        </div> -->
         <!-- <div id="tangram" class="gameApp">
           <div class="gameimg">
             <img src="tangramPuzzle/icon-256.png" class="icon" />
@@ -188,7 +189,7 @@
           </div>
           <div class="gamename">Tangram</div>
         </div> -->
-        <div id="ten" class="gameApp">
+        <!-- <div id="ten" class="gameApp">
           <div class="gameimg">
             <img src="tenXTen/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
@@ -216,14 +217,14 @@
           </div>
           <div class="gamename">The Game 13 Compressed</div>
         </div>
-        <div id="TicTacToe" class="gameApp">
+        <div id="ticTacToe" class="gameApp">
           <div class="gameimg">
             <img src="ticTacToe/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Tic Tac Toe</div>
         </div>
-        <div id="TicTacToe1" class="gameApp">
+        <div id="ticTacToe1" class="gameApp">
           <div class="gameimg">
             <img src="ticTacToe1/icon-256.png" class="icon" />
             <img src="../images/premium-256.png" class="overlay" />
@@ -243,8 +244,171 @@
             <img src="../images/premium-256.png" class="overlay" />
           </div>
           <div class="gamename">Yatzy Yahtzee Yams Compressed</div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
+
+  <script>
+    var games = [];
+
+    var gameDetails = {
+      candy: {
+        name: "Candy World",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "candy",
+        image: "candyWorld/icon-256.png",
+      },
+      parking: {
+        name: "Parking Panic",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "parking",
+        image: "parkingPanic/icon-256.png",
+      },
+      parking1: {
+        name: "Parking Panic Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "parking1",
+        image: "parkingPanic/icon-256.png",
+      },
+      sudoku: {
+        name: "Sudoku",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "sudoku",
+        image: "sudoku/icon-256.png",
+      },
+      sudoku1: {
+        name: "Sudoku Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "sudoku1",
+        image: "sudoku1/icon-256.png",
+      },
+      tenXTen: {
+        name: "Ten X Ten",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "tenXTen",
+        image: "tenXTen/icon-256.png",
+      },
+      tenXTen1: {
+        name: "Ten X Ten Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "tenXTen1",
+        image: "tenXTen1/icon-256.png",
+      },
+      theGame13: {
+        name: "The Game 13",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "theGame13",
+        image: "theGame13/icon-256.png",
+      },
+      "theGame13-1": {
+        name: "The Game 13 Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "theGame13-1",
+        image: "theGame13-1/icon-256.png",
+      },
+      ticTacToe: {
+        name: "Tic Tac Toe",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "ticTacToe",
+        image: "ticTacToe/icon-256.png",
+      },
+      ticTacToe1: {
+        name: "Tic Tac Toe Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "ticTacToe1",
+        image: "ticTacToe1/icon-256.png",
+      },
+      yatzyYahtzeeYams: {
+        name: "Yatzy Yahtzee Yams",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "yatzyYahtzeeYams",
+        image: "yatzyYahtzeeYams/icon-256.png",
+      },
+      yatzyYahtzeeYams1: {
+        name: "Yatzy Yahtzee Yams Compressed",
+        premium: false,
+        unlocked: true,
+        price: "0.10",
+        id: "yatzyYahtzeeYams1",
+        image: "yatzyYahtzeeYams1/icon-256.png",
+      },
+    };
+
+    console.log("obj1", gameDetails);
+    const gameIds = Object.keys(gameDetails);
+
+    for (let i in gameDetails) {
+      games.push(gameDetails[i]);
+    }
+    console.log("gd1", gameDetails, games);
+    games.sort((a, b) => a.name.localeCompare(b.name));
+    console.log("gd1", gameDetails, games);
+    var gameContainer = document.getElementById("gameContainer");
+
+    games.forEach((game) => {
+      console.log("gd chk", game);
+      var gameDiv = document.createElement("div");
+      gameDiv.id = game.id;
+      gameDiv.className = "gameApp";
+      if (!JSON.parse(localStorage.getItem("gamesList"))) {
+        localStorage.setItem(
+          "gamesList",
+          JSON.stringify({
+            candy: true,
+            parking: true,
+            parking1: true,
+            sudoku: true,
+            sudoku1: true,
+            tenXTen: true,
+            tenXTen1: true,
+            theGame13: true,
+            "theGame13-1": true,
+            ticTacToe: true,
+            ticTacToe1: true,
+            yatzyYahtzeeYams: true,
+            yatzyYahtzeeYams1: true,
+          })
+        );
+      }
+
+      var gameDivHTML1 = `
+   <div class="gameimg">
+     <img src="${game.image}" class="icon" />
+     <img src="../images/premium-256.png" class="overlay" />`;
+      var gameNewHTML =
+        JSON.parse(localStorage.getItem("gamesList"))[`${game.id}`] === true
+          ? `<img src="newIcon.svg" id ="newImage"/>`
+          : ``;
+
+      var gameDivHTML2 = `</div>
+   <div class="gamename">${game.name}</div>`;
+      gameDiv.innerHTML = gameDivHTML1 + gameNewHTML + gameDivHTML2;
+      gameContainer.appendChild(gameDiv);
+    });
+  </script>
 </html>
