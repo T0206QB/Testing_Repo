@@ -156,7 +156,7 @@ var gameDetails = {
     price: "0.10",
   },
   tenXTen1: {
-    name: "TenXTen Compressed",
+    name: "tenXTen 1",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -180,7 +180,7 @@ var gameDetails = {
     price: "0.10",
   },
   ticTacToe1: {
-    name: "Tic Tac Toe Compressed",
+    name: "Tic Tac Toe 1",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -424,7 +424,7 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#theGame13-1").click(function () {
-    if (gameDetails.theGame13.unlocked == true) {
+    if (gameDetails['theGame13-1'].unlocked == true) {
       location.href = "theGame13-1/index.html";
       if(JSON.parse(localStorage.getItem('gamesList'))[`theGame13-1`]){
         editSavedGamesList('theGame13-1', 'old');
@@ -440,7 +440,7 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#ticTacToe1").click(function () {
-    if (gameDetails.ticTacToe.unlocked == true) {
+    if (gameDetails.ticTacToe1.unlocked == true) {
       location.href = "ticTacToe1/index.html";
       if(JSON.parse(localStorage.getItem('gamesList'))[`ticTacToe1`]){
         editSavedGamesList('ticTacToe1', 'old');
@@ -457,7 +457,7 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#yatzyYahtzeeYams1").click(function () {
-    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
+    if (gameDetails.yatzyYahtzeeYams1.unlocked == true) {
       location.href = "yatzyYahtzeeYams1/index.html";
       if(JSON.parse(localStorage.getItem('gamesList'))[`yatzyYahtzeeYams1`]){
         editSavedGamesList('yatzyYahtzeeYams1', 'old');
