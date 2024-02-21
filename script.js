@@ -59,7 +59,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-
+  hex: {
+    name: "Hex1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // linkTheNumbers: {
   //   name: "Link The Numbers",
   //   premium: false,
@@ -96,7 +101,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-
+  parking: {
+    name: "Parking Panic1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // petitsChevaux: {
   //   name: "Petits Chevaux",
   //   premium: false,
@@ -127,15 +137,26 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-
-  tangram: {
-    name: "Tangram Puzzle",
+  sudoku: {
+    name: "Sudoku1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  // tangram: {
+  //   name: "Tangram Puzzle",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  tenXTen: {
+    name: "TenXTen",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
   tenXTen: {
-    name: "TenXTen",
+    name: "TenXTen1",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -170,6 +191,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
+  yatzyYahtzeeYams: {
+    name: "Yatzy Yahtzee Yams 1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  }
 };
 var usingPayPal = true; //false for no paypal
 const editSavedGamesList = (gameId, flagValue) => {
@@ -268,6 +295,11 @@ $(document).ready(function () {
       location.href = "hex/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
+  $("#hex1").click(function () {
+    if (gameDetails.hex.unlocked == true) {
+      location.href = "hex1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   // $("#linkTheNumbers").click(function () {
   //   if (gameDetails.linkTheNumbers.unlocked == true) {
@@ -306,6 +338,11 @@ $(document).ready(function () {
       location.href = "parkingPanic/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
+  $("#parking1").click(function () {
+    if (gameDetails.parking.unlocked == true) {
+      location.href = "parkingPanic1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   // $("#petitsChevaux").click(function () {
   //   if (gameDetails.petitsChevaux.unlocked == true) {
@@ -336,19 +373,27 @@ $(document).ready(function () {
       location.href = "sudoku/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-
-  $("#tangram").click(function () {
-    if (gameDetails.tangram.unlocked == true) {
-      location.href = "tangramPuzzle/index.html";
+  $("#sudoku1").click(function () {
+    if (gameDetails.sudoku.unlocked == true) {
+      location.href = "sudoku1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
+  // $("#tangram").click(function () {
+  //   if (gameDetails.tangram.unlocked == true) {
+  //     location.href = "tangramPuzzle/index.html";
+  //   } else createPurchaseContainer($(this).attr("id"));
+  // });
 
   $("#ten").click(function () {
     if (gameDetails.tenXTen.unlocked == true) {
       location.href = "tenXTen/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-
+  $("#ten1").click(function () {
+    if (gameDetails.tenXTen.unlocked == true) {
+      location.href = "tenXTen1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   $("#theGame13").click(function () {
     if (gameDetails.theGame13.unlocked == true) {
       location.href = "theGame13/index.html";
@@ -364,10 +409,20 @@ $(document).ready(function () {
       location.href = "ticTacToe/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
+  $("#TicTacToe1").click(function () {
+    if (gameDetails.ticTacToe.unlocked == true) {
+      location.href = "ticTacToe1/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   $("#yatzyYahtzeeYams").click(function () {
     if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
       location.href = "yatzyYahtzeeYams/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#yatzyYahtzeeYams1").click(function () {
+    if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
+      location.href = "yatzyYahtzeeYams1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("body").css("opacity", 100);
