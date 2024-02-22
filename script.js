@@ -17,12 +17,18 @@ var gameDetails = {
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // bubbleShooter: {
-  //   name: "Bubble Shooter",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  bubbleShooter: {
+    name: "Bubble Shooter",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  bubbleShooter: {
+    name: "Bubble Shooter1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   candy: {
     name: "Candy World",
     premium: false,
@@ -256,11 +262,18 @@ $(document).ready(function () {
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  // $("#bubbleShooter").click(function () {
-  //   if (gameDetails.bubbleShooter.unlocked == true) {
-  //     location.href = "bubbleShooter/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#bubbleShooter").click(function () {
+    if (gameDetails.bubbleShooter.unlocked == true) {
+      location.href = "bubbleShooter/index.html";
+      editSavedGamesList('bubbleShooter', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#bubbleShooter1").click(function () {
+    if (gameDetails.bubbleShooter1.unlocked == true) {
+      location.href = "bubbleShooter1/index.html";
+      editSavedGamesList('bubbleShooter1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
         editSavedGamesList('candy', 'old');
