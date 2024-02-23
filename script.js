@@ -83,12 +83,18 @@ var gameDetails = {
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // liquidPuzzle: {
-  //   name: "Liquid Puzzle",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  liquidPuzzle: {
+    name: "Liquid Puzzle",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  liquidPuzzle: {
+    name: "Liquid Puzzle1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // mahjongBig: {
   //   name: "Mahjong Big",
   //   premium: false,
@@ -334,11 +340,18 @@ $(document).ready(function () {
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  // $("#liquidPuzzle").click(function () {
-  //   if (gameDetails.liquidPuzzle.unlocked == true) {
-  //     location.href = "liquidPuzzle/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#liquidPuzzle").click(function () {
+    if (gameDetails.liquidPuzzle.unlocked == true) {
+      location.href = "liquidPuzzle/index.html";
+      editSavedGamesList('liquidPuzzle', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#liquidPuzzle1").click(function () {
+    if (gameDetails.liquidPuzzle.unlocked == true) {
+      location.href = "liquidPuzzle1/index.html";
+      editSavedGamesList('liquidPuzzle1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
   // $("#mahjongBig").click(function () {
   //   if (gameDetails.mahjongBig.unlocked == true) {
   //     location.href = "mahjongBig/index.html";
