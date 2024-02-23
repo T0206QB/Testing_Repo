@@ -1,3 +1,11 @@
+html, body {
+  font-size: 10px; /* 8.4" font baseline */
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none; 
+}
+
 body{
   background-color: #000000;
   font-family: sans-serif;
@@ -98,23 +106,20 @@ body{
 }
 .flexdiv{
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  width: fit-content;
+  flex-grow: 1;
+  margin: 2rem 3rem;
 }
 .gameApp{
-  flex: 1 0 calc(20% - 4%);
-  padding: 1.5%;
-  margin: 26px 0px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 0.5rem 1.5rem;
 }
 .gameimg{
   padding: 0;
-  height: 240px;
-  width: 240px;
+  height: 16rem;
+  width: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,15 +141,48 @@ body{
 }
 .gamename{
   text-align: center;
-  padding: 20px;
-  font-size: 32px;
+  padding: 1rem 0.5rem;
+  font-size: 2.4rem;
+  max-width: 20rem;
+  line-height: 2.3rem;
 }
 
 #newImage {
-  height: 25%;
-  width: 25%;
+  height: 5rem;
+  width: 5rem;
   z-index: 1;
-  left: 13rem;
+  left: 15.5rem;
   position: absolute;
-  bottom: 12rem;
+  bottom: 11.5rem;
+}
+
+
+@media screen and (width: 1920px) {
+  /* Base font size for responsive layout in games screen*/
+  html, body {
+      font-size: 17.78px;
+  }
+
+  .gameApp {
+    margin: 0.5rem 1.6rem;
+    padding: 0rem 1rem;
+    max-width: 15rem;
+  }
+
+  .gameimg{
+    height: 14.5rem;
+    width: 14.5rem;
+  }
+
+  .gamename{
+    padding: 0.5rem;
+    font-size: 2.6rem;
+    max-width: 16rem;
+    line-height: 2.6rem;
+  }
+  
+  #newImage {
+    left: 10rem;
+    bottom: 10rem;
+  }
 }
