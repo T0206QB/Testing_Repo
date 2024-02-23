@@ -161,12 +161,18 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  // tangram: {
-  //   name: "Tangram Puzzle",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  tangram: {
+    name: "Tangram Puzzle",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  tangram1: {
+    name: "Tangram Puzzle Compressed",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   tenXTen: {
     name: "TenXTen",
     premium: false,
@@ -419,11 +425,18 @@ $(document).ready(function () {
         editSavedGamesList('sudoku1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
-  // $("#tangram").click(function () {
-  //   if (gameDetails.tangram.unlocked == true) {
-  //     location.href = "tangramPuzzle/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#tangram").click(function () {
+    if (gameDetails.tangram.unlocked == true) {
+      location.href = "tangramPuzzle/index.html";
+      editSavedGamesList('tangram', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#tangram1").click(function () {
+    if (gameDetails.tangram1.unlocked == true) {
+      location.href = "tangramPuzzle1/index.html";
+      editSavedGamesList('tangram1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   $("#tenXTen").click(function () {
     if (gameDetails.tenXTen.unlocked == true) {
