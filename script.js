@@ -35,6 +35,12 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
+  candy: {
+    name: "Candy World1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   // chooChooConnect: {
   //   name: "Choo Choo Connect",
   //   premium: false,
@@ -277,8 +283,13 @@ $(document).ready(function () {
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
         editSavedGamesList('candy', 'old');
-      
       location.href = "candyWorld/index.html";
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#candy1").click(function () {
+    if (gameDetails.candy.unlocked == true) {
+        editSavedGamesList('candy1', 'old');
+      location.href = "candyWorld1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
