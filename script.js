@@ -353,7 +353,7 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#liquidPuzzle1").click(function () {
-    if (gameDetails.liquidPuzzle.unlocked == true) {
+    if (gameDetails.liquidPuzzle1.unlocked == true) {
       location.href = "liquidPuzzle1/index.html";
       editSavedGamesList('liquidPuzzle1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
