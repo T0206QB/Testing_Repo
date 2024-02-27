@@ -107,12 +107,18 @@ var gameDetails = {
   //   unlocked: true,
   //   price: "0.10",
   // },
-  // oneLineOnly: {
-  //   name: "One Line Only",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  oneLineOnly: {
+    name: "One Line Only",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  oneLineOnly1: {
+    name: "One Line Only Compressed",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   parking: {
     name: "Parking Panic",
     premium: false,
@@ -382,11 +388,19 @@ $(document).ready(function () {
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  // $("#oneLineOnly").click(function () {
-  //   if (gameDetails.oneLineOnly.unlocked == true) {
-  //     location.href = "oneLineOnly/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#oneLineOnly").click(function () {
+    if (gameDetails.oneLineOnly.unlocked == true) {
+      location.href = "oneLineOnly/index.html";
+      editSavedGamesList('oneLineOnly', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
+  $("#oneLineOnly1").click(function () {
+    if (gameDetails.oneLineOnly1.unlocked == true) {
+      location.href = "oneLineOnly1/index.html";
+      editSavedGamesList('oneLineOnly1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   $("#parking").click(function () {
     if (gameDetails.parking.unlocked == true) {
