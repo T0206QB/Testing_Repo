@@ -3,7 +3,7 @@ name: Updating PR Information in Database upon Successful Code Merge
 on:
   push:
     branches: '**'
- 
+
 jobs:
   action-on-pr-merge:
     runs-on: ubuntu-latest
@@ -11,8 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-         ref: dev
+
         
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -41,14 +40,8 @@ jobs:
           to_branch=${{ github.event.pull_request.base.ref }}
           merge_timestamp=${{ github.event.pull_request.merged_at }}
 
-          #  20240216 - if no pr number, set to success
-          if [ -z "${{ github.event.pull_request.number }}" ]; then
-            # pr_number="failed"
-            pr_number="success"
-          else
-            pr_number="success"
-          fi
-   
+          pr_number="success"
+
           echo "Project Name : $project_name"
           echo "Repo Number: $repo_name"
           echo "PR Number: $pr_number"
