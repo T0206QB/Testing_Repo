@@ -125,30 +125,42 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  // petitsChevaux: {
-  //   name: "Petits Chevaux",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  plumber: {
-    name: "Plumber World",
+  petitsChevaux: {
+    name: "Petits Chevaux",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  // snakesAndLadders: {
-  //   name: "Snakes And Ladders",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  solitaire: {
-    name: "Solitaire Classic",
+  petitsChevaux1: {
+    name: "Petits Chevaux1",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
+  // plumber: {
+  //   name: "Plumber World",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
+  snakesAndLadders: {
+    name: "Snakes And Ladders",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  snakesAndLadders1: {
+    name: "Snakes And Ladders1",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  // solitaire: {
+  //   name: "Solitaire Classic",
+  //   premium: false,
+  //   unlocked: true,
+  //   price: "0.10",
+  // },
   sudoku: {
     name: "Sudoku",
     premium: false,
@@ -215,7 +227,7 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  yatzyYahtzeeYams: {
+  yatzyYahtzeeYams1: {
     name: "Yatzy Yahtzee Yams 1",
     premium: false,
     unlocked: true,
@@ -225,8 +237,8 @@ var gameDetails = {
 var usingPayPal = true; //false for no paypal
 const editSavedGamesList = (gameId, flagValue) => {
   const savedGamesList = JSON.parse(localStorage.getItem("gamesList"));
-  if(savedGamesList[`${gameId}`]){
-    savedGamesList[`${gameId}`] = (flagValue==="old") ? false : true;
+  if (savedGamesList[`${gameId}`]) {
+    savedGamesList[`${gameId}`] = (flagValue === "old") ? false : true;
     localStorage.setItem("gamesList", JSON.stringify(savedGamesList));
   }
 };
@@ -294,13 +306,13 @@ $(document).ready(function () {
   });
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
-        editSavedGamesList('candy', 'old');
+      editSavedGamesList('candy', 'old');
       location.href = "candyWorld/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#candy1").click(function () {
     if (gameDetails.candy.unlocked == true) {
-        editSavedGamesList('candy1', 'old');
+      editSavedGamesList('candy1', 'old');
       location.href = "candyWorld1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
@@ -330,13 +342,13 @@ $(document).ready(function () {
   $("#hex").click(function () {
     if (gameDetails.hex.unlocked == true) {
       location.href = "hex/index.html";
-        editSavedGamesList('hex', 'old');
+      editSavedGamesList('hex', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#hex1").click(function () {
     if (gameDetails.hex1.unlocked == true) {
       location.href = "hex1/index.html";
-        editSavedGamesList('hex1', 'old');
+      editSavedGamesList('hex1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -379,50 +391,65 @@ $(document).ready(function () {
   $("#parking").click(function () {
     if (gameDetails.parking.unlocked == true) {
       location.href = "parkingPanic/index.html";
-        editSavedGamesList('parking', 'old');
+      editSavedGamesList('parking', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#parking1").click(function () {
     if (gameDetails.parking1.unlocked == true) {
       location.href = "parkingPanic1/index.html";
-        editSavedGamesList('parking1', 'old');
+      editSavedGamesList('parking1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  $("#petitsChevaux").click(function () {
+    if (gameDetails.petitsChevaux.unlocked == true) {
+      location.href = "petitsChevaux/index.html";
+      editSavedGamesList('petitsChevaux', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  // $("#petitsChevaux").click(function () {
-  //   if (gameDetails.petitsChevaux.unlocked == true) {
-  //     location.href = "petitsChevaux/index.html";
+  $("#petitsChevaux1").click(function () {
+    if (gameDetails.petitsChevaux1.unlocked == true) {
+      location.href = "petitsChevaux1/index.html";
+      editSavedGamesList('petitsChevaux1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
+  // $("#plumber").click(function () {
+  //   if (gameDetails.plumber.unlocked == true) {
+  //     location.href = "plumberWorld/index.html";
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
 
-  $("#plumber").click(function () {
-    if (gameDetails.plumber.unlocked == true) {
-      location.href = "plumberWorld/index.html";
+  $("#snakesAndLadders").click(function () {
+    if (gameDetails.snakesAndLadders.unlocked == true) {
+      location.href = "snakesAndLadders/index.html";
+      editSavedGamesList('snakesAndLadders', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  // $("#snakesAndLadders").click(function () {
-  //   if (gameDetails.snakesAndLadders.unlocked == true) {
-  //     location.href = "snakesAndLadders/index.html";
+  $("#snakesAndLadders1").click(function () {
+    if (gameDetails.snakesAndLadders1.unlocked == true) {
+      location.href = "snakesAndLadders1/index.html";
+      editSavedGamesList('snakesAndLadders1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+
+  // $("#solitaire").click(function () {
+  //   if (gameDetails.solitaire.unlocked == true) {
+  //     location.href = "solitaireClassic/index.html";
   //   } else createPurchaseContainer($(this).attr("id"));
   // });
-
-  $("#solitaire").click(function () {
-    if (gameDetails.solitaire.unlocked == true) {
-      location.href = "solitaireClassic/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
 
   $("#sudoku").click(function () {
     if (gameDetails.sudoku.unlocked == true) {
       location.href = "sudoku/index.html";
-        editSavedGamesList('sudoku', 'old');
+      editSavedGamesList('sudoku', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#sudoku1").click(function () {
     if (gameDetails.sudoku1.unlocked == true) {
       location.href = "sudoku1/index.html";
-        editSavedGamesList('sudoku1', 'old');
+      editSavedGamesList('sudoku1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#tangram").click(function () {
@@ -441,50 +468,50 @@ $(document).ready(function () {
   $("#tenXTen").click(function () {
     if (gameDetails.tenXTen.unlocked == true) {
       location.href = "tenXTen/index.html";
-        editSavedGamesList('tenXTen', 'old');
+      editSavedGamesList('tenXTen', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#tenXTen1").click(function () {
     if (gameDetails.tenXTen1.unlocked == true) {
       location.href = "tenXTen1/index.html";
-        editSavedGamesList('tenXTen1', 'old');
+      editSavedGamesList('tenXTen1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#theGame13").click(function () {
     if (gameDetails.theGame13.unlocked == true) {
       location.href = "theGame13/index.html";
-        editSavedGamesList('theGame13', 'old');
+      editSavedGamesList('theGame13', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#theGame13-1").click(function () {
     if (gameDetails['theGame13-1'].unlocked == true) {
       location.href = "theGame13-1/index.html";
-        editSavedGamesList('theGame13-1', 'old');
+      editSavedGamesList('theGame13-1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#ticTacToe").click(function () {
     if (gameDetails.ticTacToe.unlocked == true) {
       location.href = "ticTacToe/index.html";
-        editSavedGamesList('ticTacToe', 'old');
+      editSavedGamesList('ticTacToe', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#ticTacToe1").click(function () {
     if (gameDetails.ticTacToe1.unlocked == true) {
       location.href = "ticTacToe1/index.html";
-        editSavedGamesList('ticTacToe1', 'old');
+      editSavedGamesList('ticTacToe1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#yatzyYahtzeeYams").click(function () {
     if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
       location.href = "yatzyYahtzeeYams/index.html";
-        editSavedGamesList('yatzyYahtzeeYams', 'old');
+      editSavedGamesList('yatzyYahtzeeYams', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#yatzyYahtzeeYams1").click(function () {
     if (gameDetails.yatzyYahtzeeYams1.unlocked == true) {
       location.href = "yatzyYahtzeeYams1/index.html";
-        editSavedGamesList('yatzyYahtzeeYams1', 'old');
+      editSavedGamesList('yatzyYahtzeeYams1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("body").css("opacity", 100);
@@ -507,12 +534,12 @@ function createPurchaseContainer(id) {
     $(".flexdiv").css("margin-top", "50px");
     $("body").append(
       '<div id="rightContainer"><div id="bannerContainer">' +
-        '<div id="betaBanner">Micropayment Beta</div>' +
-        '<img id="return-button" src="../images/CLOSE.svg"></div>' +
-        '<div id="preview-container"><img id="preview-image">' +
-        '<div id="details"></div></div><div id="payment-button-container">' +
-        '<div id="paypal-button-container"></div><div id="payment-button-divider">Or</div>' +
-        '<div id="subscribe-button-container"></div></div></div>'
+      '<div id="betaBanner">Micropayment Beta</div>' +
+      '<img id="return-button" src="../images/CLOSE.svg"></div>' +
+      '<div id="preview-container"><img id="preview-image">' +
+      '<div id="details"></div></div><div id="payment-button-container">' +
+      '<div id="paypal-button-container"></div><div id="payment-button-divider">Or</div>' +
+      '<div id="subscribe-button-container"></div></div></div>'
     );
     $("#return-button").click(function () {
       location.replace("index.html");
