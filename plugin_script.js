@@ -84,13 +84,3 @@ function getAppGrid(app_details) {
   return appGrid;
 }
 
-function refreshNotificationCount() {
-  const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
-  if (savedAppInfo?.games?.notification !== 0) {
-    // turn game notification count to zero
-    const editedAppInfoValue = {
-      games: { ...savedAppInfo?.games, notification: 0 },
-    };
-    localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
-  }
-}
