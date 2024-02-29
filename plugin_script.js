@@ -72,12 +72,12 @@ function getAppGrid(app_details) {
       },
     };
     if (notificationCount) {
-      notifyHTML = `<span>${notificationCount}</span>`;
+      notifyHTML = `<span id="app-notification">${notificationCount}</span>`;
     }
 
     localStorage.setItem("appInfo", JSON.stringify(appInfoValue));
   } else if (gamesAppInfo?.notification) {
-    notifyHTML = `<span>${gamesAppInfo.notification}</span>`;
+    notifyHTML = `<span id="app-notification">${gamesAppInfo.notification}</span>`;
   }
   appGrid = divHTML1 + notifyHTML + divHTML2;
 
