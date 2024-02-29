@@ -1,0 +1,130 @@
+{
+	"global":{
+		 "leaderboard_code":"global"
+		,"leaderboard_code_android":"CgkI0re3q_AaEAIQAA"
+		,"leaderboard_code_ios":"dominoesbig_global"
+		,"leaderboard_order":1
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "Points totaux",
+			"de": "Total Points",
+			"en": "Total Points",
+			"es": "Total Points",
+			"it": "Total Points",
+			"ko": "Total Points",
+			"pt": "Total Points",
+			"tr": "Total Points",
+			"af": "Total Points",
+			"ms": "Total Points",
+			"nl": "Total Points",
+			"ru": "Total Points",
+			"vn": "Total Points",
+			"zh": "Total Points",
+			"tw": "Total Points",
+			"ar": "Total Points",
+			"hi": "Total Points",
+			"id": "Total Points",
+			"ja": "Total Points",
+			"th": "Total Points"
+		}
+	},
+	"all_five":{
+		 "leaderboard_code":"all_five"
+		,"leaderboard_code_android":"CgkI0re3q_AaEAIQAQ"
+		,"leaderboard_code_ios":"dominoesbig_all_five"
+		,"leaderboard_order":2
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "【All Five】 gagnés",
+			"de": "【All Five】 won",
+			"en": "【All Five】 won",
+			"es": "【All Five】 won",
+			"it": "【All Five】 won",
+			"ko": "【All Five】 won",
+			"pt": "【All Five】 won",
+			"tr": "【All Five】 won",
+			"af": "【All Five】 won",
+			"ms": "【All Five】 won",
+			"nl": "【All Five】 won",
+			"ru": "【All Five】 won",
+			"vn": "【All Five】 won",
+			"zh": "【All Five】 won",
+			"tw": "【All Five】 won",
+			"ar": "【All Five】 won",
+			"hi": "【All Five】 won",
+			"id": "【All Five】 won",
+			"ja": "【All Five】 won",
+			"th": "【All Five】 won"
+		}
+	},
+	"draw":{
+		 "leaderboard_code":"draw"
+		,"leaderboard_code_android":"CgkI0re3q_AaEAIQAg"
+		,"leaderboard_code_ios":"dominoesbig_draw"
+		,"leaderboard_order":3
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "【Draw】 ganés",
+			"de": "【Draw】 won",
+			"en": "【Draw】 won",
+			"es": "【Draw】 won",
+			"it": "【Draw】 won",
+			"ko": "【Draw】 won",
+			"pt": "【Draw】 won",
+			"tr": "【Draw】 won",
+			"af": "【Draw】 won",
+			"ms": "【Draw】 won",
+			"nl": "【Draw】 won",
+			"ru": "【Draw】 won",
+			"vn": "【Draw】 won",
+			"zh": "【Draw】 won",
+			"tw": "【Draw】 won",
+			"ar": "【Draw】 won",
+			"hi": "【Draw】 won",
+			"id": "【Draw】 won",
+			"ja": "【Draw】 won",
+			"th": "【Draw】 won"
+		}
+	},
+	"block":{
+		 "leaderboard_code":"block"
+		,"leaderboard_code_android":"CgkI0re3q_AaEAIQAw"
+		,"leaderboard_code_ios":"dominoesbig_block"
+		,"leaderboard_order":4
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "【Block】 gagnés",
+			"de": "【Block】 won",
+			"en": "【Block】 won",
+			"es": "【Block】 won",
+			"it": "【Block】 won",
+			"ko": "【Block】 won",
+			"pt": "【Block】 won",
+			"tr": "【Block】 won",
+			"af": "【Block】 won",
+			"ms": "【Block】 won",
+			"nl": "【Block】 won",
+			"ru": "【Block】 won",
+			"vn": "【Block】 won",
+			"zh": "【Block】 won",
+			"tw": "【Block】 won",
+			"ar": "【Block】 won",
+			"hi": "【Block】 won",
+			"id": "【Block】 won",
+			"ja": "【Block】 won",
+			"th": "【Block】 won"
+		}
+	}
+}

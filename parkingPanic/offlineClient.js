@@ -1,1 +1,53 @@
-var _gameConfig="nothingToLoad",_pub_loaded=!1,_MG_loaded=!1,_gamename="unnamedgame",_clientID=-1,_platform="";function getConfigDatas(){return _gameConfig}function loadConfig(){var e=new XMLHttpRequest;e.onreadystatechange=function(n){4==e.readyState&&200==e.status&&(_gameConfig=e.responseText)},e.open("GET","//games.playtouch.net/games-config/loadGameConfig.php?gamename="+_gamename+"&clientID="+_clientID+"&platform="+_platform,!0),e.send()}function setGameName(e,n,o){(o=o||!1)&&""!=o&&(_platform=o),_gamename=e,_clientID=n,loadConfig()}function showWV(){_pub_loaded||loadWV(),"undefined"!=typeof CocoonJS&&CocoonJS.App.showTheWebView(0,0,window.innerWidth,window.innerHeight)}function showMG(){window.location="//games.playtouch.net/ad/moregame/nococoon.php?device="+_platform+"&gamename="+_gamename}function hideMG(){}function loadWV(){"undefined"!=typeof CocoonJS&&(CocoonJS.App.loadInTheWebView("//games.playtouch.net/ad/moregame/cocoon-test.php?device="+_platform+"&gamename="+_gamename+"&iscocoon=true"),CocoonJS.App.onLoadInTheWebViewSucceed.addEventListener((function(e){_pub_loaded=!0,_MG_loaded=!1,showWV()})))}function windowOpen(e){CocoonJS.App.forward("ext.IDTK_APP.makeCall('openURL' , "+e+" );")}function startOnline(){loadWV()}function startOffline(){"Android"!=_platform&&"Kindle"!=_platform&&startOnline(),CocoonJS.App.hideTheWebView()}function sendAnalytics(e,n,o,a,t){var i=new XMLHttpRequest;i.onreadystatechange=function(e){4==e.readyState&&e.status},i.open("GET","//games.playtouch.net/games-config/gameAnalytics.php?gamename="+e+"&clientID="+n+"&type="+o+"&value="+t+"&todo="+a+"&platform="+_platform,!0),i.send()}_platform=-1!=navigator.userAgent.toLowerCase().indexOf("android")?"Android":-1!=navigator.userAgent.toLowerCase().indexOf("ipad")?"iPad":-1!=navigator.userAgent.toLowerCase().indexOf("iphone")?"iPhone":-1!=navigator.userAgent.toLowerCase().indexOf("ipod")?"iOS":-1!=navigator.userAgent.toLowerCase().indexOf("silk")||-1!=navigator.userAgent.toLowerCase().indexOf("kindle")||-1!=navigator.userAgent.toLowerCase().indexOf("kfjw")||-1!=navigator.userAgent.toLowerCase().indexOf("kftt")||-1!=navigator.userAgent.toLowerCase().indexOf("kfot")?"Kindle":"unknow";
+"use strict";
+
+(function() {
+	
+	class OfflineClient
+	{
+		constructor()
+		{
+			// Create a BroadcastChannel, if supported.
+			this._broadcastChannel = (typeof BroadcastChannel === "undefined" ? null : new BroadcastChannel("offline"));
+			
+			// Queue of messages received before a message callback is set.
+			this._queuedMessages = [];
+			
+			// The message callback.
+			this._onMessageCallback = null;
+			
+			// If BroadcastChannel is supported, listen for messages.
+			if (this._broadcastChannel)
+				this._broadcastChannel.onmessage = (e => this._OnBroadcastChannelMessage(e));
+		}
+		
+		_OnBroadcastChannelMessage(e)
+		{
+			// Have a message callback set: just forward the call.
+			if (this._onMessageCallback)
+			{
+				this._onMessageCallback(e);
+				return;
+			}
+			
+			// Otherwise the app hasn't loaded far enough to set a message callback.
+			// Buffer the incoming messages to replay when the app sets a callback.
+			this._queuedMessages.push(e);
+		}
+		
+		SetMessageCallback(f)
+		{
+			this._onMessageCallback = f;
+			
+			// Replay any queued messages through the handler, then clear the queue.
+			for (let e of this._queuedMessages)
+				this._onMessageCallback(e);
+			
+			this._queuedMessages.length = 0;
+		}
+	};
+	
+	// Create the offline client ASAP so we receive and start queueing any messages the SW broadcasts.
+	window.OfflineClientInfo = new OfflineClient();
+	
+}());
+

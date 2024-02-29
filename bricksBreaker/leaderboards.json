@@ -1,0 +1,98 @@
+{
+	"global":{
+		 "leaderboard_code_android":"CgkIou2ZxroCEAIQAA"
+	    ,"leaderboard_code_ios":"bricksBreaker_global"
+	    ,"leaderboard_code":"global"
+		,"leaderboard_order":1
+		,"leaderboard_valuesFormat":"Integer"
+		,"leaderboard_valuesOrder":"Larger is better"
+		,"leaderboard_limitMin":0
+		,"leaderboard_limitMax":0
+		,"leaderboard_title":{
+			"fr": "Plus haute ligne",
+			"de": "Highest line",
+			"en": "Highest line",
+			"es": "Highest line",
+			"it": "Highest line",
+			"ko": "Highest line",
+			"pt": "Highest line",
+			"tr": "Highest line",
+			"af": "Highest line",
+			"ms": "Highest line",
+			"nl": "Highest line",
+			"ru": "Highest line",
+			"vn": "Highest line",
+			"zh": "Highest line",
+			"tw": "Highest line",
+			"ar": "Highest line",
+			"hi": "Highest line",
+			"id": "Highest line",
+			"ja": "Highest line",
+			"th": "Highest line"
+		}
+	},
+	"blocks":{
+		"leaderboard_code_android":"CgkIou2ZxroCEAIQAQ"
+	   ,"leaderboard_code_ios":"bricksBreaker_blocks"
+	   ,"leaderboard_code":"blocks"
+	   ,"leaderboard_order":1
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Blocks détruits",
+		   "de": "Broken blocks",
+		   "en": "Broken blocks",
+		   "es": "Broken blocks",
+		   "it": "Broken blocks",
+		   "ko": "Broken blocks",
+		   "pt": "Broken blocks",
+		   "tr": "Broken blocks",
+		   "af": "Broken blocks",
+		   "ms": "Broken blocks",
+		   "nl": "Broken blocks",
+		   "ru": "Broken blocks",
+		   "vn": "Broken blocks",
+		   "zh": "Broken blocks",
+		   "tw": "Broken blocks",
+		   "ar": "Broken blocks",
+		   "hi": "Broken blocks",
+		   "id": "Broken blocks",
+		   "ja": "Broken blocks",
+		   "th": "Broken blocks"
+	   }
+   },
+	"stars":{
+		"leaderboard_code_android":"CgkIou2ZxroCEAIQAg"
+	   ,"leaderboard_code_ios":"bricksBreakerr_stars"
+	   ,"leaderboard_code":"stars"
+	   ,"leaderboard_order":1
+	   ,"leaderboard_valuesFormat":"Integer"
+	   ,"leaderboard_valuesOrder":"Larger is better"
+	   ,"leaderboard_limitMin":0
+	   ,"leaderboard_limitMax":0
+	   ,"leaderboard_title":{
+		   "fr": "Étoiles",
+		   "de": "Stars",
+		   "en": "Stars",
+		   "es": "Stars",
+		   "it": "Stars",
+		   "ko": "Stars",
+		   "pt": "Stars",
+		   "tr": "Stars",
+		   "af": "Stars",
+		   "ms": "Stars",
+		   "nl": "Stars",
+		   "ru": "Stars",
+		   "vn": "Stars",
+		   "zh": "Stars",
+		   "tw": "Stars",
+		   "ar": "Stars",
+		   "hi": "Stars",
+		   "id": "Stars",
+		   "ja": "Stars",
+		   "th": "Stars"
+	   }
+   }
+}
