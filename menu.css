@@ -1,5 +1,13 @@
-body {
-  background-color: #1A1A1A;
+html, body {
+  font-size: 10px; /* 8.4" font baseline */
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none; 
+}
+
+body{
+  background-color: #000000;
   font-family: sans-serif;
   color: #FFFFFF;
   margin: 0;
@@ -7,19 +15,18 @@ body {
   display: flex;
   -webkit-tap-highlight-color: transparent;
   opacity: 0;
-  overflow: hidden;
 }
-
-.flexcontainer {
-  margin: 2rem 0rem 0rem 6rem;
-  width: 100%;
-  overflow: scroll;
+.flexcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
-
 .flexcontainer::-webkit-scrollbar {
   display: none;
 }
-
 #rightContainer {
   width: 50%;
   display: flex;
@@ -28,12 +35,10 @@ body {
   justify-content: center;
   border-left: 1px solid white;
 }
-
 #rightContainer #payment-button-container {
   width: 100%;
   padding-top: 5%;
 }
-
 #rightContainer #paypal-button-container {
   text-align: center;
   font-size: 32px;
@@ -41,7 +46,6 @@ body {
   width: 30%;
   padding-left: 13%;
 }
-
 #rightContainer #payment-button-divider {
   font-size: 31px;
   text-align: center;
@@ -49,16 +53,14 @@ body {
   padding-right: 5%;
   float: left;
 }
-
-#rightContainer #subscribe-button-container {
+#rightContainer #subscribe-button-container{
   text-align: center;
   font-size: 32px;
   float: left;
   width: 30%;
   padding-right: 13%;
 }
-
-#rightContainer #subscribe-button {
+#rightContainer #subscribe-button{
   position: relative;
   display: inline-block;
   width: 100%;
@@ -68,14 +70,12 @@ body {
   background: #00358e;
   border-radius: 28px;
 }
-
 #subscribe-button p {
   margin: 0;
   padding-top: 2%;
   font-style: oblique;
   font-weight: bold;
 }
-
 #rightContainer #return-button {
   width: 40px;
   padding: 30px;
@@ -85,114 +85,104 @@ body {
   right: 0;
   float: right;
 }
-
 #rightContainer #betaBanner {
   font-size: 32px;
   font-style: italic;
   opacity: 0.2;
 }
-
 #rightContainer #preview-container {
   padding: 10%;
   text-align: center;
 }
-
 #rightContainer #preview-image {
   border-radius: 35px;
   text-align: center;
   box-shadow: 0 0 20px 8px #f49c04;
 }
-
 #rightContainer #details {
   text-align: center;
   padding-top: 10%;
   font-size: 32px;
 }
-
-.flexdiv {
+.flexdiv{
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
+  margin: 2rem 3rem;
 }
-
-.gameApp {
-   margin-right: 4rem;
-   width:230px;
-   
+.gameApp{
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 1.5rem;
 }
-
+.gameimg{
+  padding: 0;
+  height: 16rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  position: relative;
+}
+.gameimg img{
+  object-fit: cover;
+  border-radius: 35px;
+}
 .gameimg .icon {
-  width: 14rem;
-  height:14rem;
-} 
-
-.gameimg .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.gameimg .overlay{
   position: absolute;
   visibility: hidden;
 }
-
-.gameimg .new {
-  position: absolute;
-}
-
-.gamename {
+.gamename{
   text-align: center;
-  padding: 20px;
-  font-size:25px;
+  padding: 1rem 0.5rem;
+  font-size: 2.4rem;
+  max-width: 20rem;
+  line-height: 2.3rem;
 }
 
 #newImage {
-  height: 30%;
-  width: 30%;
-}
-
-#content {
-  position: relative;
-}
-
-#content img {
+  height: 5rem;
+  width: 5rem;
+  z-index: 1;
+  left: 15.5rem;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  bottom: 11.5rem;
 }
 
-/* 10.1 => (1920px - 1200px) */
-@media only screen and (min-width: 1920px) and (max-height: 1200px) {
-  .flexcontainer {
-    margin: 4rem 2rem 0rem 8.5rem;
-  }
-  .gameApp {
-    margin-right:6rem;
-    width:21.9rem;
-  }
-  .gameimg .icon {
-  width: 21rem;
-  height:21rem;
-  } 
-  .gamename {
-  text-align: center;
-  padding: 1.6rem;
-  font-size: 2.8rem;
-  }
-}
 
-/* 12.3 => (1920px - 720px) */
-@media only screen and (min-width: 1920px) and (min-height: 720px) { 
-  .ds_belowtext{
-  .flexcontainer {
-    margin: 4rem 2rem 0rem 8.5rem;
+@media screen and (width: 1920px) {
+  /* Base font size for responsive layout in games screen*/
+  html, body {
+      font-size: 17.78px;
   }
+
   .gameApp {
-    margin-right:6rem;
-    width:21.9rem;
+    margin: 0.5rem 1.6rem;
+    padding: 0rem 1rem;
+    max-width: 15rem;
   }
-  .gameimg .icon {
-  width: 21rem;
-  height:21rem;
-  } 
-  .gamename {
-  text-align: center;
-  padding: 1.6rem;
-  font-size: 2.8rem;
+
+  .gameimg{
+    height: 14.5rem;
+    width: 14.5rem;
   }
-}
+
+  .gamename{
+    padding: 0.5rem;
+    font-size: 2.6rem;
+    max-width: 16rem;
+    line-height: 2.6rem;
+  }
+  
+  #newImage {
+    left: 10rem;
+    bottom: 10rem;
+  }
 }
