@@ -143,12 +143,18 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  // plumber: {
-  //   name: "Plumber World",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  plumber: {
+    name: "Plumber World",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  plumber1: {
+    name: "Plumber World Compressed",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   snakesAndLadders: {
     name: "Snakes And Ladders",
     premium: false,
@@ -161,12 +167,18 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  // solitaire: {
-  //   name: "Solitaire Classic",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
+  solitaire: {
+    name: "Solitaire Classic",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
+  solitaire1: {
+    name: "Solitaire Classic Compressed",
+    premium: false,
+    unlocked: true,
+    price: "0.10",
+  },
   sudoku: {
     name: "Sudoku",
     premium: false,
@@ -428,12 +440,20 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  // $("#plumber").click(function () {
-  //   if (gameDetails.plumber.unlocked == true) {
-  //     location.href = "plumberWorld/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#plumber").click(function () {
+    if (gameDetails.plumber.unlocked == true) {
+      location.href = "plumberWorld/index.html";
+      editSavedGamesList('plumberWorld', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
+  $("#plumber1").click(function () {
+    if (gameDetails.plumber1.unlocked == true) {
+      location.href = "plumberWorld1/index.html";
+      editSavedGamesList('plumberWorld1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  
   $("#snakesAndLadders").click(function () {
     if (gameDetails.snakesAndLadders.unlocked == true) {
       location.href = "snakesAndLadders/index.html";
@@ -448,11 +468,19 @@ $(document).ready(function () {
     } else createPurchaseContainer($(this).attr("id"));
   });
 
-  // $("#solitaire").click(function () {
-  //   if (gameDetails.solitaire.unlocked == true) {
-  //     location.href = "solitaireClassic/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
+  $("#solitaire").click(function () {
+    if (gameDetails.solitaire.unlocked == true) {
+      location.href = "solitaireClassic/index.html";
+      editSavedGamesList('solitaireClassic', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
+  
+  $("#solitaire1").click(function () {
+    if (gameDetails.solitaire.unlocked == true) {
+      location.href = "solitaireClassic1/index.html";
+      editSavedGamesList('solitaireClassic1', 'old');
+    } else createPurchaseContainer($(this).attr("id"));
+  });
 
   $("#sudoku").click(function () {
     if (gameDetails.sudoku.unlocked == true) {
