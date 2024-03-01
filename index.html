@@ -250,10 +250,37 @@
 </body>
 
 <script>
-  var games = [];
-// adding comment to commit the branch
+const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
+const vin = sessionStorage.getItem('vin');
+const country = sessionStorage.getItem('country');
+const device = sessionStorage.getItem('deviceid');
+const brand = sessionStorage.getItem('brand');
+const parent = 'iconic-games'; // this is ID and dont change it
+const apiUrl = `${baseUrl}?vin=${vin}&country=${country}&device=${device}&brand=${brand}&parent=${parent}`;
+const bearerToken = sessionStorage.getItem('IdToken');
+const headers = new Headers({
+  'Authorization': `Bearer ${bearerToken}`
+});
 
-// adding comment to commit the branch// adding comment to commit the branch// adding comment to commit the branch
+fetch(apiUrl, {
+  method: 'GET',
+  headers: headers,
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('response Data:', data);
+  })
+  .catch(error => {
+    console.error('Fetch Error:', error);
+  });
+
+  var games = [];
+
   var gameDetails = {
     bubbleShooter: {
       name: "Bubble Shooter",
