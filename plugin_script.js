@@ -22,9 +22,9 @@ function getAppGrid(app_details) {
   </div>`;
 
   console.log("game feature flags", appId, app_details.featureFlags);
-  const featureFlagsNotification = app_details.featureFlags?.notification;
+  const featureFlagsNotification = app_details.featureFlags && app_details.featureFlags.notification;
   if(featureFlagsNotification){
-    const featureFlagArr = featureFlagsNotification?.split(";") || [];
+    const featureFlagArr = featureFlagsNotification.split(";") || [];
     console.log("featureFlagArr", featureFlagsNotification, featureFlagArr);
     const latestDetails = featureFlagArr[featureFlagArr.length - 1]
       ? featureFlagArr[featureFlagArr.length - 1]
@@ -37,23 +37,23 @@ function getAppGrid(app_details) {
     console.log("games latest version from EE", incomingGamesLatestVersion);
   
     const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
-    const gamesAppInfo = savedAppInfo?.games || {};
+    const gamesAppInfo = savedAppInfo.games || {};
     console.log("local storage gamesAppInfo", gamesAppInfo);
   
     if (
-      !gamesAppInfo?.version ||
-      gamesAppInfo?.version < incomingGamesLatestVersion
+      !gamesAppInfo.version ||
+      gamesAppInfo.version < incomingGamesLatestVersion
     ) {
-      console.log("initial version", !gamesAppInfo?.version);
-      const initialVers = !gamesAppInfo?.version
+      console.log("initial version", !gamesAppInfo.version);
+      const initialVers = !gamesAppInfo.version
         ? Number(
             featureFlagsNotification.substring(
               featureFlagsNotification.indexOf("ver=") + 4,
               featureFlagsNotification.indexOf(",")
             )
           )
-        : gamesAppInfo?.version + 1;
-      var initialCount = gamesAppInfo?.notification || 0;
+        : gamesAppInfo.version + 1;
+      var initialCount = gamesAppInfo.notification || 0;
   
       const initVersionStr = `ver=${initialVers},`;
       const countString = featureFlagsNotification.split(initVersionStr)[1];
@@ -79,7 +79,7 @@ function getAppGrid(app_details) {
       }
   
       localStorage.setItem("appInfo", JSON.stringify(appInfoValue));
-    } else if (gamesAppInfo?.notification) {
+    } else if (gamesAppInfo.notification) {
       notifyHTML = `<span id="app-notification">${gamesAppInfo.notification}</span>`;
     }
   }

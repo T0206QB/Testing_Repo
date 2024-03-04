@@ -612,12 +612,15 @@ function createSubscribeButton(id) {
 
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
-  if (savedAppInfo?.games?.notification !== 0) {
+  const notification = savedAppInfo.games && savedAppInfo.games.notification;
+  if (notification !== 0) {
     // turn game notification count to zero
     const editedAppInfoValue = {
       ...savedAppInfo,
-      games: { ...savedAppInfo?.games,
-         notification: 0 },
+      games: { 
+              ...savedAppInfo.games,
+              notification: 0
+             }
     };
     localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
   }
