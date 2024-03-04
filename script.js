@@ -1,3 +1,32 @@
+let driver_distraction = false;
+window.addEventListener("driver_distraction", () => {
+  console.log(`driver_distraction ${driver_distraction}`);
+  if (driver_distraction) {
+    return;
+  }
+  driver_distraction = true;
+  load_driver_distraction();
+});
+
+window.addEventListener("no_driver_distraction", () => {
+  console.log(`no_driver_distraction ${driver_distraction}`);
+  if (!driver_distraction) {
+    return;
+  }
+  driver_distraction = false;
+  load_non_driver_distraction();
+});
+
+function load_driver_distraction() {
+  $("#gameContainer").hide();
+  $("#ddmessage").css("display", "flex");
+}
+
+function load_non_driver_distraction() {
+  $("#ddmessage").css("display", "none");
+  $("#gameContainer").show();
+}
+
 var gameDetails = {
   // woodenEdition2048: {
   //   name: "2048",
@@ -636,7 +665,6 @@ function createSubscribeButton(id) {
     location.replace("../digitalstore/index.html?game=" + id);
   });
 }
-
 
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};

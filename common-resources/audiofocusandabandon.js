@@ -43,6 +43,8 @@ function onVisibilityChanged() {
     }
     cr_setSuspended(false);
   }
+  if(driver_distraction)
+  cr_setSuspended(true);
 }
 
 document.addEventListener("visibilitychange", onVisibilityChanged, false);
@@ -61,7 +63,7 @@ window.C2_RegisterSW = function C2_RegisterSW() {
 
   try {
     navigator.serviceWorker
-      .register("sw.min.js", { scope: "./" })
+      .register("sw.js", { scope: "./" })
       .then(function (reg) {
         console.log("Registered service worker on " + reg.scope);
       })
