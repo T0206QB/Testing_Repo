@@ -1,3 +1,32 @@
+let driver_distraction = false;
+window.addEventListener("driver_distraction", () => {
+  console.log(`driver_distraction ${driver_distraction}`);
+  if (driver_distraction) {
+    return;
+  }
+  driver_distraction = true;
+  load_driver_distraction();
+});
+
+window.addEventListener("no_driver_distraction", () => {
+  console.log(`no_driver_distraction ${driver_distraction}`);
+  if (!driver_distraction) {
+    return;
+  }
+  driver_distraction = false;
+  load_non_driver_distraction();
+});
+
+function load_driver_distraction() {
+  $("#gameContainer").hide();
+  $("#ddmessage").css("display", "flex");
+}
+
+function load_non_driver_distraction() {
+  $("#ddmessage").css("display", "none");
+  $("#gameContainer").show();
+}
+
 var gameDetails = {
   // woodenEdition2048: {
   //   name: "2048",
@@ -635,4 +664,20 @@ function createSubscribeButton(id) {
   $("#subscribe-button-container").click(function () {
     location.replace("../digitalstore/index.html?game=" + id);
   });
+}
+
+window.onload = function () {
+  const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
+  const notification = savedAppInfo.games && savedAppInfo.games.notification;
+  if (notification !== 0) {
+    // turn game notification count to zero
+    const editedAppInfoValue = {
+      ...savedAppInfo,
+      games: { 
+              ...savedAppInfo.games,
+              notification: 0
+             }
+    };
+    localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
+  }
 }
