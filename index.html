@@ -251,7 +251,7 @@
 </body>
 
 <script>
-const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
+   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
 const vin = sessionStorage.getItem('vin');
 const country = sessionStorage.getItem('country');
 const device = sessionStorage.getItem('deviceid');
@@ -274,281 +274,16 @@ fetch(apiUrl, {
     return response.json();
   })
   .then(data => {
-    console.log('response Data:', data);
-  })
-  .catch(error => {
-    console.error('Fetch Error:', error);
-  });
-
-  var games = [];
-
-  var gameDetails = {
-    bubbleShooter: {
-      name: "Bubble Shooter",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "bubbleShooter",
-      image: "bubbleShooter/icon-256.png",
-    },
-    bubbleShooter1: {
-      name: "Bubble Shooter Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "bubbleShooter1",
-      image: "bubbleShooter1/icon-256.png",
-    },
-    candy: {
-      name: "Candy World",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "candy",
-      image: "candyWorld/icon-256.png",
-    },
-    candy1: {
-      name: "Candy World Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "candy1",
-      image: "candyWorld1/icon-256.png",
-    },
-    hex: {
-      name: "Hex",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "hex",
-      image: "hex/icon-256.png",
-    },
-    hex1: {
-      name: "Hex Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "hex1",
-      image: "hex1/icon-256.png",
-    },
-    liquidPuzzle: {
-      name: "Liquid Puzzle",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "liquidPuzzle",
-      image: "liquidPuzzle/icon-256.png",
-    },
-    liquidPuzzle1: {
-      name: "Liquid Puzzle Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "liquidPuzzle1",
-      image: "liquidPuzzle1/icon-256.png",
-    },
-    oneLineOnly: {
-      name: "One Line Only",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "oneLineOnly",
-      image: "oneLineOnly/icon-256.png",
-    },
-    oneLineOnly1: {
-      name: "One Line Only Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "oneLineOnly1",
-      image: "oneLineOnly1/icon-256.png",
-    },
-    parking: {
-      name: "Parking Panic",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "parking",
-      image: "parkingPanic/icon-256.png",
-    },
-    parking1: {
-      name: "Parking Panic Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "parking1",
-      image: "parkingPanic/icon-256.png",
-    },
-    petitsChevaux:{
-      name: "Petits Chevaux",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "petitsChevaux",
-      image: "petitsChevaux/icon-256.png",
-    },
-    petitsChevaux1:{
-      name: "Petits Chevaux Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "petitsChevaux1",
-      image: "petitsChevaux1/icon-256.png",
-    },
-    plumber:{
-      name: "Plumber World",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "plumber",
-      image: "plumberWorld/icon-256.png",
-    },
-    plumber1:{
-      name: "Plumber World Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "plumber1",
-      image: "plumberWorld1/icon-256.png",
-    },
-    snakesAndLadders: {
-      name: "Snakes and Ladders",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "snakesAndLadders",
-      image: "snakesAndLadders/icon-256.png",
-    },
-    snakesAndLadders1: {
-      name: "Snakes and Ladders Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "snakesAndLadders1",
-      image: "snakesAndLadders1/icon-256.png",
-    },
-    solitaire: {
-      name: "Solitaire Classic",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "solitaire",
-      image: "solitaireClassic/icon-256.png",
-    },
-    solitaire1:{
-      name: "Solitaire Classic Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "solitaire1",
-      image: "solitaireClassic1/icon-256.png",
-    },
-    sudoku: {
-      name: "Sudoku",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "sudoku",
-      image: "sudoku/icon-256.png",
-    },
-    sudoku1: {
-      name: "Sudoku Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "sudoku1",
-      image: "sudoku1/icon-256.png",
-    },
-    tangram: {
-      name: "Tangram",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tangram",
-      image: "tangramPuzzle/icon-256.png",
-    },
-    tangram1: {
-      name: "Tangram Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tangram1",
-      image: "tangramPuzzle1/icon-256.png",
-    },
-    tenXTen: {
-      name: "Ten X Ten",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tenXTen",
-      image: "tenXTen/icon-256.png",
-    },
-    tenXTen1: {
-      name: "Ten X Ten Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tenXTen1",
-      image: "tenXTen1/icon-256.png",
-    },
-    theGame13: {
-      name: "The Game 13",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "theGame13",
-      image: "theGame13/icon-256.png",
-    },
-    "theGame13-1": {
-      name: "The Game 13 Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "theGame13-1",
-      image: "theGame13-1/icon-256.png",
-    },
-    ticTacToe: {
-      name: "Tic Tac Toe",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "ticTacToe",
-      image: "ticTacToe/icon-256.png",
-    },
-    ticTacToe1: {
-      name: "Tic Tac Toe Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "ticTacToe1",
-      image: "ticTacToe1/icon-256.png",
-    },
-    yatzyYahtzeeYams: {
-      name: "Yatzy Yahtzee Yams",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "yatzyYahtzeeYams",
-      image: "yatzyYahtzeeYams/icon-256.png",
-    },
-    yatzyYahtzeeYams1: {
-      name: "Yatzy Yahtzee Yams Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "yatzyYahtzeeYams1",
-      image: "yatzyYahtzeeYams1/icon-256.png",
-    },
-  };
-
-  for (let i in gameDetails) {
-    games.push(gameDetails[i]);
-  }
-  games.sort((a, b) => a.name.localeCompare(b.name));
-  console.log("gd1", gameDetails, games);
+    
+    games.push(data);
+  
+    console.log('inside games Data:', games);
+    games[0].apps.sort((a, b) => a.name.localeCompare(b.name));
+  console.log("gd1", gameDetails, games[0].apps);
   var gameContainer = document.getElementById("gameContainer");
 
-  games.forEach((game) => {
+  games[0].apps.forEach((game) => {
+    console.log(game,"*****")
     var gameDiv = document.createElement("div");
     gameDiv.id = game.id;
     gameDiv.className = "gameApp";
@@ -594,7 +329,7 @@ fetch(apiUrl, {
 
     var gameDivHTML1 = `
    <div class="gameimg">
-     <img src="${game.image}" class="icon" />
+     <img src="${game.srcImg}" class="icon" />
      <img src="../images/premium-256.png" class="overlay" />`;
     var gameNewHTML =
       JSON.parse(localStorage.getItem("gamesList"))[`${game.id}`] === true
@@ -606,6 +341,275 @@ fetch(apiUrl, {
     gameDiv.innerHTML = gameDivHTML1 + gameNewHTML + gameDivHTML2;
     gameContainer.appendChild(gameDiv);
   });
+  })
+  .catch(error => {
+    console.error('Fetch Error:', error);
+  });   
+
+  var games = [];
+
+  // var gameDetails = {
+  //   bubbleShooter: {
+  //     name: "Bubble Shooter",
+  //     price: "0.10",
+  //     id: "bubbleShooter",
+  //     image: "bubbleShooter/icon-256.png",
+  //   },
+  //   bubbleShooter1: {
+  //     name: "Bubble Shooter Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "bubbleShooter1",
+  //     image: "bubbleShooter1/icon-256.png",
+  //   },
+  //   candy: {
+  //     name: "Candy World",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "candy",
+  //     image: "candyWorld/icon-256.png",
+  //   },
+  //   candy1: {
+  //     name: "Candy World Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "candy1",
+  //     image: "candyWorld1/icon-256.png",
+  //   },
+  //   hex: {
+  //     name: "Hex",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "hex",
+  //     image: "hex/icon-256.png",
+  //   },
+  //   hex1: {
+  //     name: "Hex Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "hex1",
+  //     image: "hex1/icon-256.png",
+  //   },
+  //   liquidPuzzle: {
+  //     name: "Liquid Puzzle",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "liquidPuzzle",
+  //     image: "liquidPuzzle/icon-256.png",
+  //   },
+  //   liquidPuzzle1: {
+  //     name: "Liquid Puzzle Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "liquidPuzzle1",
+  //     image: "liquidPuzzle1/icon-256.png",
+  //   },
+  //   oneLineOnly: {
+  //     name: "One Line Only",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "oneLineOnly",
+  //     image: "oneLineOnly/icon-256.png",
+  //   },
+  //   oneLineOnly1: {
+  //     name: "One Line Only Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "oneLineOnly1",
+  //     image: "oneLineOnly1/icon-256.png",
+  //   },
+  //   parking: {
+  //     name: "Parking Panic",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "parking",
+  //     image: "parkingPanic/icon-256.png",
+  //   },
+  //   parking1: {
+  //     name: "Parking Panic Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "parking1",
+  //     image: "parkingPanic/icon-256.png",
+  //   },
+  //   petitsChevaux:{
+  //     name: "Petits Chevaux",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "petitsChevaux",
+  //     image: "petitsChevaux/icon-256.png",
+  //   },
+  //   petitsChevaux1:{
+  //     name: "Petits Chevaux Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "petitsChevaux1",
+  //     image: "petitsChevaux1/icon-256.png",
+  //   },
+  //   plumber:{
+  //     name: "Plumber World",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "plumber",
+  //     image: "plumberWorld/icon-256.png",
+  //   },
+  //   plumber1:{
+  //     name: "Plumber World Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "plumber1",
+  //     image: "plumberWorld1/icon-256.png",
+  //   },
+  //   snakesAndLadders: {
+  //     name: "Snakes and Ladders",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "snakesAndLadders",
+  //     image: "snakesAndLadders/icon-256.png",
+  //   },
+  //   snakesAndLadders1: {
+  //     name: "Snakes and Ladders Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "snakesAndLadders1",
+  //     image: "snakesAndLadders1/icon-256.png",
+  //   },
+  //   solitaire: {
+  //     name: "Solitaire Classic",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "solitaire",
+  //     image: "solitaireClassic/icon-256.png",
+  //   },
+  //   solitaire1:{
+  //     name: "Solitaire Classic Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "solitaire1",
+  //     image: "solitaireClassic1/icon-256.png",
+  //   },
+  //   sudoku: {
+  //     name: "Sudoku",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "sudoku",
+  //     image: "sudoku/icon-256.png",
+  //   },
+  //   sudoku1: {
+  //     name: "Sudoku Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "sudoku1",
+  //     image: "sudoku1/icon-256.png",
+  //   },
+  //   tangram: {
+  //     name: "Tangram",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "tangram",
+  //     image: "tangramPuzzle/icon-256.png",
+  //   },
+  //   tangram1: {
+  //     name: "Tangram Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "tangram1",
+  //     image: "tangramPuzzle1/icon-256.png",
+  //   },
+  //   tenXTen: {
+  //     name: "Ten X Ten",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "tenXTen",
+  //     image: "tenXTen/icon-256.png",
+  //   },
+  //   tenXTen1: {
+  //     name: "Ten X Ten Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "tenXTen1",
+  //     image: "tenXTen1/icon-256.png",
+  //   },
+  //   theGame13: {
+  //     name: "The Game 13",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "theGame13",
+  //     image: "theGame13/icon-256.png",
+  //   },
+  //   "theGame13-1": {
+  //     name: "The Game 13 Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "theGame13-1",
+  //     image: "theGame13-1/icon-256.png",
+  //   },
+  //   ticTacToe: {
+  //     name: "Tic Tac Toe",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "ticTacToe",
+  //     image: "ticTacToe/icon-256.png",
+  //   },
+  //   ticTacToe1: {
+  //     name: "Tic Tac Toe Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "ticTacToe1",
+  //     image: "ticTacToe1/icon-256.png",
+  //   },
+  //   yatzyYahtzeeYams: {
+  //     name: "Yatzy Yahtzee Yams",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "yatzyYahtzeeYams",
+  //     image: "yatzyYahtzeeYams/icon-256.png",
+  //   },
+  //   yatzyYahtzeeYams1: {
+  //     name: "Yatzy Yahtzee Yams Compressed",
+  //     premium: false,
+  //     unlocked: true,
+  //     price: "0.10",
+  //     id: "yatzyYahtzeeYams1",
+  //     image: "yatzyYahtzeeYams1/icon-256.png",
+  //   },
+  // };
+
+  console.log('outside games Data:', games);
+  
+  
+
+  
 </script>
 
 </html>
