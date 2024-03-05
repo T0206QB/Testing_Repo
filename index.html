@@ -568,14 +568,10 @@
    <div class="gameimg">
      <img src="${game.image}" class="icon" />
      <img src="../images/premium-256.png" class="overlay" />`;
-    var gameNewHTML =
-      JSON.parse(localStorage.getItem("gamesList"))[`${game.id}`] === true
-        ? `<img src="newIcon.svg" id ="newImage"/>`
-        : ``;
 
     var gameDivHTML2 = `</div>
    <div class="gamename">${game.name}</div>`;
-    gameDiv.innerHTML = gameDivHTML1 + gameNewHTML + gameDivHTML2;
+    gameDiv.innerHTML = gameDivHTML1 + gameDivHTML2;
     gameContainer.appendChild(gameDiv);
   });
 </script>
