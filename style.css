@@ -8,7 +8,7 @@
     font-size: 1.8rem;
     font-family: "Roboto";
     z-index: 999999;
-    padding-top: 18rem;
+    padding-top: 14rem;
   }
   @media screen and (width: 1920px) {
     #ddmessage {

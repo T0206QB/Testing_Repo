@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>parkingPanic</title>
 	<link rel="manifest" href="appmanifest.json" />
+	<link rel="stylesheet" type="text/css" href="../style.css" />
 
 	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
 	<meta name="viewport"
@@ -46,6 +47,8 @@
 </head>
 
 <body>
+	<div id="ddmessage" >Function not available while vehicle is in motion.</div>
+	<script src="../common-resources/driverDistraction.js"></script>
 	<div id="fb-root"></div>
 
 	<script>
@@ -91,49 +94,6 @@
 	<script src="c2runtime.js"></script>
 	<script src="../common-resources/audiofocusandabandon.js"></script>
 
-	
-	<script>
-		// Start the Construct 2 project running on window load.
-		jQuery(document).ready(function () {
-			// Create new runtime using the c2canvas
-			cr_createRuntime("c2canvas");
-		});
-
-		// Pause and resume on page becoming visible/invisible
-		function onVisibilityChanged() {
-			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
-				cr_setSuspended(true);
-			else
-				cr_setSuspended(false);
-		};
-
-		document.addEventListener("visibilitychange", onVisibilityChanged, false);
-		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
-		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
-		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
-
-		function OnRegisterSWError(e) {
-			console.warn("Failed to register service worker: ", e);
-		};
-
-		// Runtime calls this global method when ready to start caching (i.e. after startup).
-		// This registers the service worker which caches resources for offline support.
-		window.C2_RegisterSW = function C2_RegisterSW() {
-			if (!navigator.serviceWorker)
-				return;		// no SW support, ignore call
-
-			try {
-				navigator.serviceWorker.register("sw.js", { scope: "./" })
-					.then(function (reg) {
-						console.log("Registered service worker on " + reg.scope);
-					})
-					.catch(OnRegisterSWError);
-			}
-			catch (e) {
-				OnRegisterSWError(e);
-			}
-		};
-	</script>
 </body>
 
 </html>
