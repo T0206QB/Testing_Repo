@@ -6,8 +6,6 @@
 		url(notosans-regular-webfont.woff) format('woff'),
 		url(notosans-regular-webfont.ttf) format('truetype');
 }
-
-/*Simplified Chinese - Traditional Chinese - Japanese - Korean*/
 @font-face {
 	font-family: 'Noto Sans JP';
 	font-style: normal;

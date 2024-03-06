@@ -28,122 +28,14 @@ function load_non_driver_distraction() {
 }
 
 var gameDetails = {
-  // woodenEdition2048: {
-  //   name: "2048",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // align4Big: {
-  //   name: "Align 4 Big",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // bricks: {
-  //   name: "Bricks Breaker",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
   bubbleShooter: {
     name: "Bubble Shooter",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  bubbleShooter: {
-    name: "Bubble Shooter1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  candy: {
-    name: "Candy World",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  candy: {
-    name: "Candy World1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  // chooChooConnect: {
-  //   name: "Choo Choo Connect",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // dominoesBig: {
-  //   name: "Dominoes Big",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // fillInTheHoles: {
-  //   name: "Fill In The Holes",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // gameOfGoose: {
-  //   name: "Game Of Goose Classic Edition",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
   hex: {
     name: "Hex",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  hex: {
-    name: "Hex1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  // linkTheNumbers: {
-  //   name: "Link The Numbers",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  liquidPuzzle: {
-    name: "Liquid Puzzle",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  liquidPuzzle: {
-    name: "Liquid Puzzle1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  // mahjongBig: {
-  //   name: "Mahjong Big",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  // mathGamesForAdults: {
-  //   name: "Math Games For Adults",
-  //   premium: false,
-  //   unlocked: true,
-  //   price: "0.10",
-  // },
-  oneLineOnly: {
-    name: "One Line Only",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  oneLineOnly1: {
-    name: "One Line Only Compressed",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -154,92 +46,9 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  parking: {
-    name: "Parking Panic1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  petitsChevaux: {
-    name: "Petits Chevaux",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  petitsChevaux1: {
-    name: "Petits Chevaux1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  plumber: {
-    name: "Plumber World",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  plumber1: {
-    name: "Plumber World Compressed",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  snakesAndLadders: {
-    name: "Snakes And Ladders",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  snakesAndLadders1: {
-    name: "Snakes And Ladders1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  solitaire: {
-    name: "Solitaire Classic",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  solitaire1: {
-    name: "Solitaire Classic Compressed",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   sudoku: {
     name: "Sudoku",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  sudoku1: {
-    name: "Sudoku1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  tangram: {
-    name: "Tangram Puzzle",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  tangram1: {
-    name: "Tangram Puzzle Compressed",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  tenXTen: {
-    name: "TenXTen",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  tenXTen1: {
-    name: "tenXTen 1",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -250,32 +59,15 @@ var gameDetails = {
     unlocked: true,
     price: "0.10",
   },
-  theGame13: {
-    name: "The Game 13-1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
+
   ticTacToe: {
     name: "Tic Tac Toe",
     premium: false,
     unlocked: true,
     price: "0.10",
   },
-  ticTacToe1: {
-    name: "Tic Tac Toe 1",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
   yatzyYahtzeeYams: {
     name: "Yatzy Yahtzee Yams",
-    premium: false,
-    unlocked: true,
-    price: "0.10",
-  },
-  yatzyYahtzeeYams1: {
-    name: "Yatzy Yahtzee Yams 1",
     premium: false,
     unlocked: true,
     price: "0.10",
@@ -287,8 +79,6 @@ $(document).ready(function () {
   getParams();
   if (Object.keys(params).length !== 0) {
     for (var [key, value] of Object.entries(params)) {
-      // sort games alphabetically
-      //pipeline testing
       if (key in gameDetails)
         gameDetails[key].unlocked = value == "true" ? true : false;
     }
@@ -314,115 +104,15 @@ $(document).ready(function () {
       );
   }
 
-  // $("#woodenEdition2048").click(function () {
-  //   if (gameDetails.woodenEdition2048.unlocked == true) {
-  //     location.href = "2048woodenEdition/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  // $("#align4Big").click(function () {
-  //   if (gameDetails.align4Big.unlocked == true) {
-  //     location.href = "align4Big/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  // $("#bricks").click(function () {
-  //   if (gameDetails.bricks.unlocked == true) {
-  //     location.href = "bricksBreaker/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
   $("#bubbleShooter").click(function () {
     if (gameDetails.bubbleShooter.unlocked == true) {
       location.href = "bubbleShooter/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#bubbleShooter1").click(function () {
-    if (gameDetails.bubbleShooter1.unlocked == true) {
-      location.href = "bubbleShooter1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#candy").click(function () {
-    if (gameDetails.candy.unlocked == true) {
-      location.href = "candyWorld/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#candy1").click(function () {
-    if (gameDetails.candy.unlocked == true) {
-      location.href = "candyWorld1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
 
-  // $("#chooChooConnect").click(function () {
-  //   if (gameDetails.chooChooConnect.unlocked == true) {
-  //     location.href = "chooChooConnect/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  // $("#dominoesBig").click(function () {
-  //   if (gameDetails.dominoesBig.unlocked == true) {
-  //     location.href = "dominoesBig/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  // $("#fillInTheHoles").click(function () {
-  //   if (gameDetails.fillInTheHoles.unlocked == true) {
-  //     location.href = "fillInTheHoles/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-  // $("#gameOfGoose").click(function () {
-  //   if (gameDetails.gameOfGoose.unlocked == true) {
-  //     location.href = "gameOfGoose/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
   $("#hex").click(function () {
     if (gameDetails.hex.unlocked == true) {
       location.href = "hex/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#hex1").click(function () {
-    if (gameDetails.hex1.unlocked == true) {
-      location.href = "hex1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  // $("#linkTheNumbers").click(function () {
-  //   if (gameDetails.linkTheNumbers.unlocked == true) {
-  //     location.href = "linkTheNumbers/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  $("#liquidPuzzle").click(function () {
-    if (gameDetails.liquidPuzzle.unlocked == true) {
-      location.href = "liquidPuzzle/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#liquidPuzzle1").click(function () {
-    if (gameDetails.liquidPuzzle1.unlocked == true) {
-      location.href = "liquidPuzzle1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  // $("#mahjongBig").click(function () {
-  //   if (gameDetails.mahjongBig.unlocked == true) {
-  //     location.href = "mahjongBig/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  // $("#mathGamesForAdults").click(function () {
-  //   if (gameDetails.mathGamesForAdults.unlocked == true) {
-  //     location.href = "mathGamesForAdults/index.html";
-  //   } else createPurchaseContainer($(this).attr("id"));
-  // });
-
-  $("#oneLineOnly").click(function () {
-    if (gameDetails.oneLineOnly.unlocked == true) {
-      location.href = "oneLineOnly/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#oneLineOnly1").click(function () {
-    if (gameDetails.oneLineOnly1.unlocked == true) {
-      location.href = "oneLineOnly1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -431,108 +121,22 @@ $(document).ready(function () {
       location.href = "parkingPanic/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#parking1").click(function () {
-    if (gameDetails.parking1.unlocked == true) {
-      location.href = "parkingPanic1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#petitsChevaux").click(function () {
-    if (gameDetails.petitsChevaux.unlocked == true) {
-      location.href = "petitsChevaux/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#petitsChevaux1").click(function () {
-    if (gameDetails.petitsChevaux1.unlocked == true) {
-      location.href = "petitsChevaux1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#plumber").click(function () {
-    if (gameDetails.plumber.unlocked == true) {
-      location.href = "plumberWorld/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#plumber1").click(function () {
-    if (gameDetails.plumber1.unlocked == true) {
-      location.href = "plumberWorld1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  
-  $("#snakesAndLadders").click(function () {
-    if (gameDetails.snakesAndLadders.unlocked == true) {
-      location.href = "snakesAndLadders/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#snakesAndLadders1").click(function () {
-    if (gameDetails.snakesAndLadders1.unlocked == true) {
-      location.href = "snakesAndLadders1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-
-  $("#solitaire").click(function () {
-    if (gameDetails.solitaire.unlocked == true) {
-      location.href = "solitaireClassic/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  
-  $("#solitaire1").click(function () {
-    if (gameDetails.solitaire.unlocked == true) {
-      location.href = "solitaireClassic1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
 
   $("#sudoku").click(function () {
     if (gameDetails.sudoku.unlocked == true) {
       location.href = "sudoku/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#sudoku1").click(function () {
-    if (gameDetails.sudoku1.unlocked == true) {
-      location.href = "sudoku1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#tangram").click(function () {
-    if (gameDetails.tangram.unlocked == true) {
-      location.href = "tangramPuzzle/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#tangram1").click(function () {
-    if (gameDetails.tangram1.unlocked == true) {
-      location.href = "tangramPuzzle1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
 
-  $("#tenXTen").click(function () {
-    if (gameDetails.tenXTen.unlocked == true) {
-      location.href = "tenXTen/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#tenXTen1").click(function () {
-    if (gameDetails.tenXTen1.unlocked == true) {
-      location.href = "tenXTen1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
   $("#theGame13").click(function () {
     if (gameDetails.theGame13.unlocked == true) {
       location.href = "theGame13/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#theGame13-1").click(function () {
-    if (gameDetails['theGame13-1'].unlocked == true) {
-      location.href = "theGame13-1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+
   $("#ticTacToe").click(function () {
     if (gameDetails.ticTacToe.unlocked == true) {
       location.href = "ticTacToe/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
-  $("#ticTacToe1").click(function () {
-    if (gameDetails.ticTacToe1.unlocked == true) {
-      location.href = "ticTacToe1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -541,11 +145,7 @@ $(document).ready(function () {
       location.href = "yatzyYahtzeeYams/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
-  $("#yatzyYahtzeeYams1").click(function () {
-    if (gameDetails.yatzyYahtzeeYams1.unlocked == true) {
-      location.href = "yatzyYahtzeeYams1/index.html";
-    } else createPurchaseContainer($(this).attr("id"));
-  });
+
   $("body").css("opacity", 100);
 });
 
@@ -631,13 +231,12 @@ window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
   const notification = savedAppInfo.games && savedAppInfo.games.notification;
   if (notification !== 0) {
-    // turn game notification count to zero
     const editedAppInfoValue = {
       ...savedAppInfo,
-      games: { 
-              ...savedAppInfo.games,
-              notification: 0
-             }
+      games: {
+        ...savedAppInfo.games,
+        notification: 0
+      }
     };
     localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
   }

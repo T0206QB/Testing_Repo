@@ -6,255 +6,22 @@
   <script type="text/javascript" src="./../3rdParty/scripts/jquery.js"></script>
   <script type="text/javascript" src="script.js"></script>
   <script type="text/javascript" src="params.js"></script>
-  <!-- Adding comment for pipeline testing  -->
-
-  <!-- <script type="text/javascript" src="../IVWWInterface/VDA.js"></script> -->
-  <!-- <script type="text/javascript" src="../paypal.js"></script> -->
   <script type="text/javascript" src="./../3rdParty/scripts/paypal.js"></script>
   <script
     src="https://www.paypal.com/sdk/js?client-id=Ab8qCQR6-uADFqNsCAt9z2RMJNol8uLw3jOhijei2ILW8RhZYeoqPo_SlN69LrQhuhUIR11cQGLvCoEh&disable-funding=credit,card,paylater&currency=USD"
     defer="defer"></script>
-  <!-- <script src="./../3rdParty/scripts/payment.js"></script> -->
 </head>
 
 <body>
-  <div id="ddmessage" >Function not available while vehicle is in motion.</div>
+  <div id="ddmessage">Function not available while vehicle is in motion.</div>
   <div class="flexcontainer">
     <div class="flexdiv" id="gameContainer">
-      <!-- <div id="woodenEdition2048" class="gameApp">
-        <div class="gameimg">
-          <img src="2048woodenEdition/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">2048 Wooden Edition</div>
-      </div> -->
-      <!-- <div id="align4Big" class="gameApp">
-        <div class="gameimg">
-          <img src="align4Big/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Align 4 Big</div>
-      </div> -->
-      <!-- <div id="bricks" class="gameApp">
-        <div class="gameimg">
-          <img src="bricksBreaker/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Bricks Breaker</div>
-      </div> -->
-      <!-- <div id="bubbleShooter" class="gameApp">
-        <div class="gameimg">
-          <img src="bubbleShooter/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Bubble Shooter</div>
-      </div>
-      <div id="bubbleShooter1" class="gameApp">
-        <div class="gameimg">
-          <img src="bubbleShooter1/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Bubble Shooter Compressed</div>
-      </div>
-        <div id="candy" class="gameApp">
-          <div class="gameimg">
-            <img src="candyWorld/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Candy World</div>
-        </div>  -->
-
-      <!-- <div id="chooChooConnect" class="gameApp">
-        <div class="gameimg">
-          <img src="chooChooConnect/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Choo Choo</div>
-      </div> -->
-      <!-- <div id="dominoesBig" class="gameApp">
-        <div class="gameimg">
-          <img src="dominoesBig/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Dominoes Big</div>
-      </div> -->
-      <!-- <div id="fillInTheHoles" class="gameApp">
-        <div class="gameimg">
-          <img src="fillInTheHoles/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Fill in the Holes</div>
-      </div> -->
-      <!-- <div id="gameOfGoose" class="gameApp">
-        <div class="gameimg">
-          <img src="gameOfGoose/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Game of Goose</div>
-      </div> -->
-      <!-- <div id="hex" class="gameApp">
-          <div class="gameimg">
-            <img src="hex/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Hex</div>
-        </div>
-        <div id="hex1" class="gameApp">
-          <div class="gameimg">
-            <img src="hex1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Hex Compressed</div>
-        </div> -->
-      <!-- <div id="linkTheNumbers" class="gameApp">
-        <div class="gameimg">
-          <img src="linkTheNumbers/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Link the Numbers</div>
-      </div> -->
-      <!-- <div id="liquidPuzzle" class="gameApp">
-        <div class="gameimg">
-          <img src="liquidPuzzle/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Liquid Puzzle</div>
-      </div> -->
-      <!-- <div id="mahjongBig" class="gameApp">
-        <div class="gameimg">
-          <img src="mahjongBig/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Mahjong Big</div>
-      </div> -->
-      <!-- <div id="mathGamesForAdults" class="gameApp">
-        <div class="gameimg">
-          <img src="mathGamesForAdults/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Math Games for Adults</div>
-      </div> -->
-      <!-- <div id="oneLineOnly" class="gameApp">
-        <div class="gameimg">
-          <img src="oneLineOnly/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">One Line only</div>
-      </div> -->
-      <!-- <div id="parking" class="gameApp">
-          <div class="gameimg">
-            <img src="parkingPanic/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Parking Panic</div>
-        </div>
-        <div id="parking1" class="gameApp">
-          <div class="gameimg">
-            <img src="parkingPanic1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Parking Panic Compressed</div>
-        </div> -->
-      <!-- <div id="petitsChevaux" class="gameApp">
-        <div class="gameimg">
-          <img src="petitsChevaux/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Petits Chevaux</div>
-      </div> -->
-      <!-- <div id="snakesAndLadders" class="gameApp">
-        <div class="gameimg">
-          <img src="snakesAndLadders/icon-256.png" class="icon" />
-          <img src="../images/premium-256.png" class="overlay" />
-        </div>
-        <div class="gamename">Snakes and Ladders</div>
-      </div> -->
-      <!-- <div id="sudoku" class="gameApp">
-          <div class="gameimg">
-            <img src="sudoku/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Sudoku</div>
-        </div>
-        <div id="sudoku1" class="gameApp">
-          <div class="gameimg">
-            <img src="sudoku1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Sudoku Compressed</div>
-        </div> -->
-      <!-- <div id="tangram" class="gameApp">
-          <div class="gameimg">
-            <img src="tangramPuzzle/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Tangram</div>
-        </div> -->
-      <!-- <div id="ten" class="gameApp">
-          <div class="gameimg">
-            <img src="tenXTen/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Ten X Ten</div>
-        </div>
-        <div id="ten1" class="gameApp">
-          <div class="gameimg">
-            <img src="tenXTen1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Ten X Ten Compressed</div>
-        </div>
-        <div id="theGame13" class="gameApp">
-          <div class="gameimg">
-            <img src="theGame13/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">The Game 13</div>
-        </div>
-        <div id="theGame13-1" class="gameApp">
-          <div class="gameimg">
-            <img src="theGame13-1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">The Game 13 Compressed</div>
-        </div>
-        <div id="ticTacToe" class="gameApp">
-          <div class="gameimg">
-            <img src="ticTacToe/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Tic Tac Toe</div>
-        </div>
-        <div id="ticTacToe1" class="gameApp">
-          <div class="gameimg">
-            <img src="ticTacToe1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Tic Tac Toe Compressed</div>
-        </div>
-        <div id="yatzyYahtzeeYams" class="gameApp">
-          <div class="gameimg">
-            <img src="yatzyYahtzeeYams/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Yatzy Yahtzee Yams</div>
-        </div>
-        <div id="yatzyYahtzeeYams1" class="gameApp">
-          <div class="gameimg">
-            <img src="yatzyYahtzeeYams1/icon-256.png" class="icon" />
-            <img src="../images/premium-256.png" class="overlay" />
-          </div>
-          <div class="gamename">Yatzy Yahtzee Yams Compressed</div>
-        </div> -->
     </div>
   </div>
 </body>
 
 <script>
   var games = [];
-// adding comment to commit the branch
-
-// adding comment to commit the branch// adding comment to commit the branch// adding comment to commit the branch
   var gameDetails = {
     bubbleShooter: {
       name: "Bubble Shooter",
@@ -264,30 +31,6 @@
       id: "bubbleShooter",
       image: "bubbleShooter/icon-256.png",
     },
-    bubbleShooter1: {
-      name: "Bubble Shooter Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "bubbleShooter1",
-      image: "bubbleShooter1/icon-256.png",
-    },
-    candy: {
-      name: "Candy World",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "candy",
-      image: "candyWorld/icon-256.png",
-    },
-    candy1: {
-      name: "Candy World Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "candy1",
-      image: "candyWorld1/icon-256.png",
-    },
     hex: {
       name: "Hex",
       premium: false,
@@ -295,46 +38,6 @@
       price: "0.10",
       id: "hex",
       image: "hex/icon-256.png",
-    },
-    hex1: {
-      name: "Hex Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "hex1",
-      image: "hex1/icon-256.png",
-    },
-    liquidPuzzle: {
-      name: "Liquid Puzzle",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "liquidPuzzle",
-      image: "liquidPuzzle/icon-256.png",
-    },
-    liquidPuzzle1: {
-      name: "Liquid Puzzle Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "liquidPuzzle1",
-      image: "liquidPuzzle1/icon-256.png",
-    },
-    oneLineOnly: {
-      name: "One Line Only",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "oneLineOnly",
-      image: "oneLineOnly/icon-256.png",
-    },
-    oneLineOnly1: {
-      name: "One Line Only Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "oneLineOnly1",
-      image: "oneLineOnly1/icon-256.png",
     },
     parking: {
       name: "Parking Panic",
@@ -344,78 +47,6 @@
       id: "parking",
       image: "parkingPanic/icon-256.png",
     },
-    parking1: {
-      name: "Parking Panic Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "parking1",
-      image: "parkingPanic/icon-256.png",
-    },
-    petitsChevaux:{
-      name: "Petits Chevaux",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "petitsChevaux",
-      image: "petitsChevaux/icon-256.png",
-    },
-    petitsChevaux1:{
-      name: "Petits Chevaux Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "petitsChevaux1",
-      image: "petitsChevaux1/icon-256.png",
-    },
-    plumber:{
-      name: "Plumber World",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "plumber",
-      image: "plumberWorld/icon-256.png",
-    },
-    plumber1:{
-      name: "Plumber World Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "plumber1",
-      image: "plumberWorld1/icon-256.png",
-    },
-    snakesAndLadders: {
-      name: "Snakes and Ladders",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "snakesAndLadders",
-      image: "snakesAndLadders/icon-256.png",
-    },
-    snakesAndLadders1: {
-      name: "Snakes and Ladders Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "snakesAndLadders1",
-      image: "snakesAndLadders1/icon-256.png",
-    },
-    solitaire: {
-      name: "Solitaire Classic",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "solitaire",
-      image: "solitaireClassic/icon-256.png",
-    },
-    solitaire1:{
-      name: "Solitaire Classic Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "solitaire1",
-      image: "solitaireClassic1/icon-256.png",
-    },
     sudoku: {
       name: "Sudoku",
       premium: false,
@@ -424,61 +55,13 @@
       id: "sudoku",
       image: "sudoku/icon-256.png",
     },
-    sudoku1: {
-      name: "Sudoku Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "sudoku1",
-      image: "sudoku1/icon-256.png",
-    },
-    tangram: {
-      name: "Tangram",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tangram",
-      image: "tangramPuzzle/icon-256.png",
-    },
-    tangram1: {
-      name: "Tangram Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tangram1",
-      image: "tangramPuzzle1/icon-256.png",
-    },
-    tenXTen: {
-      name: "Ten X Ten",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tenXTen",
-      image: "tenXTen/icon-256.png",
-    },
-    tenXTen1: {
-      name: "Ten X Ten Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "tenXTen1",
-      image: "tenXTen1/icon-256.png",
-    },
-    theGame13: {
+    "theGame13": {
       name: "The Game 13",
       premium: false,
       unlocked: true,
       price: "0.10",
       id: "theGame13",
       image: "theGame13/icon-256.png",
-    },
-    "theGame13-1": {
-      name: "The Game 13 Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "theGame13-1",
-      image: "theGame13-1/icon-256.png",
     },
     ticTacToe: {
       name: "Tic Tac Toe",
@@ -488,14 +71,6 @@
       id: "ticTacToe",
       image: "ticTacToe/icon-256.png",
     },
-    ticTacToe1: {
-      name: "Tic Tac Toe Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "ticTacToe1",
-      image: "ticTacToe1/icon-256.png",
-    },
     yatzyYahtzeeYams: {
       name: "Yatzy Yahtzee Yams",
       premium: false,
@@ -503,14 +78,6 @@
       price: "0.10",
       id: "yatzyYahtzeeYams",
       image: "yatzyYahtzeeYams/icon-256.png",
-    },
-    yatzyYahtzeeYams1: {
-      name: "Yatzy Yahtzee Yams Compressed",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "yatzyYahtzeeYams1",
-      image: "yatzyYahtzeeYams1/icon-256.png",
     },
   };
 
@@ -524,7 +91,7 @@
     var gameDiv = document.createElement("div");
     gameDiv.id = game.id;
     gameDiv.className = "gameApp";
-    
+
     var gameDivHTML1 = `
    <div class="gameimg">
      <img src="${game.image}" class="icon" />

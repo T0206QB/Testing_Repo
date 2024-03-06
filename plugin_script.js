@@ -20,36 +20,36 @@ function getAppGrid(app_details) {
   </div>`;
 
   const featureFlagsNotification = app_details.featureFlags && app_details.featureFlags.notification;
-  if(featureFlagsNotification){
+  if (featureFlagsNotification) {
     const featureFlagArr = featureFlagsNotification.split(";") || [];
     const latestDetails = featureFlagArr[featureFlagArr.length - 1]
       ? featureFlagArr[featureFlagArr.length - 1]
       : featureFlagArr[featureFlagArr.length - 2];
-  
+
     const incomingGamesLatestVersion = Number(
       latestDetails.split(",")[0].split("=")[1]
     );
-  
+
     const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
     const gamesAppInfo = savedAppInfo.games || {};
-  
+
     if (
       !gamesAppInfo.version ||
       gamesAppInfo.version < incomingGamesLatestVersion
     ) {
       const initialVers = !gamesAppInfo.version
         ? Number(
-            featureFlagsNotification.substring(
-              featureFlagsNotification.indexOf("ver=") + 4,
-              featureFlagsNotification.indexOf(",")
-            )
+          featureFlagsNotification.substring(
+            featureFlagsNotification.indexOf("ver=") + 4,
+            featureFlagsNotification.indexOf(",")
           )
+        )
         : gamesAppInfo.version + 1;
       var initialCount = gamesAppInfo.notification || 0;
-  
+
       const initVersionStr = `ver=${initialVers},`;
       const countString = featureFlagsNotification.split(initVersionStr)[1];
-  
+
       countString.split(";").forEach((f, fIndex) => {
         if (f.includes("cnt=")) {
           const newCount = f.split("cnt=")[1];
@@ -57,7 +57,7 @@ function getAppGrid(app_details) {
         }
       });
       const notificationCount = initialCount;
-  
+
       const appInfoValue = {
         games: {
           version: incomingGamesLatestVersion,
@@ -67,13 +67,13 @@ function getAppGrid(app_details) {
       if (notificationCount) {
         notifyHTML = `<span id="app-notification">${notificationCount}</span>`;
       }
-  
+
       localStorage.setItem("appInfo", JSON.stringify(appInfoValue));
     } else if (gamesAppInfo.notification) {
       notifyHTML = `<span id="app-notification">${gamesAppInfo.notification}</span>`;
     }
   }
- 
+
   return divHTML1 + notifyHTML + divHTML2;
 }
 
