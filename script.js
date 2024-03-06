@@ -282,13 +282,6 @@ var gameDetails = {
   }
 };
 var usingPayPal = true; //false for no paypal
-const editSavedGamesList = (gameId, flagValue) => {
-  const savedGamesList = JSON.parse(localStorage.getItem("gamesList"));
-  if (savedGamesList[`${gameId}`]) {
-    savedGamesList[`${gameId}`] = (flagValue === "old") ? false : true;
-    localStorage.setItem("gamesList", JSON.stringify(savedGamesList));
-  }
-};
 
 $(document).ready(function () {
   getParams();
@@ -342,24 +335,20 @@ $(document).ready(function () {
   $("#bubbleShooter").click(function () {
     if (gameDetails.bubbleShooter.unlocked == true) {
       location.href = "bubbleShooter/index.html";
-      editSavedGamesList('bubbleShooter', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#bubbleShooter1").click(function () {
     if (gameDetails.bubbleShooter1.unlocked == true) {
       location.href = "bubbleShooter1/index.html";
-      editSavedGamesList('bubbleShooter1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#candy").click(function () {
     if (gameDetails.candy.unlocked == true) {
-      editSavedGamesList('candy', 'old');
       location.href = "candyWorld/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#candy1").click(function () {
     if (gameDetails.candy.unlocked == true) {
-      editSavedGamesList('candy1', 'old');
       location.href = "candyWorld1/index.html";
     } else createPurchaseContainer($(this).attr("id"));
   });
@@ -389,13 +378,11 @@ $(document).ready(function () {
   $("#hex").click(function () {
     if (gameDetails.hex.unlocked == true) {
       location.href = "hex/index.html";
-      editSavedGamesList('hex', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#hex1").click(function () {
     if (gameDetails.hex1.unlocked == true) {
       location.href = "hex1/index.html";
-      editSavedGamesList('hex1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
@@ -408,13 +395,11 @@ $(document).ready(function () {
   $("#liquidPuzzle").click(function () {
     if (gameDetails.liquidPuzzle.unlocked == true) {
       location.href = "liquidPuzzle/index.html";
-      editSavedGamesList('liquidPuzzle', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#liquidPuzzle1").click(function () {
     if (gameDetails.liquidPuzzle1.unlocked == true) {
       location.href = "liquidPuzzle1/index.html";
-      editSavedGamesList('liquidPuzzle1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   // $("#mahjongBig").click(function () {
@@ -432,157 +417,133 @@ $(document).ready(function () {
   $("#oneLineOnly").click(function () {
     if (gameDetails.oneLineOnly.unlocked == true) {
       location.href = "oneLineOnly/index.html";
-      editSavedGamesList('oneLineOnly', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#oneLineOnly1").click(function () {
     if (gameDetails.oneLineOnly1.unlocked == true) {
       location.href = "oneLineOnly1/index.html";
-      editSavedGamesList('oneLineOnly1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#parking").click(function () {
     if (gameDetails.parking.unlocked == true) {
       location.href = "parkingPanic/index.html";
-      editSavedGamesList('parking', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#parking1").click(function () {
     if (gameDetails.parking1.unlocked == true) {
       location.href = "parkingPanic1/index.html";
-      editSavedGamesList('parking1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#petitsChevaux").click(function () {
     if (gameDetails.petitsChevaux.unlocked == true) {
       location.href = "petitsChevaux/index.html";
-      editSavedGamesList('petitsChevaux', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#petitsChevaux1").click(function () {
     if (gameDetails.petitsChevaux1.unlocked == true) {
       location.href = "petitsChevaux1/index.html";
-      editSavedGamesList('petitsChevaux1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#plumber").click(function () {
     if (gameDetails.plumber.unlocked == true) {
       location.href = "plumberWorld/index.html";
-      editSavedGamesList('plumberWorld', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#plumber1").click(function () {
     if (gameDetails.plumber1.unlocked == true) {
       location.href = "plumberWorld1/index.html";
-      editSavedGamesList('plumberWorld1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   
   $("#snakesAndLadders").click(function () {
     if (gameDetails.snakesAndLadders.unlocked == true) {
       location.href = "snakesAndLadders/index.html";
-      editSavedGamesList('snakesAndLadders', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#snakesAndLadders1").click(function () {
     if (gameDetails.snakesAndLadders1.unlocked == true) {
       location.href = "snakesAndLadders1/index.html";
-      editSavedGamesList('snakesAndLadders1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#solitaire").click(function () {
     if (gameDetails.solitaire.unlocked == true) {
       location.href = "solitaireClassic/index.html";
-      editSavedGamesList('solitaireClassic', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   
   $("#solitaire1").click(function () {
     if (gameDetails.solitaire.unlocked == true) {
       location.href = "solitaireClassic1/index.html";
-      editSavedGamesList('solitaireClassic1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#sudoku").click(function () {
     if (gameDetails.sudoku.unlocked == true) {
       location.href = "sudoku/index.html";
-      editSavedGamesList('sudoku', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#sudoku1").click(function () {
     if (gameDetails.sudoku1.unlocked == true) {
       location.href = "sudoku1/index.html";
-      editSavedGamesList('sudoku1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#tangram").click(function () {
     if (gameDetails.tangram.unlocked == true) {
       location.href = "tangramPuzzle/index.html";
-      editSavedGamesList('tangram', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#tangram1").click(function () {
     if (gameDetails.tangram1.unlocked == true) {
       location.href = "tangramPuzzle1/index.html";
-      editSavedGamesList('tangram1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#tenXTen").click(function () {
     if (gameDetails.tenXTen.unlocked == true) {
       location.href = "tenXTen/index.html";
-      editSavedGamesList('tenXTen', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#tenXTen1").click(function () {
     if (gameDetails.tenXTen1.unlocked == true) {
       location.href = "tenXTen1/index.html";
-      editSavedGamesList('tenXTen1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#theGame13").click(function () {
     if (gameDetails.theGame13.unlocked == true) {
       location.href = "theGame13/index.html";
-      editSavedGamesList('theGame13', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#theGame13-1").click(function () {
     if (gameDetails['theGame13-1'].unlocked == true) {
       location.href = "theGame13-1/index.html";
-      editSavedGamesList('theGame13-1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#ticTacToe").click(function () {
     if (gameDetails.ticTacToe.unlocked == true) {
       location.href = "ticTacToe/index.html";
-      editSavedGamesList('ticTacToe', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#ticTacToe1").click(function () {
     if (gameDetails.ticTacToe1.unlocked == true) {
       location.href = "ticTacToe1/index.html";
-      editSavedGamesList('ticTacToe1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
 
   $("#yatzyYahtzeeYams").click(function () {
     if (gameDetails.yatzyYahtzeeYams.unlocked == true) {
       location.href = "yatzyYahtzeeYams/index.html";
-      editSavedGamesList('yatzyYahtzeeYams', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("#yatzyYahtzeeYams1").click(function () {
     if (gameDetails.yatzyYahtzeeYams1.unlocked == true) {
       location.href = "yatzyYahtzeeYams1/index.html";
-      editSavedGamesList('yatzyYahtzeeYams1', 'old');
     } else createPurchaseContainer($(this).attr("id"));
   });
   $("body").css("opacity", 100);

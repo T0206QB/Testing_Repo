@@ -524,46 +524,7 @@
     var gameDiv = document.createElement("div");
     gameDiv.id = game.id;
     gameDiv.className = "gameApp";
-    if (!JSON.parse(localStorage.getItem("gamesList"))) {
-      localStorage.setItem(
-        "gamesList",
-        JSON.stringify({
-          bubbleShooter: true,
-          bubbleShooter1: true,
-          candy: true,
-          candy1: true,
-          hex: true,
-          hex1: true,
-          liquidPuzzle: true,
-          liquidPuzzle1: true,
-          oneLineOnly: true,
-          oneLineOnly1: true,
-          parking: true,
-          parking1: true,
-          petitsChevaux: true,
-          petitsChevaux1: true,
-          plumber: true,
-          plumber1: true,
-          snakesAndLadders: true,
-          snakesAndLadders1: true,
-          solitaire: true,
-          solitaire1: true,
-          sudoku: true,
-          sudoku1: true,
-          tangram: true,
-          tangram1: true,
-          tenXTen: true,
-          tenXTen1: true,
-          theGame13: true,
-          "theGame13-1": true,
-          ticTacToe: true,
-          ticTacToe1: true,
-          yatzyYahtzeeYams: true,
-          yatzyYahtzeeYams1: true,
-        })
-      );
-    }
-
+    
     var gameDivHTML1 = `
    <div class="gameimg">
      <img src="${game.image}" class="icon" />
