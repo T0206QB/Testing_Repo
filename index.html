@@ -5,11 +5,6 @@
   <link rel="stylesheet" type="text/css" href="./menu.css" />
   <script type="text/javascript" src="./../3rdParty/scripts/jquery.js"></script>
   <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="params.js"></script>
-  <script type="text/javascript" src="./../3rdParty/scripts/paypal.js"></script>
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=Ab8qCQR6-uADFqNsCAt9z2RMJNol8uLw3jOhijei2ILW8RhZYeoqPo_SlN69LrQhuhUIR11cQGLvCoEh&disable-funding=credit,card,paylater&currency=USD"
-    defer="defer"></script>
 </head>
 
 <body>
@@ -19,89 +14,5 @@
     </div>
   </div>
 </body>
-
-<script>
-  var games = [];
-  var gameDetails = {
-    bubbleShooter: {
-      name: "Bubble Shooter",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "bubbleShooter",
-      image: "bubbleShooter/icon-256.png",
-    },
-    hex: {
-      name: "Hex",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "hex",
-      image: "hex/icon-256.png",
-    },
-    parking: {
-      name: "Parking Panic",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "parking",
-      image: "parkingPanic/icon-256.png",
-    },
-    sudoku: {
-      name: "Sudoku",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "sudoku",
-      image: "sudoku/icon-256.png",
-    },
-    "theGame13": {
-      name: "The Game 13",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "theGame13",
-      image: "theGame13/icon-256.png",
-    },
-    ticTacToe: {
-      name: "Tic Tac Toe",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "ticTacToe",
-      image: "ticTacToe/icon-256.png",
-    },
-    yatzyYahtzeeYams: {
-      name: "Yatzy Yahtzee Yams",
-      premium: false,
-      unlocked: true,
-      price: "0.10",
-      id: "yatzyYahtzeeYams",
-      image: "yatzyYahtzeeYams/icon-256.png",
-    },
-  };
-
-  for (let i in gameDetails) {
-    games.push(gameDetails[i]);
-  }
-  games.sort((a, b) => a.name.localeCompare(b.name));
-  var gameContainer = document.getElementById("gameContainer");
-
-  games.forEach((game) => {
-    var gameDiv = document.createElement("div");
-    gameDiv.id = game.id;
-    gameDiv.className = "gameApp";
-
-    var gameDivHTML1 = `
-   <div class="gameimg">
-     <img src="${game.image}" class="icon" />
-     <img src="../images/premium-256.png" class="overlay" />`;
-
-    var gameDivHTML2 = `</div>
-   <div class="gamename">${game.name}</div>`;
-    gameDiv.innerHTML = gameDivHTML1 + gameDivHTML2;
-    gameContainer.appendChild(gameDiv);
-  });
-</script>
 
 </html>
