@@ -85,17 +85,19 @@ $(document).ready(function () {
 });
 
 window.onload = function () {
-  const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
-  const notification = savedAppInfo.games && savedAppInfo.games.notification;
-  if (notification !== 0) {
-    // turn game notification count to zero
-    const editedAppInfoValue = {
-      ...savedAppInfo,
-      games: {
-        ...savedAppInfo.games,
-        notification: 0,
-      },
-    };
-    localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
+  const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
+  const appId = top.stellaHandle.getProperty("appId");
+  if(savedAppInfo && appId){
+    const notification = savedAppInfo[appId] && savedAppInfo[appId].notification;
+    if (notification !== 0) {
+      const editedAppInfoValue = {
+        ...savedAppInfo,
+        [`${appId}`]: {
+          ...savedAppInfo[appId],
+          notification: 0,
+        },
+      };
+      localStorage.setItem("appInfo", JSON.stringify(editedAppInfoValue));
+    }
   }
 };
