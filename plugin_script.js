@@ -31,7 +31,7 @@ function getAppGrid(app_details) {
     );
 
     const savedAppInfo = JSON.parse(localStorage.getItem("appInfo")) || {};
-    const gamesAppInfo = savedAppInfo.games || {};
+    const gamesAppInfo = savedAppInfo[appId] || {};
 
     if (
       !gamesAppInfo.version ||
@@ -59,7 +59,8 @@ function getAppGrid(app_details) {
       const notificationCount = initialCount;
 
       const appInfoValue = {
-        games: {
+        ...savedAppInfo,
+        [`${appId}`]: {
           version: incomingGamesLatestVersion,
           notification: notificationCount,
         },
