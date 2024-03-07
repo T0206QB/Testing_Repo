@@ -29,8 +29,6 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
-  getParams();
-
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = sessionStorage.getItem("vin");
   const country = sessionStorage.getItem("country");
@@ -64,12 +62,12 @@ $(document).ready(function () {
         gameDiv.className = "gameApp";
 
         var gameDivHTML1 = `
-   <div class="gameimg">
-     <img src="${game.srcImg}" class="icon" />
-     <img src="../images/premium-256.png" class="overlay" />`;
+                <div class="gameimg">
+                  <img src="${game.srcImg}" class="icon" />
+                  <img src="../images/premium-256.png" class="overlay" />`;
 
         var gameDivHTML2 = `</div>
-   <div class="gamename">${game.name}</div>`;
+                  <div class="gamename">${game.name}</div>`;
         gameDiv.innerHTML = gameDivHTML1 + gameDivHTML2;
         gameContainer.appendChild(gameDiv);
         var gameNameId = game.url.split("/")[2];
