@@ -1,123 +1,15 @@
 <html>
   <meta charset="UTF-8" />
-
-  <head>
-    <link rel="stylesheet" type="text/css" href="./menu.css" />
-    <script
-      type="text/javascript"
-      src="./../3rdParty/scripts/jquery.js"
-    ></script>
-    <script type="text/javascript" src="script.js"></script>
-    <script type="text/javascript" src="params.js"></script>
-  </head>
-
-  <body>
-    <div class="flexcontainer">
-      <div class="flexdiv" id="gameContainer"></div>
+<head>
+  <link rel="stylesheet" type="text/css" href="./menu.css" />
+  <script type="text/javascript" src="./../3rdParty/scripts/jquery.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <div id="ddmessage">Function not available while vehicle is in motion.</div>
+  <div class="flexcontainer">
+    <div class="flexdiv" id="gameContainer">
     </div>
-  </body>
-
-  <script>
-    var games = [];
-
-    var gameDetails = {
-      bubbleShooter: {
-        name: "Bubble Shooter",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "bubbleShooter",
-        image: "bubbleShooter/icon-256.png",
-      },
-      hex: {
-        name: "Hex",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "hex",
-        image: "hex/icon-256.png",
-      },
-      parking: {
-        name: "Parking Panic",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "parking",
-        image: "parkingPanic/icon-256.png",
-      },
-      sudoku: {
-        name: "Sudoku",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "sudoku",
-        image: "sudoku/icon-256.png",
-      },
-      theGame13: {
-        name: "The Game 13",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "theGame13",
-        image: "theGame13/icon-256.png",
-      },
-      ticTacToe: {
-        name: "Tic Tac Toe",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "ticTacToe",
-        image: "ticTacToe/icon-256.png",
-      },
-      yatzyYahtzeeYams: {
-        name: "Yatzy Yahtzee Yams",
-        premium: false,
-        unlocked: true,
-        price: "0.10",
-        id: "yatzyYahtzeeYams",
-        image: "yatzyYahtzeeYams/icon-256.png",
-      },
-    };
-
-    for (let i in gameDetails) {
-      games.push(gameDetails[i]);
-    }
-    games.sort((a, b) => a.name.localeCompare(b.name));
-    console.log("gd1", gameDetails, games);
-    var gameContainer = document.getElementById("gameContainer");
-
-    games.forEach((game) => {
-      var gameDiv = document.createElement("div");
-      gameDiv.id = game.id;
-      gameDiv.className = "gameApp";
-      if (!JSON.parse(localStorage.getItem("gamesList"))) {
-        localStorage.setItem(
-          "gamesList",
-          JSON.stringify({
-            bubbleShooter: true,
-            hex: true,
-            parking: true,
-            sudoku: true,
-            theGame13: true,
-            ticTacToe: true,
-            yatzyYahtzeeYams: true,
-          })
-        );
-      }
-
-      var gameDivHTML1 = `
-   <div class="gameimg">
-     <img src="${game.image}" class="icon" />
-     <img src="../images/premium-256.png" class="overlay" />`;
-      var gameNewHTML =
-        JSON.parse(localStorage.getItem("gamesList"))[`${game.id}`] === true
-          ? `<img src="newIcon.svg" id ="newImage"/>`
-          : ``;
-
-      var gameDivHTML2 = `</div>
-   <div class="gamename">${game.name}</div>`;
-      gameDiv.innerHTML = gameDivHTML1 + gameNewHTML + gameDivHTML2;
-      gameContainer.appendChild(gameDiv);
-    });
-  </script>
+  </div>
+</body>
 </html>
