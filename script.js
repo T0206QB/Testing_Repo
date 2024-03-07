@@ -29,11 +29,13 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
+  
+
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
-  const vin = sessionStorage.getItem("vin");
-  const country = sessionStorage.getItem("country");
-  const device = sessionStorage.getItem("deviceid");
-  const brand = sessionStorage.getItem("brand");
+  const vin = top.stellaHandle.getVehicleIdentity();
+  const country = top.stellaHandle.getCountryCode();
+  const device = top.stellaHandle.getPlatformVersion();
+  const brand = top.stellaHandle.getBrandInt();
   const parent = "iconic-games"; // this is ID and dont change it
   const apiUrl = `${baseUrl}?vin=${vin}&country=${country}&device=${device}&brand=${brand}&parent=${parent}`;
   const bearerToken = sessionStorage.getItem("IdToken");
