@@ -87,8 +87,8 @@ $(document).ready(function () {
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.stellaHandle.getProperty("appId");
-  if(savedAppInfo && appId){
-    const notification = savedAppInfo[appId] && savedAppInfo[appId].notification;
+  if(savedAppInfo && appId && savedAppInfo[appId]){
+    const notification = savedAppInfo[appId].notification;
     if (notification !== 0) {
       const editedAppInfoValue = {
         ...savedAppInfo,
