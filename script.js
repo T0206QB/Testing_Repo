@@ -29,8 +29,6 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
-  
-
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = sessionStorage.getItem("vin");
   const country = sessionStorage.getItem("country");
