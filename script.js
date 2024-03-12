@@ -86,7 +86,7 @@ $(document).ready(function () {
 
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
-  const appId = top.stellaHandle.getProperty("appId");
+  const appId = top.APPID;
   if(savedAppInfo && appId && savedAppInfo[appId]){
     const notification = savedAppInfo[appId].notification;
     if (notification !== 0) {
