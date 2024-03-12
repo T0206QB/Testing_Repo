@@ -36,7 +36,7 @@ $(document).ready(function () {
   const country = top.stellaHandle.getCountryCode();
   const device = top.stellaHandle.getPlatformVersion();
   const brand = top.stellaHandle.getBrandInt();
-  const parent = "iconic-games"; // this is ID and dont change it
+  const parent = top.APPID;
   const apiUrl = `${baseUrl}?vin=${vin}&country=${country}&device=${device}&brand=${brand}&parent=${parent}`;
   const bearerToken = sessionStorage.getItem("IdToken");
   const headers = new Headers({
