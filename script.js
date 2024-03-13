@@ -84,6 +84,7 @@ $(document).ready(function () {
     });
 });
 
+// add analytics 
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
