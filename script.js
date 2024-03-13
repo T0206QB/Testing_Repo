@@ -36,22 +36,9 @@ $(document).ready(function () {
   const brand = top.stellaHandle.getBrandInt();
   const parent = top.APPID;
   const apiUrl = `${baseUrl}?vin=${vin}&country=${country}&device=${device}&brand=${brand}&parent=${parent}`;
-  const bearerToken = sessionStorage.getItem("IdToken");
-  const headers = new Headers({
-    Authorization: `Bearer ${bearerToken}`,
-  });
 
-  fetch(apiUrl, {
-    method: "GET",
-    headers: headers,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
+  top.makeAPIRequest(
+    (data) => {
       games.push(data);
       games[0].apps.sort((a, b) => a.name.localeCompare(b.name));
       var gameContainer = document.getElementById("gameContainer");
@@ -78,17 +65,22 @@ $(document).ready(function () {
           top.Analytics.track("gamesClick", {
             appID: app_ID,
             appName: app_name,
-            gameID:game.id
+            gameID: game.id,
           });
 
           location.href = `${gameNameId}` + "/index.html";
         });
         $("body").css("opacity", 100);
       });
-    })
-    .catch((error) => {
-      console.error("Fetch Error:", error);
-    });
+    },
+    (error) => {
+      console.log("Error: ", error);
+    },
+    {
+      url: apiUrl,
+      method: "GET",
+    }
+  );
 });
 
 // add analytics
