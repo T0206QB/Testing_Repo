@@ -29,8 +29,6 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
-  
-
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = top.stellaHandle.getVehicleIdentity();
   const country = top.stellaHandle.getCountryCode();
@@ -74,6 +72,15 @@ $(document).ready(function () {
         gameContainer.appendChild(gameDiv);
         var gameNameId = game.url.split("/")[2];
         $("#" + `${game.id}`).click(function () {
+          var app_ID = top.APPID;
+          var app_name = top.APPNAME;
+
+          top.Analytics.track("gamesClick", {
+            appID: app_ID,
+            appName: app_name,
+            gameID:game.id
+          });
+
           location.href = `${gameNameId}` + "/index.html";
         });
         $("body").css("opacity", 100);
@@ -84,10 +91,11 @@ $(document).ready(function () {
     });
 });
 
+// add analytics
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
-  if(savedAppInfo && appId && savedAppInfo[appId]){
+  if (savedAppInfo && appId && savedAppInfo[appId]) {
     const notification = savedAppInfo[appId].notification;
     if (notification !== 0) {
       const editedAppInfoValue = {
