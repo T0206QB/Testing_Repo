@@ -72,13 +72,10 @@ $(document).ready(function () {
         gameContainer.appendChild(gameDiv);
         var gameNameId = game.url.split("/")[2];
         $("#" + `${game.id}`).click(function () {
-          var app_ID = top.APPID;
           var app_name = top.APPNAME;
-
-          top.Analytics.track("gamesClick", {
-            appID: app_ID,
-            appName: app_name,
-            gameID:game.id
+          top.Analytics.track("clickApp", {
+            parentId: app_name,
+            gameId:game.name
           });
 
           location.href = `${gameNameId}` + "/index.html";
