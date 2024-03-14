@@ -1,23 +1,8 @@
-function getAppGrid(app_details) {
+function getNotificationValue(app_details) {
   const appId = app_details.id;
-  const name = app_details.name;
-  const line1 = app_details.name;
-  let url = app_details.url;
-  const image = app_details.srcImg;
 
-  var notifyHTML = ``;
+  var notifyValue;
 
-  var divHTML1 = `<div class="appIcon">
-    <a class="simple_link" onclick="setTitle('${name}', '${url}', '${appId}');">
-    <div class="appimg">
-      <img id="${appId}" class="appimgdata" src="images/${image}" alt="app">`;
-
-  var divHTML2 = `</div>
-    <div class="${appId} ds-app-text" id="iconTitle">
-      ${line1}
-    </div>
-    </a>
-  </div>`;
 
   const featureFlagsNotification = app_details.featureFlags && app_details.featureFlags.notification;
   if (featureFlagsNotification) {
@@ -66,15 +51,15 @@ function getAppGrid(app_details) {
         },
       };
       if (notificationCount) {
-        notifyHTML = `<span id="app-notification">${notificationCount}</span>`;
+        notifyValue = notificationCount;
       }
 
       localStorage.setItem("appInfo", JSON.stringify(appInfoValue));
     } else if (gamesAppInfo.notification) {
-      notifyHTML = `<span id="app-notification">${gamesAppInfo.notification}</span>`;
+      notifyValue = gamesAppInfo.notification;
     }
   }
 
-  return divHTML1 + notifyHTML + divHTML2;
+  return notifyValue;
 }
 
