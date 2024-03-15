@@ -59,10 +59,10 @@ $(document).ready(function () {
         gameContainer.appendChild(gameDiv);
         var gameNameId = game.url.split("/")[2];
         $("#" + `${game.id}`).click(function () {
-          var app_name = top.APPNAME;
+          var app_ID = top.APPID;
           top.Analytics.track("clickApp", {
-            parentId: app_name,
-            gameId:game.name
+            parentId: app_ID,
+            gameId:game.id
          });
           location.href = `${gameNameId}` + "/index.html";
         });
