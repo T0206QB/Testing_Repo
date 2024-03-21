@@ -84,8 +84,8 @@ window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
   if (savedAppInfo && appId && savedAppInfo[appId]) {
-    const notification = savedAppInfo[appId].notification;
-    if (notification !== 0) {
+    const notifyValue = savedAppInfo[appId].notification;
+    if (!isNaN(notifyValue) && notifyValue >= 1 && notifyValue <= 26) {
       const editedAppInfoValue = {
         ...savedAppInfo,
         [`${appId}`]: {

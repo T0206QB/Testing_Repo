@@ -69,7 +69,6 @@ function getNotificationValue_iconic_games(app_details) {
   catch(err) {
     console.log('Error occurred in computing notification', err);
   }
-
-  return (!isNaN(notifyValue) && notifyValue >= 1 && notifyValue < 50) ? notifyValue : '';
+  return (!isNaN(notifyValue) && notifyValue >= 1 && notifyValue <= 26) ? notifyValue : '';
 }
 
