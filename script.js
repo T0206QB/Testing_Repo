@@ -79,7 +79,7 @@ $(document).ready(function () {
   );
 });
 
-// add analytics
+// make notification count zero when games icon is clicked
 window.onload = function () {
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
