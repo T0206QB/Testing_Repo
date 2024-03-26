@@ -1,6 +1,6 @@
 function getNotificationValue_iconic_games(app_details) {
   const appId = app_details.id;
-
+  const maxCount = app_details.featureFlags.maxGamesCount || 26;
   var notifyValue;
 
 
@@ -48,7 +48,7 @@ function getNotificationValue_iconic_games(app_details) {
           notifyValue = notificationCount;
         }
 
-        if((!isNaN(notificationCount) && notificationCount >= 1 && notificationCount < 50)){
+        if((!isNaN(notificationCount) && notificationCount >= 1 && notificationCount <= maxCount)){
           const appInfoValue = {
             ...savedAppInfo,
             [`${appId}`]: {
@@ -69,6 +69,6 @@ function getNotificationValue_iconic_games(app_details) {
   catch(err) {
     console.log('Error occurred in computing notification', err);
   }
-  return (!isNaN(notifyValue) && notifyValue >= 1 && notifyValue <= 26) ? notifyValue : '';
+  return (!isNaN(notifyValue) && notifyValue >= 1 && notifyValue <= maxCount) ? notifyValue : '';
 }
 
