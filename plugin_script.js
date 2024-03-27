@@ -1,4 +1,4 @@
-function getNotificationValue_iconic_games(app_details) {
+function getNotificationValue(app_details) {
   const appId = app_details.id;
   const maxCount = app_details.featureFlags && app_details.featureFlags.maxGamesCount ? 
   Number(app_details.featureFlags.maxGamesCount) : 26;
