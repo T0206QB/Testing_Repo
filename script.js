@@ -32,7 +32,6 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
-  console.log('ddchk doc ready in scr', top.locale['dd_games_message']);
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = top.stellaHandle.getVehicleIdentity();
   const country = top.stellaHandle.getCountryCode();
