@@ -21,6 +21,7 @@ window.addEventListener("no_driver_distraction", () => {
 function load_driver_distraction() {
   $("#c2canvasdiv").hide();
   $("#ddmessage").css("display", "flex");
+  document.getElementById('ddmessage').textContent = top.locale['dd_games_message'];
   cr_setSuspended(true);
 }
 
