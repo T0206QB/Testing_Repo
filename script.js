@@ -1,4 +1,6 @@
 let driver_distraction = false;
+top.LOCALIZATION_ID = "iconic_games";
+
 window.addEventListener("driver_distraction", () => {
   console.log(`driver_distraction ${driver_distraction}`);
   if (driver_distraction) {
@@ -18,6 +20,7 @@ window.addEventListener("no_driver_distraction", () => {
 });
 
 function load_driver_distraction() {
+  document.getElementById('ddmessage').textContent = top.locale['dd_games_message'];
   $("#gameContainer").hide();
   $("#ddmessage").css("display", "flex");
 }
@@ -29,6 +32,7 @@ function load_non_driver_distraction() {
 var gameDetails;
 var games = [];
 $(document).ready(function () {
+  console.log('ddchk doc ready in scr', top.locale['dd_games_message']);
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = top.stellaHandle.getVehicleIdentity();
   const country = top.stellaHandle.getCountryCode();
