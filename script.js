@@ -29,8 +29,7 @@ function load_non_driver_distraction() {
   $("#ddmessage").css("display", "none");
   $("#gameContainer").show();
 }
-var gameDetails;
-var games = [];
+
 $(document).ready(function () {
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = top.stellaHandle.getVehicleIdentity();
