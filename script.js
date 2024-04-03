@@ -42,38 +42,47 @@ $(document).ready(function () {
 
   top.makeAPIRequest(
     (data) => {
-      games.push(data);
-      games[0].apps.sort((a, b) => a.name.localeCompare(b.name));
       var gameContainer = document.getElementById("gameContainer");
+      if(data && data.apps && data.apps.length > 0){
+        document.getElementById("no_games_container").style.display = 'none';
 
-      games[0].apps.forEach((game) => {
-        var gameDiv = document.createElement("div");
-        gameDiv.id = game.id;
-        gameDiv.className = "gameApp";
+        data.apps.sort((a, b) => a.name.localeCompare(b.name));
+        data.apps.forEach((game) => {
+          var gameDiv = document.createElement("div");
+          gameDiv.id = game.id;
+          gameDiv.className = "gameApp";
 
-        var gameDivHTML1 = `
-                <div class="gameimg">
-                  <img src="${game.srcImg}" class="icon" />
-                  <img src="../images/premium-256.png" class="overlay" />`;
+          var gameDivHTML1 = `
+                  <div class="gameimg">
+                    <img src="${game.srcImg}" class="icon" />
+                    <img src="../images/premium-256.png" class="overlay" />`;
 
-        var gameDivHTML2 = `</div>
-                  <div class="gamename">${game.name}</div>`;
-        gameDiv.innerHTML = gameDivHTML1 + gameDivHTML2;
-        gameContainer.appendChild(gameDiv);
-        var gameNameId = game.url.split("/")[2];
-        $("#" + `${game.id}`).click(function () {
-          var app_ID = top.APPID;
-          top.Analytics.track("clickApp", {
-            parentId: app_ID,
-            gameId:game.id
-         });
-          location.href = `${gameNameId}` + "/index.html";
+          var gameDivHTML2 = `</div>
+                    <div class="gamename">${game.name}</div>`;
+          gameDiv.innerHTML = gameDivHTML1 + gameDivHTML2;
+          gameContainer.appendChild(gameDiv);
+          var gameNameId = game.url.split("/")[2];
+          $("#" + `${game.id}`).click(function () {
+            var app_ID = top.APPID;
+            top.Analytics.track("clickApp", {
+              parentId: app_ID,
+              gameId:game.id
+           });
+            location.href = `${gameNameId}` + "/index.html";
+          });
+          $("body").css("opacity", 100);
         });
+      } else {
+        console.log('EE games no data error', data);
+        document.getElementById("no_games_container").style.display = 'block';
         $("body").css("opacity", 100);
-      });
+      }
+      
     },
     (error) => {
-      console.log("Error: ", error);
+      console.log("EE games API Error: ", error);
+      document.getElementById("no_games_container").style.display = 'block';
+      $("body").css("opacity", 100);
     },
     {
       url: apiUrl,
