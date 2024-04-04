@@ -167,6 +167,19 @@ body{
   font-family: "Roboto";
   z-index: 999999;
 }
+
+#no_games_container {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.7rem;
+  padding: 0 3rem;
+  line-height: 3rem;
+  margin: 6rem 2rem;
+  text-align: center;
+}
+
 @media screen and (width: 1920px) {
   /* Base font size for responsive layout in games screen*/
   html, body {
