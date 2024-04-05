@@ -16,7 +16,7 @@ body{
   -webkit-tap-highlight-color: transparent;
   opacity: 0;
 }
-.flexcontainer{
+.games-flex-container{
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -24,7 +24,7 @@ body{
   overflow-y: auto;
   scrollbar-width: none;
 }
-.flexcontainer::-webkit-scrollbar {
+.games-flex-container::-webkit-scrollbar {
   display: none;
 }
 #rightContainer {

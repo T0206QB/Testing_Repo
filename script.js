@@ -21,13 +21,13 @@ window.addEventListener("no_driver_distraction", () => {
 
 function load_driver_distraction() {
   document.getElementById('ddmessage').textContent = top.locale['dd_games_message'];
-  $("#gameContainer").hide();
+  $(".games-flex-container").css("display", "none");
   $("#ddmessage").css("display", "flex");
 }
 
 function load_non_driver_distraction() {
   $("#ddmessage").css("display", "none");
-  $("#gameContainer").show();
+  $(".games-flex-container").css("display", "flex");
 }
 
 $(document).ready(function () {
