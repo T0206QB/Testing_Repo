@@ -73,6 +73,7 @@ $(document).ready(function () {
         });
       } else {
         console.log('EE games no data error', data);
+        document.getElementById("gameContainer").style.display = 'none';
         document.getElementById("no_games_container").style.display = 'block';
         $("body").css("opacity", 100);
       }
@@ -80,6 +81,7 @@ $(document).ready(function () {
     },
     (error) => {
       console.log("EE games API Error: ", error);
+      document.getElementById("gameContainer").style.display = 'none';
       document.getElementById("no_games_container").style.display = 'block';
       $("body").css("opacity", 100);
     },
