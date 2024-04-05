@@ -180,11 +180,10 @@ body{
   text-align: center;
 }
 
-@media screen and (min-width: 1900px) and (min-height: 880px){
-  /* Base font size for responsive layout in games screen*/
+/* Base font size 10.1 for responsive layout in games screen*/
+@media screen and (min-width: 1900px) {
   html, body {
       font-size: 17.78px;
-      background-color: deeppink;
   }
 
   .gameApp {
@@ -194,8 +193,8 @@ body{
   }
 
   .gameimg{
-    height: 14.5rem;
-    width: 14.5rem;
+    height: 13.5rem;
+    width: 13.5rem;
   }
 
   .gamename{
@@ -211,42 +210,24 @@ body{
   }
 }
 
-@media screen and (min-width: 1200px) and (min-height: 1575px) {
-  /* Base font size for 12.1P responsive layout in games screen*/
-    html, body {
-      font-size: 12.22px;
-      background-color: blue;
-    }
-  
-    .gameimg {
-      height: 24rem;
-      width: 20.3rem;
-    }
-  
-    .flexdiv {
-      /* gap: 3rem 6rem;
-      margin: 5rem 8rem; */
-      gap: 3rem 6rem;
-      margin: 4rem 8rem;
-      justify-content: flex-start;
-    }
-  
-    .gamename {
-      font-size: 2.8rem;
-      line-height: 3rem;
-    }
+/* Base font size for 14.4P responsive layout in games screen*/
+@media screen and (min-width: 1024px) and (min-height: 1220px) {
+  html, body {
+    font-size: 12.22px;
+  }
 
-    .gameApp {
-      margin: 1.5rem;
-    }
+  .flexdiv {
+    gap: 3rem 2rem;
+    margin: 5rem;
+    justify-content: flex-start;
+  }
   
 }
 
-@media screen and (min-width: 1724px) and (max-height: 618px) {
 /* Base font size for 10.25 & 12.3L responsive layout in games screen*/
+@media screen and (min-width: 1724px) and (max-height: 618px) {
   html, body {
     font-size: 14.44px;
-    background-color: orange;
   }
 
   .gameimg {
@@ -268,22 +249,60 @@ body{
   .gameApp {
     margin: 0.5rem 1.5rem;
   }
+}
 
+/* Base font size for 12P responsive layout in games screen 800 * 1050*/
+ @media screen and (max-width: 800px){
+  html, body {
+    font-size: 9.63px;
+  }
+
+  .gameimg {
+    height: 24rem;
+    width: 20rem;
+  }
+
+  .flexdiv {
+    gap: 3rem 2rem;
+    margin: 4rem;
+    justify-content: flex-start;
+  }
+
+  .gamename {
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+
+  .gameApp {
+    margin: 1.5rem;
+  }
+}
+
+/* Base font size for 12.1P responsive layout in games screen 1200 * 1575*/
+@media screen and (min-width: 1200px) and (min-height: 1360px){
+  html, body {
+    font-size: 14.07px;
+  }
+
+  .gameimg {
+    height: 24rem;
+    width: 20.3rem;
+  }
+
+  .flexdiv {
+    gap: 3rem 2rem;
+    margin: 4rem 5rem;
+    justify-content: flex-start;
+  }
+
+  .gamename {
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+
+  .gameApp {
+    margin: 1.5rem;
+  }
 }
 
 
-@media screen and (min-width: 1024px) and (min-height: 1410px) {
-  /* Base font size for 14.4P responsive layout in games screen*/
-    html, body {
-      font-size: 12.22px;
-      background-color:rgb(229, 255, 0);
-    }
-  
-    .flexdiv {
-      gap: 3rem 2rem;
-      margin: 5rem;
-      justify-content: flex-start;
-    }
-    
-  
-  }
