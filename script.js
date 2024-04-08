@@ -21,13 +21,13 @@ window.addEventListener("no_driver_distraction", () => {
 
 function load_driver_distraction() {
   document.getElementById('ddmessage').textContent = top.locale['dd_games_message'];
-  $("#gameContainer").hide();
+  $(".flexcontainer").css("display", "none");
   $("#ddmessage").css("display", "flex");
 }
 
 function load_non_driver_distraction() {
   $("#ddmessage").css("display", "none");
-  $("#gameContainer").show();
+  $(".flexcontainer").css("display", "flex");
 }
 
 $(document).ready(function () {
@@ -73,6 +73,7 @@ $(document).ready(function () {
         });
       } else {
         console.log('EE games no data error', data);
+        document.getElementById("gameContainer").style.display = 'none';
         document.getElementById("no_games_container").style.display = 'block';
         $("body").css("opacity", 100);
       }
@@ -80,6 +81,7 @@ $(document).ready(function () {
     },
     (error) => {
       console.log("EE games API Error: ", error);
+      document.getElementById("gameContainer").style.display = 'none';
       document.getElementById("no_games_container").style.display = 'block';
       $("body").css("opacity", 100);
     },
