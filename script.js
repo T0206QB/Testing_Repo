@@ -30,6 +30,29 @@ function load_non_driver_distraction() {
   $(".flexcontainer").css("display", "flex");
 }
 
+
+
+window.addEventListener("translation_completed", () => {
+  translatePage();
+});
+
+const translatePage = () => {
+  try {
+      document.querySelectorAll('[localization-key]').forEach((element) => {
+      let key = element.getAttribute('localization-key');
+      let translation = top.locale[key];
+      if (translation == undefined)
+        console.log("Games translation not defined for " + key);
+      else
+        element.innerText = translation;
+    });
+  } catch (err) {
+    console.log("Exception while translating in games! " + err);
+    top.locale = {};
+  }
+
+};
+
 $(document).ready(function () {
   const baseUrl = top.stellaHandle.getProperty("eligibility_engine_url");
   const vin = top.stellaHandle.getVehicleIdentity();
