@@ -4759,10 +4759,10 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 				else if (this.loaderstyle === 4)
 				{
 					this.draw_c2_splash_loader(ctx);
-					if (raf && typeof window.forceDTMS === "undefined")
+					if (raf)
 						raf(function() { self.go(); });
 					else
-						setTimeout(function() { self.go(); }, window.forceDTMS || 16);
+						setTimeout(function() { self.go(); }, 16);
 					return;
 				}
 			}
@@ -4986,11 +4986,11 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			return;
 		if (!background_wake)
 		{
-			if (raf && typeof window.forceDTMS === "undefined")
+			if (raf)
 				this.raf_id = raf(this.tickFunc);
 			else
 			{
-				this.timeout_id = setTimeout(this.tickFunc, this.isMobile ? 1 : window.forceDTMS || 16);
+				this.timeout_id = setTimeout(this.tickFunc, this.isMobile ? 1 : 16);
 			}
 		}
 		var raf_time = timestamp || nowtime;
@@ -34405,32 +34405,32 @@ cr.behaviors.solid = function(runtime)
 }());
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.NinePatch,
-	cr.plugins_.c2canvas,
 	cr.plugins_.AJAX,
 	cr.plugins_.Arr,
 	cr.plugins_.Audio,
 	cr.plugins_.cjs,
+	cr.plugins_.c2canvas,
 	cr.plugins_.Browser,
-	cr.plugins_.CJSAds,
 	cr.plugins_.Dictionary,
-	cr.plugins_.Keyboard,
+	cr.plugins_.CJSAds,
 	cr.plugins_.Function,
-	cr.plugins_.TouchEnhanced,
-	cr.plugins_.Sprite,
-	cr.plugins_.Particles,
+	cr.plugins_.Keyboard,
+	cr.plugins_.Spritefont2,
+	cr.plugins_.Rex_CSV,
 	cr.plugins_.HTML_iFrame_Pode,
 	cr.plugins_.Rex_SLGSquareTx,
-	cr.plugins_.Rex_CSV,
 	cr.plugins_.proxy,
-	cr.plugins_.Rex_Hash,
+	cr.plugins_.playtouch_textEnhanced,
+	cr.plugins_.Particles,
 	cr.plugins_.Rex_SLGBoard,
 	cr.plugins_.Rex_CSV2Array,
-	cr.plugins_.playtouch_textEnhanced,
-	cr.plugins_.Cookie,
-	cr.plugins_.TiledBg,
-	cr.plugins_.Spritefont2,
-	cr.plugins_.Touch,
+	cr.plugins_.Rex_Hash,
+	cr.plugins_.TouchEnhanced,
+	cr.plugins_.Sprite,
 	cr.plugins_.WebStorage,
+	cr.plugins_.TiledBg,
+	cr.plugins_.Cookie,
+	cr.plugins_.Touch,
 	cr.plugins_.Text,
 	cr.behaviors.Anchor,
 	cr.behaviors.jumpthru,
