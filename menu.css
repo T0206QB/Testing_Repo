@@ -218,11 +218,31 @@ body{
   }
 
   .flexdiv {
-    gap: 3rem 2rem;
-    margin: 5rem;
-    justify-content: flex-start;
+    gap: unset;
+    margin: 10rem 5rem;
+    justify-content: space-between;
+  }
+
+  .gameApp {
+    margin: 2rem 0rem;
+  }
+
+  .gameimg {
+    height: 21rem;
+    width: 21rem;
+    border-radius: none;
   }
   
+  .gameimg img {
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .gamename {
+    font-size: 2.7rem;
+    line-height: 2.8rem;
+  }
 }
 
 /* Base font size for 10.25 & 12.3L responsive layout in games screen*/
