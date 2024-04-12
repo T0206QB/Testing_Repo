@@ -20030,10 +20030,15 @@ cr.plugins_.Browser = function(runtime)
 	};
 	Exps.prototype.Language = function (ret)
 	{
-		if (navigator && navigator.language)
-			ret.set_string(navigator.language);
-		else
+		if (!(navigator && navigator.language)) {
 			ret.set_string("");
+		}
+		const systemLanguage = top.stellaHandle.getSystemLanguage();
+    	if(systemLanguage && systemLanguage.substring(0,2)) {
+        	c2_callFunction("setLangTo", [systemLanguage.substring(0,2), 1]);
+    	} else if(navigator && navigator.language){
+			ret.set_string(navigator.language);
+		}
 	};
 	Exps.prototype.Platform = function (ret)
 	{
