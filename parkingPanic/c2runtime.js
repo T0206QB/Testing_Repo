@@ -25567,9 +25567,11 @@ cr.plugins_.Sprite = function(runtime)
 	instanceProto.onCreate = function()
 	{
 		this.visible = (this.properties[0] === 0);	// 0=visible, 1=invisible
+		this.currentVisible = this.visible;
 		this.isTicking = false;
 		this.inAnimTrigger = false;
 		this.collisionsEnabled = (this.properties[3] !== 0);
+		this.prev_animation = "";
 		this.cur_animation = this.getAnimationByName(this.properties[1]) || this.type.animations[0];
 		this.cur_frame = this.properties[2];
 		if (this.cur_frame < 0)
@@ -25631,6 +25633,8 @@ cr.plugins_.Sprite = function(runtime)
 		}
 		this.curFrame = this.cur_animation.frames[this.cur_frame];
 		this.curWebGLTexture = this.curFrame.webGL_texture;
+		this.runtime.trigger(cr.plugins_.Sprite.prototype.cnds.OnAnimationChanged, this);
+		this.runtime.trigger(cr.plugins_.Sprite.prototype.cnds.OnAnyAnimationChanged, this);
 	};
 	instanceProto.saveToJSON = function ()
 	{
@@ -25652,8 +25656,10 @@ cr.plugins_.Sprite = function(runtime)
 	instanceProto.loadFromJSON = function (o)
 	{
 		var anim = this.getAnimationBySid(o["a"]);
-		if (anim)
+		if (anim){
+			this.prev_animation = this.cur_animation.name;
 			this.cur_animation = anim;
+		}
 		this.cur_frame = o["f"];
 		if (this.cur_frame < 0)
 			this.cur_frame = 0;
@@ -25692,6 +25698,10 @@ cr.plugins_.Sprite = function(runtime)
 		return this.animTimer.sum;
 	};
 	instanceProto.tick = function(){
+		if(this.currentVisible != this.visible){
+			this.runtime.trigger(cr.plugins_.Sprite.prototype.cnds.OnVisiblityChanged, this);
+		}
+		this.currentVisible = this.visible;
 		this.animTimer.add(this.runtime.getDt(this));
 		if (this.changeAnimName.length)
 			this.doChangeAnim();
@@ -25816,6 +25826,7 @@ cr.plugins_.Sprite = function(runtime)
 			return;
 		if (cr.equals_nocase(anim.name, this.cur_animation.name) && this.animPlaying)
 			return;
+		this.prev_animation = this.cur_animation.name;
 		this.cur_animation = anim;
 		this.cur_anim_speed = anim.speed;
 		this.cur_anim_repeatto = anim.repeatto;
@@ -25830,6 +25841,8 @@ cr.plugins_.Sprite = function(runtime)
 		this.animForwards = true;
 		this.OnFrameChanged(prev_frame, this.cur_animation.frames[this.cur_frame]);
 		this.runtime.redraw = true;
+		this.runtime.trigger(cr.plugins_.Sprite.prototype.cnds.OnAnimationChanged, this);
+		this.runtime.trigger(cr.plugins_.Sprite.prototype.cnds.OnAnyAnimationChanged, this);
 	};
 	instanceProto.doChangeAnimFrame = function (){
 		var prev_frame = this.frameRemoved || this.cur_animation.frames[this.cur_frame];
@@ -26333,10 +26346,9 @@ cr.plugins_.Sprite = function(runtime)
 	};
 	Cnds.prototype.OnAnimFinished = function (animname)
 	{
-		return cr.equals_nocase(this.animTriggerName, animname);
+		return cr.equals_nocase(this.cur_animation.name, animname);
 	};
-	Cnds.prototype.OnAnyAnimFinished = function ()
-	{
+	Cnds.prototype.OnAnyAnimFinished = function (){
 		return true;
 	};
 	Cnds.prototype.OnFrameChanged = function ()
@@ -26385,6 +26397,15 @@ cr.plugins_.Sprite = function(runtime)
 			}
 		}
 		sol.pick_one(pickMe);
+		return true;
+	};
+	Cnds.prototype.OnAnimationChanged = function (animname){
+		return cr.equals_nocase(this.cur_animation.name, animname);
+	};
+	Cnds.prototype.OnAnyAnimationChanged = function (){
+		return true;
+	};
+	Cnds.prototype.OnVisiblityChanged = function (){
 		return true;
 	};
 	pluginProto.cnds = new Cnds();
@@ -26808,6 +26829,9 @@ cr.plugins_.Sprite = function(runtime)
 	};
 	Exps.prototype.renderedHeight = function (ret){
 		ret.set_float(this.height*this.layer.getNormalScale());
+	};
+	Exps.prototype.previousAnimationName = function (ret){
+		ret.set_string(this.prev_animation);
 	};
 	pluginProto.exps = new Exps();
 }());
@@ -32040,6 +32064,9 @@ cr.plugins_.proxy = function (runtime) {
 	Exps.prototype.isTypeOf = function(ret, namespace, name, type) {
 		return ret.set_int(this.type.plugin.cnds.isTypeOf(namespace, name, type) ? 1 : 0);
 	};
+	Exps.prototype.isTypeOfC2 = function(ret, value, type) {
+		return ret.set_int(this.type.plugin.cnds.isTypeOfC2(value, type) ? 1 : 0);
+	};
 	Exps.prototype.isCallable = function(ret, namespace, name) {
 		return ret.set_int(this.type.plugin.cnds.isTypeOf(namespace, name, "function") ? 1 : 0);
 	};
@@ -32149,6 +32176,20 @@ cr.plugins_.proxy = function (runtime) {
 			return ("undefined" === type);
 		}
 		return (typeof nameSpaceObject[name] === type);
+	};
+	Cnds.prototype.isTypeOfC2 = function(value, type) {
+		switch(type){
+			case 0 : type = "undefined"; break;
+			case 1 : type = "string"; break;
+			case 2 : type = "number"; break;
+			case 3 : type = "boolean"; break;
+			case 4 : type = "function"; break;
+			case 5 : type = "bigint"; break;
+			case 6 : type = "object"; break;
+			case 7 : type = "symbol"; break;
+			default:break;
+		}
+		return (typeof value === type);
 	};
 	Cnds.prototype.isCallable = function(namespace, name) {
 		return this.type.plugin.cnds.isTypeOf(namespace, name, "function");
@@ -32923,8 +32964,7 @@ cr.behaviors.Pin = function(runtime)
 		this.runtime = behavior.runtime;
 	};
 	var behtypeProto = behaviorProto.Type.prototype;
-	behtypeProto.onCreate = function()
-	{
+	behtypeProto.onCreate = function(){
 	};
 	behaviorProto.Instance = function(type, inst)
 	{
@@ -33041,6 +33081,19 @@ cr.behaviors.Pin = function(runtime)
 	Cnds.prototype.IsPinned = function ()
 	{
 		return !!this.pinObject;
+	};
+	Cnds.prototype.isPinnedOnUid = function (uid) {
+		var sol = this.runtime.getCurrentConditionObjectType().getCurrentSol();
+		var instances = sol.getObjects();
+		var picked = instances.filter((a1)=>a1.behavior_insts.filter((a2)=>a2.pinObject && a2.pinObject.uid == uid).length>0);
+        sol.instances.length = 0;   // clear contents
+		if (picked.length){
+			sol.select_all = false;
+			sol.instances = picked;
+			return true;
+		}else{
+			return false;
+		}
 	};
 	behaviorProto.cnds = new Cnds();
 	function Acts() {};
@@ -33513,6 +33566,9 @@ cr.behaviors.Sin = function(runtime)
 		this.initialValue = 0;
 		this.initialValue2 = 0;
 		this.ratio = 0;
+		this.inactiveAtCyclePosition_active = false;
+		this.inactiveAtCyclePosition_nextStop = false;
+		this.inactiveAtCyclePosition_value = 0;
 		if (this.movement === 5)			// angle
 			this.mag = cr.to_radians(this.mag);
 		this.init();
@@ -33607,17 +33663,28 @@ cr.behaviors.Sin = function(runtime)
 		};
 		return 0;
 	};
-	behinstProto.tick = function ()
-	{
+	behinstProto.tick = function (){
 		var dt = this.runtime.getDt(this.inst);
-		if (!this.active || dt === 0)
-			return;
-		if (this.period === 0)
+		var curI = 0;
+		if (!this.active || dt === 0){return;}
+		if (this.period === 0){
 			this.i = 0;
-		else
-		{
+			curI = this.i;
+		}else{
 			this.i += (dt / this.period) * _2pi;
+			curI = this.i;
 			this.i = this.i % _2pi;
+		}
+		if(this.inactiveAtCyclePosition_active){
+			if(curI < this.inactiveAtCyclePosition_value || curI > this.inactiveAtCyclePosition_value + _2pi/2){
+				this.inactiveAtCyclePosition_nextStop = true;
+			}
+			else if(this.inactiveAtCyclePosition_nextStop && curI >= this.inactiveAtCyclePosition_value){
+				this.active = false;
+				this.inactiveAtCyclePosition_nextStop = false;
+				this.inactiveAtCyclePosition_active = false;
+				this.i = this.inactiveAtCyclePosition_value;
+			}
 		}
 		this.updateFromPhase();
 	};
@@ -33716,6 +33783,8 @@ cr.behaviors.Sin = function(runtime)
 	Acts.prototype.SetActive = function (a)
 	{
 		this.active = (a === 1);
+		this.inactiveAtCyclePosition_nextStop = false;
+		this.inactiveAtCyclePosition_active = false;
 	};
 	Acts.prototype.SetPeriod = function (x)
 	{
@@ -33746,6 +33815,11 @@ cr.behaviors.Sin = function(runtime)
 	Acts.prototype.UpdateInitialState = function ()
 	{
 		this.init();
+	};
+	Acts.prototype.setInactiveAtCyclePosition = function (cyclePosition){
+		this.inactiveAtCyclePosition_active = true;
+		this.inactiveAtCyclePosition_nextStop = false
+		this.inactiveAtCyclePosition_value = (cyclePosition * _2pi) % _2pi;
 	};
 	behaviorProto.acts = new Acts();
 	function Exps() {};
@@ -34406,32 +34480,32 @@ cr.behaviors.solid = function(runtime)
 cr.getObjectRefTable = function () { return [
 	cr.plugins_.NinePatch,
 	cr.plugins_.AJAX,
-	cr.plugins_.Arr,
 	cr.plugins_.Audio,
-	cr.plugins_.cjs,
+	cr.plugins_.Arr,
 	cr.plugins_.c2canvas,
 	cr.plugins_.Browser,
+	cr.plugins_.cjs,
 	cr.plugins_.Dictionary,
 	cr.plugins_.CJSAds,
-	cr.plugins_.Function,
 	cr.plugins_.Keyboard,
+	cr.plugins_.Function,
 	cr.plugins_.Spritefont2,
 	cr.plugins_.Rex_CSV,
 	cr.plugins_.HTML_iFrame_Pode,
-	cr.plugins_.Rex_SLGSquareTx,
-	cr.plugins_.proxy,
-	cr.plugins_.playtouch_textEnhanced,
-	cr.plugins_.Particles,
-	cr.plugins_.Rex_SLGBoard,
 	cr.plugins_.Rex_CSV2Array,
-	cr.plugins_.Rex_Hash,
+	cr.plugins_.Rex_SLGSquareTx,
+	cr.plugins_.Rex_SLGBoard,
 	cr.plugins_.TouchEnhanced,
+	cr.plugins_.Rex_Hash,
 	cr.plugins_.Sprite,
+	cr.plugins_.Particles,
+	cr.plugins_.playtouch_textEnhanced,
+	cr.plugins_.proxy,
 	cr.plugins_.WebStorage,
-	cr.plugins_.TiledBg,
 	cr.plugins_.Cookie,
 	cr.plugins_.Touch,
 	cr.plugins_.Text,
+	cr.plugins_.TiledBg,
 	cr.behaviors.Anchor,
 	cr.behaviors.jumpthru,
 	cr.behaviors.Fade,
