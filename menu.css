@@ -279,18 +279,27 @@ body{
   }
 
   .gameimg {
-    height: 24rem;
-    width: 20rem;
+    height: 20rem;
+    width: 17.5rem;
   }
 
   .flexdiv {
-    gap: 0rem 3rem;
-    justify-content: flex-start;
+    gap: unset;
+    margin: 8rem;
+    justify-content: space-between;
   }
 
   .gamename {
-    font-size: 2.8rem;
-    line-height: 3rem;
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
+
+  .gameApp {
+    margin: 1.5rem 1rem;
+  }
+
+  .gameimg img {
+    object-fit: unset;
   }
 }
 
