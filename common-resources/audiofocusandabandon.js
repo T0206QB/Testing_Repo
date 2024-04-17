@@ -17,7 +17,6 @@ window.setTimeout(function () {
 //wait for VDA to load and abandon audio focus
 window.onbeforeunload = function () {
   // VDAAndroid.stopMediaPlayer();
-  // add audioabandon on mute button
   if (top.stellaHandle == null) {
     console.log("failed to load stella handle");
     return;
