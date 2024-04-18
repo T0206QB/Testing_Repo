@@ -26,7 +26,7 @@ jobs:
         role-to-assume: arn:aws:iam::228722564141:role/service-role/codebuild-webwidgets-web
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync . s3://stla-ivww-s3-iconic-games --exclude ".*"
+        aws s3 sync . s3://stla-ivww-s3-iconic-games --exclude ".*" --delete
     - name: Create CloudFront invalidation
       run: |
         aws cloudfront create-invalidation --distribution-id E308TWHP5YTEDR --paths "/*"
@@ -49,7 +49,7 @@ jobs:
         role-to-assume: arn:aws:iam::228722564141:role/service-role/codebuild-webwidgets-web
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync . s3://web-widgets-dev/games-dev --exclude ".*"
+        aws s3 sync . s3://web-widgets-dev/games-dev --exclude ".*" --delete
     - name: Create CloudFront invalidation
       run: |
         aws cloudfront create-invalidation --distribution-id E308TWHP5YTEDR --paths "/*"
