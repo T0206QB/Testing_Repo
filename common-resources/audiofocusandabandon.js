@@ -10,7 +10,7 @@ window.setTimeout(function () {
       appId: app_ID,
       appName: app_name,
     });
-    top.stellaHandle.requestAudioFocus();
+    // top.stellaHandle.requestAudioFocus();
   }
 }, 1000);
 
@@ -28,7 +28,7 @@ window.onbeforeunload = function () {
       appId: app_ID,
       appName: app_name,
     });
-    top.stellaHandle.abandonAudioFocus();
+    // top.stellaHandle.abandonAudioFocus();
   }
 };
 // Start the Construct 2 project running on window load.

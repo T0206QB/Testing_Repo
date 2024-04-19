@@ -20,7 +20,8 @@ window.addEventListener("no_driver_distraction", () => {
 });
 
 function load_driver_distraction() {
-  document.getElementById('ddmessage').textContent = top.locale['dd_games_message'];
+  document.getElementById("ddmessage").textContent =
+    top.locale["dd_games_message"];
   $(".flexcontainer").css("display", "none");
   $("#ddmessage").css("display", "flex");
 }
@@ -30,27 +31,23 @@ function load_non_driver_distraction() {
   $(".flexcontainer").css("display", "flex");
 }
 
-
-
 window.addEventListener("translation_completed", () => {
   translatePage();
 });
 
 const translatePage = () => {
   try {
-      document.querySelectorAll('[localization-key]').forEach((element) => {
-      let key = element.getAttribute('localization-key');
+    document.querySelectorAll("[localization-key]").forEach((element) => {
+      let key = element.getAttribute("localization-key");
       let translation = top.locale[key];
       if (translation == undefined)
         console.log("Games translation not defined for " + key);
-      else
-        element.innerText = translation;
+      else element.innerText = translation;
     });
   } catch (err) {
     console.log("Exception while translating in games! " + err);
     top.locale = {};
   }
-
 };
 
 $(document).ready(function () {
@@ -65,8 +62,8 @@ $(document).ready(function () {
   top.makeAPIRequest(
     (data) => {
       var gameContainer = document.getElementById("gameContainer");
-      if(data && data.apps && data.apps.length > 0){
-        document.getElementById("no_games_container").style.display = 'none';
+      if (data && data.apps && data.apps.length > 0) {
+        document.getElementById("no_games_container").style.display = "none";
 
         data.apps.sort((a, b) => a.name.localeCompare(b.name));
         data.apps.forEach((game) => {
@@ -85,27 +82,27 @@ $(document).ready(function () {
           gameContainer.appendChild(gameDiv);
           var gameNameId = game.url.split("/")[2];
           $("#" + `${game.id}`).click(function () {
+            top.stellaHandle.requestAudioFocus();
             var app_ID = top.APPID;
             top.Analytics.track("clickApp", {
               parentId: app_ID,
-              gameId:game.id
-           });
+              gameId: game.id,
+            });
             location.href = `${gameNameId}` + "/index.html";
           });
           $("body").css("opacity", 100);
         });
       } else {
-        console.log('EE games no data error', data);
-        document.getElementById("gameContainer").style.display = 'none';
-        document.getElementById("no_games_container").style.display = 'block';
+        console.log("EE games no data error", data);
+        document.getElementById("gameContainer").style.display = "none";
+        document.getElementById("no_games_container").style.display = "block";
         $("body").css("opacity", 100);
       }
-      
     },
     (error) => {
       console.log("EE games API Error: ", error);
-      document.getElementById("gameContainer").style.display = 'none';
-      document.getElementById("no_games_container").style.display = 'block';
+      document.getElementById("gameContainer").style.display = "none";
+      document.getElementById("no_games_container").style.display = "block";
       $("body").css("opacity", 100);
     },
     {
@@ -117,6 +114,7 @@ $(document).ready(function () {
 
 // make captured games count zero when games page is loaded to dismiss the notification
 window.onload = function () {
+  top.stellaHandle.abandonAudioFocus();
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
   if (savedAppInfo && appId && savedAppInfo[appId]) {
