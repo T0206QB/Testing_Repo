@@ -7042,7 +7042,8 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			if (window.location.search.indexOf("continuous") > -1)
 				window.location.reload(true);
 			else
-				window.location = window.location + "?continuous";
+			var encodedContinuousParam = encodeURIComponent("continuous");
+			window.location = window.location + "?" + encodedContinuousParam;
 		}
 	};
 	Runtime.prototype.handleSaveLoad = function ()
