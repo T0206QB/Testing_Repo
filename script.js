@@ -85,9 +85,11 @@ $(document).ready(function () {
             sessionStorage.setItem("game",game.id);
             top.stellaHandle.requestAudioFocus();
             var app_ID = top.APPID;
-            top.Analytics.track("clickApp", {
-              parentId: app_ID,
-              gameId: game.id,
+            var app_name = top.APPNAME;
+            top.Analytics.track("appStart", {
+              appId: app_ID,
+              appName: app_name,
+              gameName:game.id
             });
             location.href = `${gameNameId}` + "/index.html";
           });
@@ -119,12 +121,19 @@ window.onload = function () {
   var app_ID = top.APPID;
     var app_name = top.APPNAME;
     var game_name = sessionStorage.getItem("game");
-    console.log(game_name);
-    top.Analytics.track("appClose", {
-      appId: app_ID,
-      appName: app_name,
-      gameName:game_name
-    });
+    if(game_name === null){
+      top.Analytics.track("appClose", {
+        appId: app_ID,
+      });
+    }else{
+      top.Analytics.track("appClose", {
+        appId: app_ID,
+        appName: app_name,
+        gameName:game_name
+      });
+    }
+    
+    sessionStorage.removeItem("game");
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
   if (savedAppInfo && appId && savedAppInfo[appId]) {
