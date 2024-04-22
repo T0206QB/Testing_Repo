@@ -82,11 +82,14 @@ $(document).ready(function () {
           gameContainer.appendChild(gameDiv);
           var gameNameId = game.url.split("/")[2];
           $("#" + `${game.id}`).click(function () {
+            sessionStorage.setItem("game",game.id);
             top.stellaHandle.requestAudioFocus();
             var app_ID = top.APPID;
-            top.Analytics.track("clickApp", {
-              parentId: app_ID,
-              gameId: game.id,
+            var app_name = top.APPNAME;
+            top.Analytics.track("appStart", {
+              appId: app_ID,
+              appName: app_name,
+              gameName:game.id
             });
             location.href = `${gameNameId}` + "/index.html";
           });
@@ -115,6 +118,22 @@ $(document).ready(function () {
 // make captured games count zero when games page is loaded to dismiss the notification
 window.onload = function () {
   top.stellaHandle.abandonAudioFocus();
+  var app_ID = top.APPID;
+    var app_name = top.APPNAME;
+    var game_name = sessionStorage.getItem("game");
+    if(game_name === null){
+      top.Analytics.track("appClose", {
+        appId: app_ID,
+      });
+    }else{
+      top.Analytics.track("appClose", {
+        appId: app_ID,
+        appName: app_name,
+        gameName:game_name
+      });
+    }
+    
+    sessionStorage.removeItem("game");
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
   if (savedAppInfo && appId && savedAppInfo[appId]) {
@@ -131,3 +150,5 @@ window.onload = function () {
     }
   }
 };
+
+

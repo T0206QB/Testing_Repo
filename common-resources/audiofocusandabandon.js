@@ -4,12 +4,12 @@ window.setTimeout(function () {
     console.log("stella interface handle is null");
   } else {
     console.log("requesting audio focus");
-    var app_ID = top.APPID;
-    var app_name = top.APPNAME;
-    top.Analytics.track("appStart", {
-      appId: app_ID,
-      appName: app_name,
-    });
+    // var app_ID = top.APPID;
+    // var app_name = top.APPNAME;
+    // top.Analytics.track("appStart", {
+    //   appId: app_ID,
+    //   appName: app_name,
+    // });
     // top.stellaHandle.requestAudioFocus();
   }
 }, 1000);
@@ -22,12 +22,12 @@ window.onbeforeunload = function () {
     return;
   } else {
     console.log("abandon audio focus");
-    var app_ID = top.APPID;
-    var app_name = top.APPNAME;
-    top.Analytics.track("appClose", {
-      appId: app_ID,
-      appName: app_name,
-    });
+    // var app_ID = top.APPID;
+    // var app_name = top.APPNAME;
+    // top.Analytics.track("appClose", {
+    //   appId: app_ID,
+    //   appName: app_name,
+    // });
     // top.stellaHandle.abandonAudioFocus();
   }
 };
