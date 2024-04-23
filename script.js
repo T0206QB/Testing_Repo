@@ -82,14 +82,14 @@ $(document).ready(function () {
           gameContainer.appendChild(gameDiv);
           var gameNameId = game.url.split("/")[2];
           $("#" + `${game.id}`).click(function () {
-            sessionStorage.setItem("game",game.id);
+            sessionStorage.setItem("gameId", game.id);
+            sessionStorage.setItem("gameName", game.name);
             top.stellaHandle.requestAudioFocus();
-            var app_ID = top.APPID;
-            var app_name = top.APPNAME;
+            var game_id  = game.id;
+            var game_name = game.name;
             top.Analytics.track("appStart", {
-              appId: app_ID,
-              appName: app_name,
-              gameName:game.id
+              appId: game_id,
+              appName: game_name,
             });
             location.href = `${gameNameId}` + "/index.html";
           });
@@ -119,21 +119,22 @@ $(document).ready(function () {
 window.onload = function () {
   top.stellaHandle.abandonAudioFocus();
   var app_ID = top.APPID;
-    var app_name = top.APPNAME;
-    var game_name = sessionStorage.getItem("game");
-    if(game_name === null){
-      top.Analytics.track("appClose", {
-        appId: app_ID,
-      });
-    }else{
-      top.Analytics.track("appClose", {
-        appId: app_ID,
-        appName: app_name,
-        gameName:game_name
-      });
-    }
-    
-    sessionStorage.removeItem("game");
+  var app_name = top.APPNAME;
+  var game_id = sessionStorage.getItem("gameId");
+  var game_name = sessionStorage.getItem("gameName");
+  if (game_name === null) {
+    top.Analytics.track("appClose", {
+      appId: app_ID,
+      appName:app_name
+    });
+  } else {
+    top.Analytics.track("appClose", {
+      appId: game_id,
+      appName: game_name,
+    });
+  }
+  sessionStorage.removeItem("gameId");
+  sessionStorage.removeItem("gameName");
   const savedAppInfo = JSON.parse(localStorage.getItem("appInfo"));
   const appId = top.APPID;
   if (savedAppInfo && appId && savedAppInfo[appId]) {
@@ -150,5 +151,3 @@ window.onload = function () {
     }
   }
 };
-
-
