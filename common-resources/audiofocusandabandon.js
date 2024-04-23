@@ -1,36 +1,3 @@
-//wait for VDA to load and request audio focus
-window.setTimeout(function () {
-  if (top.stellaHandle == null) {
-    console.log("stella interface handle is null");
-  } else {
-    console.log("requesting audio focus");
-    // var app_ID = top.APPID;
-    // var app_name = top.APPNAME;
-    // top.Analytics.track("appStart", {
-    //   appId: app_ID,
-    //   appName: app_name,
-    // });
-    // top.stellaHandle.requestAudioFocus();
-  }
-}, 1000);
-
-//wait for VDA to load and abandon audio focus
-window.onbeforeunload = function () {
-  // VDAAndroid.stopMediaPlayer();
-  if (top.stellaHandle == null) {
-    console.log("failed to load stella handle");
-    return;
-  } else {
-    console.log("abandon audio focus");
-    // var app_ID = top.APPID;
-    // var app_name = top.APPNAME;
-    // top.Analytics.track("appClose", {
-    //   appId: app_ID,
-    //   appName: app_name,
-    // });
-    // top.stellaHandle.abandonAudioFocus();
-  }
-};
 // Start the Construct 2 project running on window load.
 jQuery(document).ready(function () {
   // Create new runtime using the c2canvas
