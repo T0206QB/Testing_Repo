@@ -49,4 +49,4 @@ jobs:
           echo "Merged to: $to_branch"
           echo "Merged at timestamp: $merge_timestamp"
 
-          python .github/workflows/scripts/insert_pr_merge_info_to_db.py "$project_name" $repo_name $pr_number $from_branch $to_branch $merge_timestamp
+          python .github/workflows/scripts/validation_for_db_credentials.py "$project_name" $repo_name $pr_number $from_branch $to_branch $merge_timestamp
